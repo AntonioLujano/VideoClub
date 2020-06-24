@@ -22,3 +22,7 @@ Route::get('/MasPopulares', function () {
 Route::get('/prueba', function () {
     return view('Pruebas.prueba');
 });
+
+Route::get('/ListadoSocios', function () {
+    return view('Socios.index');
+});

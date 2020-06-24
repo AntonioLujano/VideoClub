@@ -1,7 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+      <!--BOOTSTRAP E ICONOS -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/all.css">
+
+      <link rel="dns-prefetch" href="//fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+      <link rel="stylesheet" type="text/css"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+
+
+      <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -11,33 +21,33 @@
     <title>App Name - @yield('title')</title>
   </head>
 <body>
-  <div class="p-3 mb-2 bg-info text-center"><h1>Cinema PRO-SIX</h1></div>
+  <div class="p-3 mb-2 bg-info text-center card card-header"><h1 class="font-weight-bold">Cinema PRO-SIX</h1></div>
   <div class="container-fluid">
     <div class="row">
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-info text-center sidebar collapse">
         <div class="sidebar-sticky pt-5">
           <ul class="nav flex-column">
-            <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Usuarios</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Peliculas</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Actores</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Directores</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light" id="socio">Socios</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Prestamos</a>
-            </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light card-link">Inicio</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Usuarios</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Peliculas</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Actores</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Directores</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light" id="socio">Socios</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Prestamos</a>
+              </li>
           </ul>
         </div>
       </nav>
