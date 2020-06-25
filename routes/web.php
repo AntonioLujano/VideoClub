@@ -21,11 +21,10 @@ Route::get('/', function () {
     return view('Socios.index');
 });
 
-Route::get('/RegistroSocios', function(){
-	return view('Socios.registrar');
-});
+
 
 });*/
+
 Route::resource('/MasPopulares', 'MasPopularesController');
 Route::resource('/ListadoSocios', 'ListadoSociosController');
 Route::resource('/ListaEsperas', 'ListaEsperasController');

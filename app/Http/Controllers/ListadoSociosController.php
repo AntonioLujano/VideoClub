@@ -25,6 +25,7 @@ class ListadoSociosController extends Controller
     public function create()
     {
         //
+        return view('Socios.registrar');
     }
 
     /**
