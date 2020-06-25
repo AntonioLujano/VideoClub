@@ -14,13 +14,7 @@ class MasPopularesController extends Controller
      */
     public function index()
     {
-        //ejemplo de datos 
-       
-            $data['Titulos'] = [ "titulo 1","titulo 2","titulo 3","titulo 4","titulo 5"];
-            /*$Directores =["Director 1","Director 2","Director 3","Director 4","Director 5"];
-            $Generos =["Genero 1","Genero 2","Genero 3","Genero 4","Genero 5"];                
-           */
-       return view('MasPopulares.index',$data);
+       return view('MasPopulares.index');
     }
 
     /**
