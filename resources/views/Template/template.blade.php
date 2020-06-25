@@ -7,42 +7,44 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <title>App Name - @yield('title')</title>
+    <!-- Font awesome Iconos-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- Titulo cambia de acuerdo a la vista -->
+    <title>@yield('title','Inicio')</title>
   </head>
 <body>
   <div class="p-3 mb-2 bg-info text-center"><h1>Cinema PRO-SIX</h1></div>
   <div class="container-fluid">
     <div class="row">
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-info text-center sidebar collapse">
-        <div class="sidebar-sticky pt-5">
+      <nav id="sidebarMenu" class="col-2 d-md-block bg-info text-center sidebar collapse">
+        <div class="sidebar-sticky pt-4">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Inicio</a>
+              <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-th">  Inicio</i></a>
             </li>
             <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Usuarios</a>
+              <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-user">  Usuarios</i></a>
             </li>
             <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Peliculas</a>
+              <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-film">  Peliculas</i></a>
             </li>
             <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Actores</a>
+              <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-users"> Actores</i></a>
             </li>
             <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Directores</a>
+              <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-video">  Directores</i></a>
             </li>
             <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light" id="socio">Socios</a>
+              <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0" id="socio"><i class="fas fa-user-tie">  Socios</i></a>
             </li>
             <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border border-light">Prestamos</a>
+              <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart">  Prestamos</i></a>
             </li>
           </ul>
         </div>
       </nav>
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-      @yield('content')
+      <main role="main" class="col-10">
+        @yield('content')
       </main>
     </div>
 </div>
