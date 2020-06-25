@@ -5,14 +5,14 @@
 <div class="container">
     <div class="row">
         <div class="col-10">
-            <h2 class="text-center">Mas Populares</h2>
+            <h2 class="text-center card-title font-weight-normal mt-5">Mas Populares</h2>
         </div>
         <div class="col-2">
-            <a href="#" class="btn btn-outline-secondary"><i class="fas fa-reply">  Regresar</i></a>
+            <a href="#" class="btn btn-outline-secondary mt-5 bg-info text-light"><i class="fas fa-reply">  Regresar</i></a>
         </div>
     </div>
-    <div class="row">  
-        <div class="col-12"   class="table-responsive">
+    <div class="row">
+        <div class="col-12 table-responsive card card-body mt-5">
             <table class="table table-light" class="table table-striped table-sm">
                 <thead class="thead-light">
                     <tr>
@@ -29,7 +29,7 @@
                         <td>Genero 1</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary border-0"><i class="fas fa-credit-card">  Rentar</i></button>
-                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button> 
+                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button>
                             <button type="button" class="btn btn-outline-warning border-0"><i class="far fa-star">   Favorita</i></button>
                         </td>
                     </tr>
@@ -39,7 +39,7 @@
                         <td>Genero 2</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary border-0"><i class="fas fa-credit-card">  Rentar</i></button>
-                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button> 
+                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button>
                             <button type="button" class="btn btn-outline-warning border-0"><i class="far fa-star">   Favorita</i></button>
                         </td>
                     </tr>
@@ -49,7 +49,7 @@
                         <td>Genero 3</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary border-0"><i class="fas fa-credit-card">  Rentar</i></button>
-                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button> 
+                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button>
                             <button type="button" class="btn btn-outline-warning border-0"><i class="far fa-star">   Favorita</i></button>
                         </td>
                     </tr>
@@ -59,7 +59,7 @@
                         <td>Genero 4</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary border-0"><i class="fas fa-credit-card">  Rentar</i></button>
-                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button> 
+                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button>
                             <button type="button" class="btn btn-outline-warning border-0"><i class="far fa-star">   Favorita</i></button>
                         </td>
                     </tr>
@@ -69,7 +69,7 @@
                         <td>Genero 5</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary border-0"><i class="fas fa-credit-card">  Rentar</i></button>
-                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button> 
+                            <button type="button" class="btn btn-outline-primary border-0"><i class="fas fa-thumbs-down">    Eliminar</i></button>
                             <button type="button" class="btn btn-outline-warning border-0"><i class="far fa-star">   Favorita</i></button>
                         </td>
                     </tr>

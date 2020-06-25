@@ -1,4 +1,5 @@
 @extends('Template/template')
+@section('title', 'Lista de Espera')
 @section('content')
     <div class="container">
 

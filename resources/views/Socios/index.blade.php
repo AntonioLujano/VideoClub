@@ -1,11 +1,12 @@
 @extends('Template/template')
+@section('title', 'Listado Socios')
 @section('content')
     <div class="container">
 
         <span class="float-right mt-2">
             <button type="button" rel="tooltip" class="btn btn-info btn-round">
-                <i class="fa fa-user-plus" ></i>
-                Registrar <br> Socio
+                <i class="fa fa-user-plus" >Registrar <br> Socio</i>
+
             </button>
                 </span>
 
