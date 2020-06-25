@@ -1,3 +1,4 @@
+
 @extends('Template/template')
 @section('title', 'Mas Populares')
 @section('content')
