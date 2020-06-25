@@ -23,4 +23,8 @@ Route::get('/ListadoSocios', function () {
     return view('Socios.index');
 });
 
+Route::get('/RegistroSocios', function(){
+	return view('Socios.registrar');
+});
+
 Route::resource('/ListaEsperas', 'ListaEsperasController');
