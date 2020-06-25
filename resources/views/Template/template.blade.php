@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
       <!--BOOTSTRAP E ICONOS -->
       <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -10,11 +10,9 @@
       <link rel="stylesheet" type="text/css"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
 
-
       <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -47,6 +45,18 @@
               </li>
               <li class="nav-item">
                   <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Prestamos</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Rentas</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Devoluciones</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Deudas</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{url('/ListaEsperas')}}" class="mt-2 list-group-item list-group-item-action bg-info text-white border border-light">Lista de Espera</a>
               </li>
           </ul>
         </div>
