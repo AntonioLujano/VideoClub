@@ -1,10 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
-    <!-- Required meta tags -->
+      <!--BOOTSTRAP E ICONOS -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/all.css">
+
+      <link rel="dns-prefetch" href="//fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+      <link rel="stylesheet" type="text/css"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+
+      <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- Font awesome Iconos-->
@@ -13,7 +21,7 @@
     <title>@yield('title','Inicio')</title>
   </head>
 <body>
-  <div class="p-3 mb-2 bg-info text-center"><h1>Cinema PRO-SIX</h1></div>
+  <div class="p-3 mb-2 bg-info text-center card card-header"><h1 class="font-weight-bold">Cinema PRO-SIX</h1></div>
   <div class="container-fluid">
     <div class="row">
       <nav id="sidebarMenu" class="col-2 d-md-block bg-info text-center sidebar collapse">

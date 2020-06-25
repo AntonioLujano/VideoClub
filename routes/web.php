@@ -19,6 +19,8 @@ Route::get('/MasPopulares', function () {
 });
 //Route::get('/MasPopulares', 'MasPopularesController@index');
 
-Route::get('/prueba', function () {
-    return view('Pruebas.prueba');
+Route::get('/ListadoSocios', function () {
+    return view('Socios.index');
 });
+
+Route::resource('/ListaEsperas', 'ListaEsperasController');
