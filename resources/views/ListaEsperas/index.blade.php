@@ -5,9 +5,9 @@
 
         <span class="float-right mt-2">
             <a href="{{url('/ListaEsperas/create')}}" type="button" rel="tooltip" class="btn btn-info btn-round">
-                <i class="fa fa-user-plus" >Registrar</i>
+                <i class="fa fa-user-plus">    Registrar</i>
             </a>
-                </span>
+        </span>
         <h2 class="text-center card-title font-weight-normal mt-5">Lista de Espera</h2>
         <div class="table-responsive card card-body mt-5">
             <table class="table table-light" class="table table-striped table-sm">

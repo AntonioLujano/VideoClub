@@ -14,20 +14,26 @@
 Route::get('/', function () {
     return view('Template.template');
 });
-Route::get('/MasPopulares', function () {
+/*Route::get('/MasPopulares', function () {
     return view('MasPopulares.index');
-});
-//Route::get('/MasPopulares', 'MasPopularesController@index');
-
-Route::get('/ListadoSocios', function () {
+});*/
+/*Route::get('/ListadoSocios', function () {
     return view('Socios.index');
 });
 
+<<<<<<< HEAD
 Route::get('/RegistroSocios', function(){
 	return view('Socios.registrar');
 });
 Route::get('/RentadePeliculas', function(){
 	return view('RentadePeliculas.index');
 });
+=======
+>>>>>>> 2a004aaaa645b3f6b9055e669188929b47228890
 
+
+});*/
+
+Route::resource('/MasPopulares', 'MasPopularesController');
+Route::resource('/ListadoSocios', 'ListadoSociosController');
 Route::resource('/ListaEsperas', 'ListaEsperasController');

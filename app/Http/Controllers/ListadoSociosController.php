@@ -14,7 +14,7 @@ class ListadoSociosController extends Controller
      */
     public function index()
     {
-        //
+        return view('Socios.index');
     }
 
     /**
@@ -25,6 +25,7 @@ class ListadoSociosController extends Controller
     public function create()
     {
         //
+        return view('Socios.registrar');
     }
 
     /**

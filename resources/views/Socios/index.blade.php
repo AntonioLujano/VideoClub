@@ -2,18 +2,12 @@
 @section('title', 'Listado Socios')
 @section('content')
     <div class="container">
-
-        <span class="float-right mt-2">
-            <button type="button" rel="tooltip" class="btn btn-info btn-round">
-                <i class="fa fa-user-plus" >Registrar <br> Socio</i>
-
-            </button>
-                </span>
-
+    <span class="float-right mt-2">
+            <a href="{{url('/ListadoSocios/create')}}" type="button" rel="tooltip" class="btn btn-info btn-round">
+                <i class="fa fa-user-plus" >    Registrar <br> Socio</i>
+            </a>
+        </span>            
         <h2 class="text-center card-title font-weight-normal mt-5">Listado de Socios</h2>
-
-
-
         <div class="table-responsive card card-body mt-5">
             <table class="table table-light" class="table table-striped table-sm">
                 <thead class="thead-light">
@@ -34,15 +28,16 @@
                     <td>Valle de Bravo</td>
                     <td>7228730075</td>
                     <td>
-                        <button type="button" rel="tooltip" class="btn btn-info btn-round">
+                        <a href="#" type="button" rel="tooltip" class="btn btn-info btn-round">
                             <i class="material-icons">edit</i>
                             Editar
-                        </button>
-                        <button type="button" rel="tooltip" class="btn btn-dark btn-round">
+                        </a>
+                        <a href="#"type="button" rel="tooltip" class="btn btn-dark btn-round">
                             <i class="material-icons"
                             >restore_from_trash</i>
                             Eliminar
-                        </button>
+                        </a>
+                    </td>
                     </td>
                 </tr>
                 <tr>
@@ -52,15 +47,15 @@
                     <td>Villa Victoria</td>
                     <td>7221654984</td>
                     <td>
-                        <button type="button" rel="tooltip" class="btn btn-info btn-round">
+                        <a href="#" type="button" rel="tooltip" class="btn btn-info btn-round">
                             <i class="material-icons">edit</i>
                             Editar
-                        </button>
-                        <button type="button" rel="tooltip" class="btn btn-dark btn-round">
+                        </a>
+                        <a href="#"type="button" rel="tooltip" class="btn btn-dark btn-round">
                             <i class="material-icons"
                             >restore_from_trash</i>
                             Eliminar
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 <tr>
@@ -70,15 +65,15 @@
                     <td>Valle de Bravo</td>
                     <td>7226854415</td>
                     <td>
-                        <button type="button" rel="tooltip" class="btn btn-info btn-round">
+                        <a href="#" type="button" rel="tooltip" class="btn btn-info btn-round">
                             <i class="material-icons">edit</i>
                             Editar
-                        </button>
-                        <button type="button" rel="tooltip" class="btn btn-dark btn-round">
+                        </a>
+                        <a href="#"type="button" rel="tooltip" class="btn btn-dark btn-round">
                             <i class="material-icons"
                             >restore_from_trash</i>
                             Eliminar
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 <tr>
@@ -88,15 +83,15 @@
                     <td>Valle de Bravo</td>
                     <td>7284295521</td>
                     <td>
-                        <button type="button" rel="tooltip" class="btn btn-info btn-round">
+                        <a href="#" type="button" rel="tooltip" class="btn btn-info btn-round">
                             <i class="material-icons">edit</i>
                             Editar
-                        </button>
-                        <button type="button" rel="tooltip" class="btn btn-dark btn-round">
+                        </a>
+                        <a href="#"type="button" rel="tooltip" class="btn btn-dark btn-round">
                             <i class="material-icons"
                             >restore_from_trash</i>
                             Eliminar
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
