@@ -26,5 +26,8 @@ Route::get('/ListadoSocios', function () {
 Route::get('/RegistroSocios', function(){
 	return view('Socios.registrar');
 });
+Route::get('/RentadePeliculas', function(){
+	return view('RentadePeliculas.index');
+});
 
 Route::resource('/ListaEsperas', 'ListaEsperasController');
