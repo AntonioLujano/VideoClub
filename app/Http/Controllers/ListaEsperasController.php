@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\ListaEsperas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\ListaEsperas;
+use App\Peliculas;
+use App\Socios;
+use App\Personas;
 
 class ListaEsperasController extends Controller
 {
@@ -14,8 +18,13 @@ class ListaEsperasController extends Controller
      */
     public function index()
     {
-    
-       return view('ListaEsperas.index');
+        $datos['ListaEsperas']=ListaEsperas::paginate(10);
+        //$Personas = Personas::all();
+        //$Socios = Socios::all();
+        //$peliculas=Peliculas::all();
+        $ListaEsperas=DB::select('SELECT titulo,fecha_registro,nombre,ap_paterno,ap_materno,estado FROM listaespera,peliculas,socios,personas WHERE personas.id_persona=socios.id_persona AND peliculas.id_pelicula=listaespera.id_pelicula AND socios.id_socio=listaespera.id_socio ORDER BY titulo ASC');
+
+        return view('ListaEsperas.index',['ListaEsperas' => $ListaEsperas],$datos);
     }
 
     /**
@@ -25,7 +34,10 @@ class ListaEsperasController extends Controller
      */
     public function create()
     {
-        return view('ListaEsperas.create');
+        $peliculas=Peliculas::all();
+        $socios=Socios::all();
+        $Personas=Personas::all();
+        return view('ListaEsperas.create',compact('ListaEsperas','peliculas'),compact('socios'));
     }
 
     /**
@@ -36,7 +48,7 @@ class ListaEsperasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     public function show( )
@@ -50,9 +62,10 @@ class ListaEsperasController extends Controller
      * @param  \App\MasPopulares  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasPopulares $masPopulares)
+    public function edit($id )
     {
-        //
+        $lista=ListaEsperas::findOrFail($id);
+        return view('ListaEsperas.edit');
     }
 
     /**
@@ -62,7 +75,7 @@ class ListaEsperasController extends Controller
      * @param  \App\MasPopulares  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasPopulares $masPopulares)
+    public function update(Request $request,  $masPopulares)
     {
         //
     }
@@ -73,8 +86,10 @@ class ListaEsperasController extends Controller
      * @param  \App\MasPopulares  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasPopulares $masPopulares)
+    public function destroy( $id)
     {
-        //
+        
+        $lista=DB::delete('DELETE FROM `listaespera` WHERE `listaespera`.`id_espera` = ?', $lista->id_persona);
+        return redirect('ListaEsperas')->with('Registro eliminado con exito');;
     }
 }
