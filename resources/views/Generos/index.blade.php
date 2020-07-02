@@ -1,35 +1,27 @@
 @extends('Template/template')
-@section('title', 'Listado Socios')
+@section('title', 'Generos')
 @section('content')
-    <div class="container">
-    <span class="float-right mt-2">
-            <a href="{{url('/Socios/create')}}" type="button" rel="tooltip" class="btn btn-info btn-round">
-                <i class="fa fa-user-plus">    Registrar <br> Socio</i>
-            </a>
-        </span>
-        <h2 class="text-center card-title font-weight-normal mt-5">Listado de Socios</h2>
+<div class="container">
+  	<span class="float-right mt-2">
+        <a href="{{url('/Socios/create')}}" type="button" rel="tooltip" class="btn btn-info btn-round">
+        	<i class="fa fa-user-plus">Registrar <br> Genero</i>
+        </a>
+    </span>
+        <h2 class="text-center card-title font-weight-normal mt-5">Listado de Generos</h2>
         <div class="table-responsive card card-body mt-5">
             <table class="table table-light" class="table table-striped table-sm">
                 <thead class="thead-light">
                 <tr>
                     <th>#</th>
-                    <th>Nombre</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Dirección</th>
-                    <th>Telefono</th>
+                    <th>Genero</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($socios as $Socio)
+                @foreach($generos as $Genero)
                 <tr>
-                    <td>{{$Socio->id_persona}}</td>
-                    <td>{{$Socio->nombre}}</td>
-                    <td>{{$Socio->ap_paterno}}</td>
-                    <td>{{$Socio->ap_materno}}</td>
-                    <td>{{$Socio->dir}}</td>
-                    <td>{{$Socio->telefono}}</td>
+                    <td>{{$Genero->id_genero}}</td>
+                    <td>{{$Genero->des_gen}}</td>
                     <td>
                         <form action="/Socios/destroy" method="POST">
                             <a href="#" type="button" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons">edit</i>Editar</a>

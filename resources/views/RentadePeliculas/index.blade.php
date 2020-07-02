@@ -63,11 +63,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pelicula as $Pelicula)
+                        @foreach($peliculas as $pelicula)
                         <tr>
-                            <td>{{$Pelicula->titulo}}</td>
-                            <td>{{$Pelicula->nombre}} {{$Pelicula->ap_paterno}} {{$Paterno->ap_materno}}</td>
-                            <td>{{$Paterno->des_genero}}</td>
+                            <td>{{$pelicula->titulo}}</td>
+                            <td>{{$pelicula->nombre}} {{$pelicula->ap_paterno}} {{$pelicula->ap_materno}}</td>
+                            <td>{{$pelicula->des_gen}}</td>
                             <td>
                                 <button type="button" class="btn btn-outline-secondary"><svg class="bi bi-plus-circle" width="1em" height="1em" viewBox="0 0 16     16"         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>

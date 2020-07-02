@@ -18,9 +18,7 @@ class RentadePeliculasController extends Controller
      */
     public function index()
     {
-        $peliculas = DB::select('select Pel.titulo, Per.nombre,Per.ap_paterno, Per.ap_materno ,Gen.des_gen from Personas Per,Peliculas Pel, Directores Dir, Generos Gen
-        where Per.id_persona=Dir.id_persona and Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director order by Pel.id_pelicula');
-       return view('RentadePeliculas.index',['peliculas' => $peliculas]);
+        
     }
 
     /**

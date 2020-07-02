@@ -29,3 +29,4 @@ Route::resource('/MasPopulares', 'MasPopularesController');
 Route::resource('/Socios', 'SociosController');
 Route::resource('/ListaEsperas', 'ListaEsperasController');
 Route::resource('/RentadePeliculas', 'PrestamosController');
+Route::resource('/Generos','GenerosController');
