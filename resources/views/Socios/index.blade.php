@@ -12,7 +12,6 @@
             <table class="table table-light" class="table table-striped table-sm">
                 <thead class="thead-light">
                 <tr>
-                    <th>#</th>
                     <th>Nombre</th>
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
@@ -24,7 +23,6 @@
                 <tbody>
                     @foreach($socios as $Socio)
                 <tr>
-                    <td>{{$Socio->id_persona}}</td>
                     <td>{{$Socio->nombre}}</td>
                     <td>{{$Socio->ap_paterno}}</td>
                     <td>{{$Socio->ap_materno}}</td>

@@ -19,7 +19,7 @@ class SociosController extends Controller
         //$Personas = Personas::all();
         //$Socios = Socios::all();
         //return view('Socios.index',compact('Personas','Socios'));
-        $socios = DB::select('select p.id_persona, p.nombre, p.ap_paterno, p.ap_materno, p.dir, p.telefono FROM personas p,socios s WHERE p.id_persona=s.id_persona');
+        $socios = DB::select('select p.nombre, p.ap_paterno, p.ap_materno, p.dir, p.telefono FROM personas p,socios s WHERE p.id_persona=s.id_persona');
 
         return view('Socios.index', ['socios' => $socios]);
     }
@@ -49,18 +49,20 @@ class SociosController extends Controller
             $ap_materno = $request->input('ap_materno');
             $dir = $request->input('dir');
             $telefono = $request->input('telefono');
-            $data = array("nombre" => $nombre, "ap_paterno" => $ap_paterno, "ap_materno" => $ap_materno, "dir" => $dir, "telefono" => $telefono);
 
-            DB::table('Personas')->insert($data);
+            //$data = array("nombre" => $nombre, "ap_paterno" => $ap_paterno, "ap_materno" => $ap_materno, "dir" => $dir, "telefono" => $telefono);
 
-            $persona = DB::select('select id_persona FROM personas WHERE nombre = :nombre and ap_paterno = :ap_paterno and ap_materno =:ap_materno and dir = :dir and telefono = :telefono',["nombre" => $nombre, "ap_paterno" => $ap_paterno, "ap_materno" => $ap_materno, "dir" => $dir, "telefono" => $telefono]);
+            //DB::table('Personas')->insert($data);
 
-            $regSocio = array('id_socio'=>0,'id_persona'=>$persona);
+            //$persona = DB::select('select id_persona FROM personas WHERE nombre = :nombre and ap_paterno = :ap_paterno and ap_materno =:ap_materno and dir = :dir and telefono = :telefono',["nombre" => $nombre, "ap_paterno" => $ap_paterno, "ap_materno" => $ap_materno, "dir" => $dir, "telefono" => $telefono]);
 
-            DB::table('Socios')->insert($regSocio);
+            //$regSocio = array('id_socio'=>0,'id_persona'=>$persona);
+
+            //DB::table('Socios')->insert($regSocio);
             //DB::insert('insert into Socios (id_socio,id_persona) values (?, ?)', [0,'id_persona'=>$persona]);
             //DB::insert('insert INTO personas(nombre,ap_paterno,ap_materno,dir,telefono) values (?,?,?,?,?)',["nombre"=>$nombre,"ap_paterno"=>$ap_paterno,"ap_materno"=>$ap_materno,"dir"=>$dir,"telefono"=>$telefono]);
            // DB::commit();
+           DB::select('call insert_Socios(?,?,?,?,?)',[$nombre,$ap_paterno,$ap_materno,$dir,$telefono]);
             return redirect('/Socios');//->with('status', '1');
             //return redirect('/Socios');
         /*} catch (\Exception $e) {
