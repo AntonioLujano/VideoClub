@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ListadoSocios;
+use App\Genfav;
 use Illuminate\Http\Request;
 
-class ListadoSociosController extends Controller
+class GenfavController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ListadoSociosController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -25,7 +25,6 @@ class ListadoSociosController extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -42,10 +41,10 @@ class ListadoSociosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ListadoSocios  $listadoSocios
+     * @param  \App\Genfav  $genfav
      * @return \Illuminate\Http\Response
      */
-    public function show(ListadoSocios $listadoSocios)
+    public function show(Genfav $genfav)
     {
         //
     }
@@ -53,10 +52,10 @@ class ListadoSociosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ListadoSocios  $listadoSocios
+     * @param  \App\Genfav  $genfav
      * @return \Illuminate\Http\Response
      */
-    public function edit(ListadoSocios $listadoSocios)
+    public function edit(Genfav $genfav)
     {
         //
     }
@@ -65,10 +64,10 @@ class ListadoSociosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ListadoSocios  $listadoSocios
+     * @param  \App\Genfav  $genfav
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ListadoSocios $listadoSocios)
+    public function update(Request $request, Genfav $genfav)
     {
         //
     }
@@ -76,10 +75,10 @@ class ListadoSociosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ListadoSocios  $listadoSocios
+     * @param  \App\Genfav  $genfav
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ListadoSocios $listadoSocios)
+    public function destroy(Genfav $genfav)
     {
         //
     }

@@ -4,29 +4,30 @@
 <div class="container-fluid">
 	<meta charset="utf-8">
 	<h3 class="centrar">Registro de Socios</h3>
-	<form>
+    <form action="/Socios" method="POST">
+    @csrf
   		<div class="form-row">
     		<div class="form-group col-md-4">
       			<label for="txtNombre">Nombre(s):</label>
-      			<input type="text" class="form-control" id="txtNombre" placeholder="Nombre">
+      			<input name="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre">
     		</div>
     		<div class="form-group col-md-4">
       			<label for="txtApPaterno">Apellido Paterno:</label>
-      			<input type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Paterno">
+      			<input name="ap_paterno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Paterno">
     		</div>
     		<div class="form-group col-md-4">
     			<label for="txtApMaterno">Apellido Materno:</label>
-    			<input type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Materno">
+    			<input name="ap_materno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Materno">
   			</div>
   		</div>
   		<div class="form-row">
   			<div class="form-group col-md-8">
     			<label for="txtDireccion">Dirección:</label>
-    			<input type="text" class="form-control" id="txtDireccion" placeholder="Dirección">
+    			<input name="dir" type="text" class="form-control" id="txtDireccion" placeholder="Dirección">
     		</div>
     		<div class="form-group col-md-4">
       			<label for="txtTelefono">Telefono:</label>
-      			<input type="text" class="form-control" id="txtTelefono" placeholder="Telefono">
+      			<input name="telefono" type="text" class="form-control" id="txtTelefono" placeholder="Telefono">
     		</div>
   		</div>
   		<div class="form-group">
@@ -39,9 +40,9 @@
   		</div>
   		<div class="form-row">
   			<div class="form-group col-md-4">
-  				<button type="submit" class="btn btn-primary">Limpiar</button>
+  				<button type="button" class="btn btn-primary">Limpiar</button>
   				<button type="submit" class="btn btn-primary">Guardar</button>
-  				<button type="submit" class="btn btn-primary">Cancelar</button>
+  				<button type="button" class="btn btn-primary">Cancelar</button>
   			</div>
   		</div>
 	</form>

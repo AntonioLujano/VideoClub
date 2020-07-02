@@ -26,6 +26,6 @@ Route::get('/', function () {
 });*/
 
 Route::resource('/MasPopulares', 'MasPopularesController');
-Route::resource('/ListadoSocios', 'ListadoSociosController');
+Route::resource('/Socios', 'SociosController');
 Route::resource('/ListaEsperas', 'ListaEsperasController');
-Route::resource('/RentadePeliculas', 'RentadePeliculasController');
+Route::resource('/RentadePeliculas', 'PrestamosController');

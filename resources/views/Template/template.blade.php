@@ -46,7 +46,7 @@
               <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-video">  Directores</i></a>
             </li>
             <li class="nav-item">
-              <a href="{{url('/ListadoSocios')}}" class="list-group-item list-group-item-action bg-info text-white border-0" id="socio"><i class="fas fa-user-tie">  Socios</i></a>
+              <a href="{{url('/Socios')}}" class="list-group-item list-group-item-action bg-info text-white border-0" id="socio"><i class="fas fa-user-tie">  Socios</i></a>
             </li>
             <li class="nav-item">
               <a href="{{url('/RentadePeliculas')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart">  Prestamos</i></a>
