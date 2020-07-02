@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Peliculas extends Model
 {
-    //
+    protected $table = 'Peliculas';
+    protected $primaryKey = 'id_pelicula';
+    protected $fillable = ['titulo','id_director','id_persona'];
+    protected $timestamp = false;
 }

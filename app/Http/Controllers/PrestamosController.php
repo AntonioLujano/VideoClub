@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Prestamos;
+use App\Directores;
+use App\Generos;
+use App\Peliculas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PrestamosController extends Controller
 {
@@ -14,7 +18,9 @@ class PrestamosController extends Controller
      */
     public function index()
     {
-        return view('RentadePeliculas.index');
+        $peliculas = DB::select('select Pel.titulo, Per.nombre,Per.ap_paterno, Per.ap_materno ,Gen.des_gen from Personas Per,Peliculas Pel, Directores Dir, Generos Gen
+        where Per.id_persona=Dir.id_persona and Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director order by Pel.titulo');
+       return view('RentadePeliculas.index',['peliculas' => $peliculas]);
     }
 
     /**

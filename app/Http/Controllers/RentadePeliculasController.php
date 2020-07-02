@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\RentadePeliculas;
+use App\Directores;
+use App\Generos;
+use App\Peliculas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RentadePeliculasController extends Controller
 {
@@ -14,7 +18,7 @@ class RentadePeliculasController extends Controller
      */
     public function index()
     {
-        return view('RentadePeliculas.index');
+        
     }
 
     /**

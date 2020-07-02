@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Generos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GenerosController extends Controller
 {
@@ -14,7 +15,8 @@ class GenerosController extends Controller
      */
     public function index()
     {
-        //
+        $generos=DB::select('select *from generos order by id_genero');
+        return view('Generos.index',['generos' => $generos]);
     }
 
     /**
