@@ -38,7 +38,6 @@
                             <button type="submit" class="btn btn-dark btn-round" name="eliminar"><i class="material-icons">restore_from_trash</i>Eliminar</button>
                         </form>
                     </td>
-                    </td>
                 </tr>
                 @endforeach
                 </tbody>
