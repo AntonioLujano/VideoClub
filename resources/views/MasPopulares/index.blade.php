@@ -6,9 +6,19 @@
     <div class="row">
         <div class="col-10">
             <h2 class="text-center card-title font-weight-normal mt-5">Lista de Peliculas</h2>
+            <div>
+                <label>Buscar Pelicula</label>
+                <input type="search" name="searchpeli" placeholder="Buscar Pelicula" class="form-control">
+                <button class="btn btn-primary mt-3" name="search">Buscar</button>
+            </div>
         </div>
-        <div class="col-2">
-            <a href="" class="btn btn-outline-secondary mt-5 bg-info text-light"><i class="fas fa-reply">  Regresar</i></a>
+        <style type="text/css">
+            .btnCarrito{
+                margin-top: 4.6em;
+            }
+        </style>
+        <div class="col-2 btnCarrito">
+            <a href="{{url('/RentadePeliculas')}}" class="btn btn-outline-secondary mt-5 bg-info text-light"><i class="fas fa-shopping-cart">Carrito de rentas</i></a>
         </div>
     </div>
     <div class="row">

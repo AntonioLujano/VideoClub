@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
   	<span class="float-right mt-2">
-        <a href="{{url('/Socios/create')}}" type="button" rel="tooltip" class="btn btn-info btn-round">
-        	<i class="fa fa-user-plus">Registrar <br> Genero</i>
+        <a href="{{url('/Generos/create')}}" type="button" rel="tooltip" class="btn btn-info btn-round">
+        	<i class="fas fa-photo-video"> Registrar <br>  Genero</i>
         </a>
     </span>
         <h2 class="text-center card-title font-weight-normal mt-5">Listado de Generos</h2>

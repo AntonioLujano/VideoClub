@@ -27,6 +27,7 @@ class GenerosController extends Controller
     public function create()
     {
         //
+        return view('Generos.registrar');
     }
 
     /**
@@ -38,6 +39,8 @@ class GenerosController extends Controller
     public function store(Request $request)
     {
         //
+        $datosgenero=$request->all();
+        return response()->json($datosgenero);
     }
 
     /**
@@ -49,6 +52,7 @@ class GenerosController extends Controller
     public function show(Generos $generos)
     {
         //
+
     }
 
     /**
