@@ -11,3 +11,10 @@ class Peliculas extends Model
     protected $fillable = ['titulo','id_director','id_persona'];
     protected $timestamp = false;
 }
+
+//Quey Scope
+
+public function scopeName($query, $titulo){
+	if($titulo)
+		return $query->where('titulo', 'LIKE', "%$titulo%");
+}

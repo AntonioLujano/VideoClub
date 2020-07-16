@@ -16,11 +16,19 @@ class MasPopularesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Per.nombre,Per.ap_paterno, Per.ap_materno ,Gen.des_gen from Personas Per,Peliculas Pel, Directores Dir, Generos Gen
-        where Per.id_persona=Dir.id_persona and Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director order by Pel.id_pelicula');
-       return view('MasPopulares.index',['peliculas' => $peliculas]);
+        if (!$request) {
+            $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Per.nombre,Per.ap_paterno, Per.ap_materno ,Gen.des_gen from Personas Per,Peliculas Pel, Directores Dir, Generos Gen
+            where Per.id_persona=Dir.id_persona and Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director order by Pel.id_pelicula');
+            return view('MasPopulares.index',['peliculas' => $peliculas]);
+        }else{
+            if ($request) {
+                $query=trim($request->get('search'));
+                $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Per.nombre,Per.ap_paterno, Per.ap_materno ,Gen.des_gen from Personas Per,Peliculas Pel, Directores Dir, Generos Gen where Per.id_persona=Dir.id_persona and Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director and Pel.titulo LIKE '."'%".$query."%'".' order by Pel.id_pelicula');
+                return view('MasPopulares.index',['peliculas' => $peliculas, 'search' => $query]);
+            }
+        }
     }
 
     /**

@@ -21,7 +21,9 @@
     <title>@yield('title','Inicio')</title>
   </head>
 <body>
-  <div class="p-3 mb-2 bg-info text-center card card-header"><h1 class="font-weight-bold">Cinema PRO-SIX</h1></div>
+  <div class="p-3 bg-info text-center card card-header">
+    <h1 class="font-weight-bold">Cinema PRO-SIX</h1>
+  </div>
   <div class="container-fluid">
     <div class="row">
       <nav id="sidebarMenu" class="col-2 d-md-block bg-info text-center sidebar collapse">
