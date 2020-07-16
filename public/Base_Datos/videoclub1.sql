@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-07-2020 a las 02:35:23
+-- Tiempo de generación: 16-07-2020 a las 21:00:45
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -19,8 +19,30 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `videoclub`
+-- Base de datos: `videoclub1`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_Socios` (IN `pnombre` VARCHAR(50), `pap_paterno` VARCHAR(50), `pap_materno` VARCHAR(50), `pdir` VARCHAR(50), `ptelefono` VARCHAR(10))  BEGIN
+declare id int;
+	if not exists (select id_persona FROM personas WHERE nombre=pnombre and ap_paterno=pap_paterno and ap_materno=pap_materno and dir=pdir and telefono=ptelefono) then
+		INSERT INTO personas(nombre,ap_paterno,ap_materno,dir,telefono)values(pnombre,pap_paterno,pap_materno,pdir,ptelefono);
+		select(select id_persona FROM personas WHERE nombre=pnombre and ap_paterno=pap_paterno and ap_materno=pap_materno and dir=pdir and telefono=ptelefono)into id from dual;
+		insert into socios(id_persona)values(id);
+	else if not exists (select s.id_socio FROM personas p,socios s WHERE nombre=pnombre and ap_paterno=pap_paterno and ap_materno=pap_materno and dir=pdir and telefono=ptelefono and p.id_persona=s.id_persona) then
+			select "ya existe persona";
+            select(select id_persona FROM personas WHERE nombre=pnombre and ap_paterno=pap_paterno and ap_materno=pap_materno and dir=pdir and telefono=ptelefono)into id from dual;
+			insert into socios(id_persona)values(id);
+		else 
+			select "ya existe registro";
+		end if;
+    end if;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -33,10 +55,6 @@ CREATE TABLE `actfav` (
   `id_socio` int(11) DEFAULT NULL,
   `id_actor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `actfav`:
---
 
 --
 -- Volcado de datos para la tabla `actfav`
@@ -102,118 +120,116 @@ INSERT INTO `actfav` (`id_actorfav`, `id_socio`, `id_actor`) VALUES
 
 CREATE TABLE `actores` (
   `id_actor` int(11) NOT NULL,
-  `id_persona` int(11) DEFAULT NULL
+  `nombre_act` varchar(50) DEFAULT NULL,
+  `ap_paterno` varchar(50) DEFAULT NULL,
+  `ap_materno` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `actores`:
---
 
 --
 -- Volcado de datos para la tabla `actores`
 --
 
-INSERT INTO `actores` (`id_actor`, `id_persona`) VALUES
-(1, 101),
-(2, 102),
-(3, 103),
-(4, 104),
-(5, 105),
-(6, 106),
-(7, 107),
-(8, 108),
-(9, 109),
-(10, 110),
-(11, 111),
-(12, 112),
-(13, 113),
-(14, 114),
-(15, 115),
-(16, 116),
-(17, 117),
-(18, 118),
-(19, 119),
-(20, 120),
-(21, 121),
-(22, 122),
-(23, 123),
-(24, 124),
-(25, 125),
-(26, 126),
-(27, 127),
-(28, 128),
-(29, 129),
-(30, 130),
-(31, 131),
-(32, 132),
-(33, 133),
-(34, 134),
-(35, 135),
-(36, 136),
-(37, 137),
-(38, 138),
-(39, 139),
-(40, 140),
-(41, 141),
-(42, 142),
-(43, 143),
-(44, 144),
-(45, 145),
-(46, 146),
-(47, 147),
-(48, 148),
-(49, 149),
-(50, 150),
-(51, 151),
-(52, 152),
-(53, 153),
-(54, 154),
-(55, 155),
-(56, 156),
-(57, 157),
-(58, 158),
-(59, 159),
-(60, 160),
-(61, 161),
-(62, 162),
-(63, 163),
-(64, 164),
-(65, 165),
-(66, 166),
-(67, 167),
-(68, 168),
-(69, 169),
-(70, 170),
-(71, 171),
-(72, 172),
-(73, 173),
-(74, 174),
-(75, 175),
-(76, 176),
-(77, 177),
-(78, 178),
-(79, 179),
-(80, 180),
-(81, 181),
-(82, 182),
-(83, 183),
-(84, 184),
-(85, 185),
-(86, 186),
-(87, 187),
-(88, 188),
-(89, 189),
-(90, 190),
-(91, 191),
-(92, 192),
-(93, 193),
-(94, 194),
-(95, 195),
-(96, 196),
-(97, 197),
-(98, 198),
-(99, 199),
-(100, 200);
+INSERT INTO `actores` (`id_actor`, `nombre_act`, `ap_paterno`, `ap_materno`) VALUES
+(1, 'Harrison', 'Ford', 'Nidelman'),
+(2, 'Daisy Jazz', 'Isobel', 'Ridley'),
+(3, 'Adam Douglas', 'Driver', 'Wright'),
+(4, 'Christopher Michael', 'Pratt', 'Louise'),
+(5, 'Bryce Dallas', 'Howard', 'Alley'),
+(6, 'Leonardo Wilhelm', 'DiCaprio', 'Indenbirken'),
+(7, 'Margot Elise', 'Robbie', 'Kessler'),
+(8, 'Uma Karuna', 'Thurman', 'von Schlebrügge'),
+(9, 'Doug', 'Jones', 'Jones'),
+(10, 'Gael', 'García', 'Bernal'),
+(11, 'Emma Charlotte Duerre', 'Watson', 'Luesby'),
+(12, 'Daniel Jacob', 'Radcliffe', 'Gresham'),
+(13, 'Daniel Robert', 'Elfman', 'Elfman'),
+(14, 'Bradley Charles', 'Cooper', 'Campano'),
+(15, 'Martin Fitzgerald', 'Lawrence', 'Chlora'),
+(16, 'Vanessa Anne', 'Hudgens', 'Guangco'),
+(17, 'Willard Carrol', 'Smith', 'Bright'),
+(18, 'Thomas Jacob', 'Black', 'Cohen'),
+(19, 'Benedict Timothy', 'Carlton', 'Ventham'),
+(20, 'Rachel Anne', 'McAdams', 'McAdams'),
+(21, 'Adrien', 'Brody', 'Plachy'),
+(22, 'Scarlett Ingrid', 'Johansson', 'Sloan'),
+(23, 'Robert John', 'Downey', 'Ford'),
+(24, 'Elizabeth Chase', 'Olsen', 'Jones'),
+(25, 'Josef Francis', 'Anthony', 'Pilato'),
+(26, 'Christina', 'Ricci', 'Murdoch'),
+(27, 'Hilda', 'Noomi', 'Rapace'),
+(28, 'Matthew David', 'McConaughey', ''),
+(29, 'Matthew', 'Damon', 'Paige'),
+(30, 'Keri Lynn', 'Russell', 'Stephens'),
+(31, 'Stephen', 'Glenn', 'Martin'),
+(32, 'Jonathan', 'Vincent', 'Voight'),
+(33, 'Cuba', 'Michael', 'Gooding'),
+(34, 'Samuel', 'Leroy', 'Jackson'),
+(35, 'Mel Columcille', 'Gerard', 'Gibson'),
+(36, 'George', 'Timothy', 'Clooney'),
+(37, 'Thomas', 'Cruise', 'Mapother'),
+(38, 'José Antonio', 'Domínguez', 'Bandera'),
+(39, 'Nicolas', 'Kim', 'Coppola'),
+(40, 'Robin', 'McLaurin', 'Williams'),
+(41, 'Morgan', 'Freeman', 'Revere'),
+(42, 'William', 'Bradley', 'Pitt'),
+(43, 'Denzel', 'Hayes', 'Washington'),
+(44, 'Russell', 'Ira', 'Crowe'),
+(45, 'Alfredo', 'James', 'Pacino'),
+(46, 'John', 'Christopher', 'Depp'),
+(47, 'Thomas', 'Jeffrey', 'Hanks'),
+(48, 'Robert', 'Anthony', 'De Niro'),
+(49, 'Dustin', 'Lee', 'Hoffman'),
+(50, 'Richard ', 'Tiffany ', 'Gere'),
+(51, 'Pedro', 'Infante', 'Cruz'),
+(52, 'Jorge', 'Alberto', 'Negrete'),
+(53, 'Mario', 'Moreno', 'Reyes'),
+(54, 'Gael', 'Garcia', 'Bernal'),
+(55, 'Salma', 'Hayek', 'Jimenez'),
+(56, 'Diego', 'Luna', 'Alexander'),
+(57, 'Dolores', 'Lopez', 'Negrete'),
+(58, 'Eugenio', 'Gonzalez', 'Derbez'),
+(59, 'Roberto', 'Gomez', 'Bolaños'),
+(60, 'Luis Miguel', 'Gallego', 'Basteri'),
+(61, 'Fernando', 'Colunga', 'Olivares'),
+(62, 'Kate', 'del Castillo', 'Negrete'),
+(63, 'Alfonso', 'Cuaron', 'Orozco'),
+(64, 'Diego Andres', 'Gonzalez', ''),
+(65, 'Elsa', 'Aguirre', 'Juarez'),
+(66, 'Xavier', 'Lopez', 'Lopez'),
+(67, 'Guillermo', 'del Toro', 'Gomez'),
+(68, 'John', 'Christopher', 'Depp'),
+(69, 'Thomas', 'Cruise', 'Mapother'),
+(70, 'Willard', 'Carroll', 'Smith'),
+(71, 'Thomas', 'Jeffrey', 'Hanks'),
+(72, 'George', 'Timothy', 'Clooney'),
+(73, 'Angelina', 'Jolie', 'Voight'),
+(74, 'Arnold', 'Alois', 'Schwarzenegger'),
+(75, 'Julia', 'Fiona', 'Roberts'),
+(76, 'José Antonio', 'Domínguez', 'Bandera'),
+(77, 'Michael', 'Kirk', 'Douglas'),
+(78, 'Jennifer', 'Joanna', 'Aniston'),
+(79, 'Michael', 'Sylvester', 'Stallone'),
+(80, 'Morgan', 'Freeman', 'Freeman'),
+(81, 'Hugh', 'Michael', 'Jackman'),
+(82, 'Scarlett', 'Ingrid', 'Johansson'),
+(83, 'Dwayne', 'Douglas', 'Johnson'),
+(84, 'Mary', 'Louise', 'Streep'),
+(85, 'Quentin', 'Jerome', 'Tarantino'),
+(86, 'James', 'Eugene', 'Carrey'),
+(87, 'John', 'Joseph', 'Travolta'),
+(88, 'Walter', 'Bruce', 'Willis'),
+(89, 'Christopher', 'Hemsworth', 'Hemsworth'),
+(90, 'Keanu', 'Charles', 'Reeves'),
+(91, 'Nicole', 'Mary', 'Kidman'),
+(92, 'Mark', 'Sinclair', 'Vincent'),
+(93, 'Benjamin', 'Geza', 'Affleck'),
+(94, 'Mel', 'Columcille', 'Gibson'),
+(95, 'Richard', 'Tiffany', 'Gere'),
+(96, 'Sean', 'Justin', 'Penn'),
+(97, 'Jennifer', 'Shrader', 'Lawrence'),
+(98, 'Nicolas', 'Kim', 'Coppola'),
+(99, 'Charlize', 'Theron', 'Theron'),
+(100, 'Ryan', 'Thomas', 'Gosling');
 
 -- --------------------------------------------------------
 
@@ -225,10 +241,6 @@ CREATE TABLE `copias` (
   `id_copia` int(11) NOT NULL,
   `id_pelicula` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=REDUNDANT;
-
---
--- RELACIONES PARA LA TABLA `copias`:
---
 
 --
 -- Volcado de datos para la tabla `copias`
@@ -349,10 +361,6 @@ CREATE TABLE `devoluciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELACIONES PARA LA TABLA `devoluciones`:
---
-
---
 -- Volcado de datos para la tabla `devoluciones`
 --
 
@@ -466,118 +474,116 @@ INSERT INTO `devoluciones` (`id_devolucion`, `id_prestamo`, `fecha_dev`) VALUES
 
 CREATE TABLE `directores` (
   `id_director` int(11) NOT NULL,
-  `id_persona` int(11) DEFAULT NULL
+  `nombre_dire` varchar(50) DEFAULT NULL,
+  `ap_paterno` varchar(50) DEFAULT NULL,
+  `ap_materno` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `directores`:
---
 
 --
 -- Volcado de datos para la tabla `directores`
 --
 
-INSERT INTO `directores` (`id_director`, `id_persona`) VALUES
-(1, 201),
-(2, 202),
-(3, 203),
-(4, 204),
-(5, 205),
-(6, 206),
-(7, 207),
-(8, 208),
-(9, 209),
-(10, 210),
-(11, 211),
-(12, 212),
-(13, 213),
-(14, 214),
-(15, 215),
-(16, 216),
-(17, 217),
-(18, 218),
-(19, 219),
-(20, 220),
-(21, 221),
-(22, 222),
-(23, 223),
-(24, 224),
-(25, 225),
-(26, 226),
-(27, 227),
-(28, 228),
-(29, 229),
-(30, 230),
-(31, 231),
-(32, 232),
-(33, 233),
-(34, 234),
-(35, 235),
-(36, 236),
-(37, 237),
-(38, 238),
-(39, 239),
-(40, 240),
-(41, 241),
-(42, 242),
-(43, 243),
-(44, 243),
-(45, 245),
-(46, 246),
-(47, 247),
-(48, 248),
-(49, 249),
-(50, 250),
-(51, 251),
-(52, 252),
-(53, 253),
-(54, 254),
-(55, 255),
-(56, 256),
-(57, 257),
-(58, 258),
-(59, 259),
-(60, 260),
-(61, 261),
-(62, 262),
-(63, 263),
-(64, 264),
-(65, 265),
-(66, 266),
-(67, 267),
-(68, 268),
-(69, 269),
-(70, 270),
-(71, 271),
-(72, 272),
-(73, 273),
-(74, 274),
-(75, 275),
-(76, 276),
-(77, 277),
-(78, 278),
-(79, 279),
-(80, 280),
-(81, 281),
-(82, 282),
-(83, 283),
-(84, 284),
-(85, 285),
-(86, 286),
-(87, 287),
-(88, 288),
-(89, 289),
-(90, 290),
-(91, 291),
-(92, 292),
-(93, 293),
-(94, 294),
-(95, 295),
-(96, 296),
-(97, 297),
-(98, 298),
-(99, 299),
-(100, 300);
+INSERT INTO `directores` (`id_director`, `nombre_dire`, `ap_paterno`, `ap_materno`) VALUES
+(1, 'Martin', 'Walton', 'Lucas Jr.'),
+(2, 'George', 'Walton', 'Lucas Jr.'),
+(3, 'Steven', 'Allan', 'Spielberg'),
+(4, 'James', 'Francis', 'Cameron'),
+(5, 'Martin', 'Charles', 'Scorsese'),
+(6, 'Quentin', 'Jerome', 'Tarantino'),
+(7, 'Guillermo', 'del Toro', 'Gomez'),
+(8, 'Alejandro', 'González', 'Iñarritu'),
+(9, 'Alfonso', 'Cuarón', 'Orozco'),
+(10, 'Timothy', 'Walter', 'Burton'),
+(11, 'Clinton', 'Eastwood', 'Jr.'),
+(12, 'Michael', 'Benjamin', 'Bay'),
+(13, 'Peter', 'Robert', 'Jackson'),
+(14, 'Samuel', 'Marshall', 'Raimi'),
+(15, 'Rajmund Roman', 'Thierry', ''),
+(16, 'Kevin', 'Feige', ''),
+(17, 'George', 'Andrew', 'Romero'),
+(18, 'Jeffrey', 'Jacob', 'Abrams'),
+(19, 'Ridley', 'Scott', 'Kt'),
+(20, 'Christopher', 'Edward', 'Nolan'),
+(21, 'Matthew', 'George', 'Reeves'),
+(22, 'Richard', 'Stuart', 'Linklater'),
+(23, 'David', 'Kehit', 'Lynch'),
+(24, 'Allan', 'Stewart', 'Konigsberg'),
+(25, 'Richard', 'Stuart', 'Linklater'),
+(26, 'Michael', 'Haneke', 'Linklater'),
+(27, 'Francis', 'Ford', 'Coppola'),
+(28, 'Paul', 'Thomas', 'Anderson'),
+(29, 'Werner', 'Herzog', 'Stipetic'),
+(30, 'Mike', 'Leigh', 'OBE'),
+(31, 'Jafar', 'Panahi', ''),
+(32, 'Alfred', 'Joseph', 'Hitchcock'),
+(33, 'Paolo', 'Sorrentino', ''),
+(34, 'David', 'Keith', 'Lynch'),
+(35, 'Terrence', 'Vance', 'Gilliam'),
+(36, 'Friedrich', 'Christian', 'Anton Lang'),
+(37, 'Serguéi', 'Mijáilovich', 'Eizenshtéin'),
+(38, 'Hayao', 'Miyazaki', ''),
+(39, 'Isao', 'Takahata', ''),
+(40, 'Allan', 'Stewart', 'Konigsberg'),
+(41, 'Howard', 'Winchester', 'Hawks'),
+(42, 'Joseph', 'Leo', 'Mankiewicz'),
+(43, 'George', 'Dewey', 'Cukor'),
+(44, 'George', 'Orson', 'Welles'),
+(45, 'Henry', 'Chance', 'Aronofsky'),
+(46, 'Wesley', 'Wales', 'Anderson'),
+(47, 'Jan', 'Tomáš', 'Forman'),
+(48, 'David', 'Samuel', 'Peckinpah'),
+(49, 'Sergio', 'Leone', ''),
+(50, 'William', 'Wyler', ''),
+(51, 'Billy', 'Wilder', 'Chaplin'),
+(52, 'Ingmar', 'Bergman', 'Cocteau'),
+(53, 'Federico', 'Fellini', 'Malick'),
+(54, 'Charles', 'Chaplin', 'Mankiewicz'),
+(55, 'Terrence', 'Malick', 'Ford'),
+(56, 'Andrei', 'Tarkovsky', 'Welles'),
+(57, 'Vittorio', 'De', 'Aronofsky'),
+(58, 'Buster', 'Keaton', 'Godard'),
+(59, 'François', 'Truffaut', 'Forman'),
+(60, 'John', 'Huston', 'Gibson'),
+(61, 'Elia', 'Kazan', 'Peckinpah'),
+(62, 'Fred', 'Zinnemann', 'Leone'),
+(63, 'John', 'Lasseter', 'Wyler'),
+(64, 'Frank', 'Capra', 'Chaplin'),
+(65, 'Ridley', 'Scott', 'Cocteau'),
+(66, 'David', 'Lean', 'Malick'),
+(67, 'David', 'Fincher', 'Peckinpah'),
+(68, 'Luis', 'García', 'Leone'),
+(69, 'Peter', 'Jackson', 'Cocteau'),
+(70, 'Victor', 'Fleming', 'Lynch'),
+(71, 'Michael', 'Curtiz', 'Gilliam'),
+(72, 'Giuseppe', 'Tornatore', 'Kubrick'),
+(73, 'D.W.', 'Griffith', 'Lang'),
+(74, 'Carl', 'Theodor', 'Murnau'),
+(75, 'Masaki', 'Kobayashi', 'Wiene'),
+(76, 'Paul', 'Verhoeven', 'Wilder'),
+(77, 'Bela', 'Tarr', 'Bergman'),
+(78, 'Oliver', 'Stone', 'Lang'),
+(79, 'Robert', 'Zemeckis', 'Murnau'),
+(80, 'David', 'Cronenberg', 'Wiene'),
+(81, 'Kathryn', 'Bigelow', 'Scorsese'),
+(82, 'Robert', 'Altman', 'Wilder'),
+(83, 'Paul', 'Thomas', 'Bergman'),
+(84, 'Jean', 'Jacques', 'Anaud'),
+(85, 'Juan', 'José', 'Campanella'),
+(86, 'Peter', 'Greenaway', 'Wiene'),
+(87, 'Richard', 'Donner', 'Wilder'),
+(88, 'Ang', 'Lee', 'Leone'),
+(89, 'Jim', 'Sheridan', 'Wyler'),
+(90, 'Sam', 'Mendes', 'Cocteau'),
+(91, 'George', 'A.', 'Malick'),
+(92, 'Brian', 'Russell', 'De Palma'),
+(93, 'Lars', 'von', 'Trier'),
+(94, 'Pedro', 'Almodóvar', 'Caballero'),
+(95, 'Frank', 'Arpad', 'Darabont'),
+(96, 'Béla', 'Tarr', ''),
+(97, 'Thomas', 'Vinterberg', ''),
+(98, 'Kathryn', 'Ann', 'Bigelow'),
+(99, 'Peter', 'Greenaway', ''),
+(100, 'Richard', 'Donald', 'Schwartzberg');
 
 -- --------------------------------------------------------
 
@@ -590,10 +596,6 @@ CREATE TABLE `dirfav` (
   `id_socio` int(11) DEFAULT NULL,
   `id_director` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `dirfav`:
---
 
 --
 -- Volcado de datos para la tabla `dirfav`
@@ -631,10 +633,6 @@ CREATE TABLE `generos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELACIONES PARA LA TABLA `generos`:
---
-
---
 -- Volcado de datos para la tabla `generos`
 --
 
@@ -643,9 +641,12 @@ INSERT INTO `generos` (`id_genero`, `des_gen`) VALUES
 (6, 'Aventura'),
 (4, 'Ciencia Ficción'),
 (3, 'Comedia'),
+(11, 'Comedia Romantica'),
 (1, 'Drama'),
+(13, 'Drama Sangriento'),
 (8, 'Fántastico'),
 (9, 'Infantil'),
+(10, 'Romance'),
 (7, 'Suspenso'),
 (2, 'Terror');
 
@@ -660,10 +661,6 @@ CREATE TABLE `genfav` (
   `id_genero` int(11) DEFAULT NULL,
   `id_socio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `genfav`:
---
 
 --
 -- Volcado de datos para la tabla `genfav`
@@ -703,10 +700,6 @@ CREATE TABLE `listaespera` (
   `id_socio` int(11) DEFAULT NULL,
   `estado` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `listaespera`:
---
 
 --
 -- Volcado de datos para la tabla `listaespera`
@@ -828,10 +821,6 @@ CREATE TABLE `peliculas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELACIONES PARA LA TABLA `peliculas`:
---
-
---
 -- Volcado de datos para la tabla `peliculas`
 --
 
@@ -948,10 +937,6 @@ CREATE TABLE `peliprestada` (
   `id_prestamo` int(11) DEFAULT NULL,
   `id_copia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=REDUNDANT;
-
---
--- RELACIONES PARA LA TABLA `peliprestada`:
---
 
 --
 -- Volcado de datos para la tabla `peliprestada`
@@ -1075,10 +1060,6 @@ CREATE TABLE `personas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELACIONES PARA LA TABLA `personas`:
---
-
---
 -- Volcado de datos para la tabla `personas`
 --
 
@@ -1182,209 +1163,16 @@ INSERT INTO `personas` (`id_persona`, `nombre`, `ap_paterno`, `ap_materno`, `dir
 (97, 'Jorge', 'Rivera', 'Ramirez', 'Centro', '7222736783'),
 (98, 'Braulio', 'Mendieta', 'Rojas', 'La Pedrera', '7233898961'),
 (99, 'Emanuel', 'Valencia', 'Lopez', 'Palito verde', '7234866498'),
-(101, 'Harrison', 'Ford', 'Nidelman', 'Chicago', '7226487925'),
-(102, 'Daisy Jazz', 'Isobel', 'Ridley', 'Londres', '7224781254'),
-(103, 'Adam Douglas', 'Driver', 'Wright', 'San Diego', '7224985623'),
-(104, 'Christopher Michael', 'Pratt', 'Louise', 'Minnesota', '7223915965'),
-(105, 'Bryce Dallas', 'Howard', 'Alley', 'Los Ángeles', '7223164814'),
-(106, 'Leonardo Wilhelm', 'DiCaprio', 'Indenbirken', 'Los Ángeles', '7222413663'),
-(107, 'Margot Elise', 'Robbie', 'Kessler', 'Dalby', '7214578451'),
-(108, 'Uma Karuna', 'Thurman', 'von Schlebrügge', 'Boston', '7256596834'),
-(109, 'Doug', 'Jones', 'Jones', 'Indianápolis', '7235219923'),
-(110, 'Gael', 'García', 'Bernal', 'Guadalajara', '7237020891'),
-(111, 'Emma Charlotte Duerre', 'Watson', 'Luesby', 'París', '7238821859'),
-(112, 'Daniel Jacob', 'Radcliffe', 'Gresham', 'Londres', '7240622827'),
-(113, 'Daniel Robert', 'Elfman', 'Elfman', 'Los Ángeles', '7242423795'),
-(114, 'Bradley Charles', 'Cooper', 'Campano', 'Filadelfia', '7244224763'),
-(115, 'Martin Fitzgerald', 'Lawrence', 'Chlora', 'Fráncfort del Meno', '7246025731'),
-(116, 'Vanessa Anne', 'Hudgens', 'Guangco', 'Salinas', '7247826699'),
-(117, 'Willard Carrol', 'Smith', 'Bright', 'Filadelfia', '7249627667'),
-(118, 'Thomas Jacob', 'Black', 'Cohen', 'Santa Mónica', '7251428635'),
-(119, 'Benedict Timothy', 'Carlton', 'Ventham', 'Hammersmith', '7253229603'),
-(120, 'Rachel Anne', 'McAdams', 'McAdams', 'London', '7255030571'),
-(121, 'Adrien', 'Brody', 'Plachy', 'Nueva York', '7256831539'),
-(122, 'Scarlett Ingrid', 'Johansson', 'Sloan', 'Nueva York', '7258632508'),
-(123, 'Robert John', 'Downey', 'Ford', 'Nueva York', '7260433476'),
-(124, 'Elizabeth Chase', 'Olsen', 'Jones', 'Los Ángeles', '7262234444'),
-(125, 'Josef Francis', 'Anthony', 'Pilato', 'Fitchburg', '7264035412'),
-(126, 'Christina', 'Ricci', 'Murdoch', 'Santa Mónica', '7265836380'),
-(127, 'Hilda', 'Noomi', 'Rapace', 'Hudiksvall', '7267637348'),
-(128, 'Matthew David', 'McConaughey', 'Kathleen', 'Texas', '7269438316'),
-(129, 'Matthew', 'Damon', 'Paige', 'Cambridge', '7271239284'),
-(130, 'Keri Lynn', 'Russell', 'Stephens', 'Fountain Valley', '7273040252'),
-(131, 'Stephen', 'Glenn', 'Martin', 'Los Ángeles', '7264035412'),
-(132, 'Jonathan', 'Vincent', 'Voight', 'Dalby', '7267637348'),
-(133, 'Cuba', 'Michael', 'Gooding', 'Boston', '7269438316'),
-(134, 'Samuel', 'Leroy', 'Jackson', 'Indianápolis', '7271239284'),
-(135, 'Mel Columcille', 'Gerard', 'Gibson', 'Indianápolis', '7273040252'),
-(136, 'George', 'Timothy', 'Clooney', 'Santa Mónica', '7264035412'),
-(137, 'Thomas', 'Cruise', 'Mapother', 'Boston', '7267637348'),
-(138, 'José Antonio', 'Domínguez', 'Bandera', 'Los Ángeles', '7269438316'),
-(139, 'Nicolas', 'Kim', 'Coppola', 'Filadelfia', '7271239284'),
-(140, 'Robin', 'McLaurin', 'Williams', 'Filadelfia', '7273040252'),
-(141, 'Morgan', 'Freeman', 'Revere', 'Salinas', '7264035412'),
-(142, 'William', 'Bradley', 'Pitt', 'Filadelfia', '7267637348'),
-(143, 'Denzel', 'Hayes', 'Washington', 'Santa Mónica', '7269438316'),
-(144, 'Russell', 'Ira', 'Crowe', 'Nueva York', '7271239284'),
-(145, 'Alfredo', 'James', 'Pacino', 'Los Ángeles', '7273040252'),
-(146, 'John', 'Christopher', 'Depp', 'Fitchburg', '7264035412'),
-(147, 'Thomas', 'Jeffrey', 'Hanks', 'Santa Mónica', '7267637348'),
-(148, 'Robert', 'Anthony', 'De Niro', 'Hudiksvall', '7269438316'),
-(149, 'Dustin', 'Lee', 'Hoffman', 'Texas', '7271239284'),
-(150, 'Richard ', 'Tiffany ', 'Gere', 'Nueva York', '7273040252'),
-(151, 'Pedro', 'Infante', 'Cruz', 'Sinaloa', '7226789076'),
-(152, 'Jorge', 'Alberto', 'Negrete', 'Guanajuato', '7228090874'),
-(153, 'Mario', 'Moreno', 'Reyes', 'Ciudad de Mexico', '7514982313'),
-(154, 'Gael', 'Garcia', 'Bernal', 'Guadalajara', '7123205061'),
-(155, 'Salma', 'Hayek', 'Jimenez', 'Los Ángeles', '7213033334'),
-(156, 'Diego', 'Luna', 'Alexander', 'Ciudad de Mexico', '7211401663'),
-(157, 'Dolores', 'Lopez', 'Negrete', 'Durango', '7214134451'),
-(158, 'Eugenio', 'Gonzalez', 'Derbez', 'Ciudad de Mexico', '7256292830'),
-(159, 'Roberto', 'Gomez', 'Bolaños', 'Ciudad de Mexico', '7132109923'),
-(160, 'Luis Miguel', 'Gallego', 'Basteri', 'Acapulco', '7231220301'),
-(161, 'Fernando', 'Colunga', 'Olivares', 'Ciudad de Mexico', '7223231109'),
-(162, 'Kate', 'del Castillo', 'Negrete', 'Ciudad de Mexico', '7240226801'),
-(163, 'Alfonso', 'Cuaron', 'Orozco', 'Los Ángeles', '7226904574'),
-(164, 'Diego Andres', 'Gonzalez', 'Boneta', 'Ciudad de Mexico', '7223908089'),
-(165, 'Elsa', 'Aguirre', 'Juarez', 'Chihuahua', '6643189054'),
-(166, 'Xavier', 'Lopez', 'Lopez', 'Chicago', '7247816100'),
-(167, 'Guillermo', 'del Toro', 'Gomez', 'Guadalajara', '7221090617'),
-(168, 'John', 'Christopher', 'Depp', 'Owensboro, Kentucky', '7210420610'),
-(169, 'Thomas', 'Cruise', 'Mapother', 'Nueva York', '7223020603'),
-(170, 'Willard', 'Carroll', 'Smith', 'Pensilvania', '7255121571'),
-(171, 'Thomas', 'Jeffrey', 'Hanks', 'California', '7225130539'),
-(172, 'George', 'Timothy', 'Clooney', 'Kentucky', '7251231510'),
-(173, 'Angelina', 'Jolie', 'Voight', 'Los Ángeles', '7220430317'),
-(174, 'Arnold', 'Alois', 'Schwarzenegger', 'Austria', '752130041'),
-(175, 'Julia', 'Fiona', 'Roberts', 'Georgia', '7227806456'),
-(176, 'José Antonio', 'Domínguez', 'Bandera', 'Málaga', '7265831390'),
-(177, 'Michael', 'Kirk', 'Douglas', 'Nueva Jersey', '7262130308'),
-(178, 'Jennifer', 'Joanna', 'Aniston', 'California', '7221401316'),
-(179, 'Michael', 'Sylvester', 'Stallone', 'Nueva York', '7221231204'),
-(180, 'Morgan', 'Freeman', 'Freeman', 'Memphis', '7223548901'),
-(181, 'Hugh', 'Michael', 'Jackman', 'Sídney', '7521780076'),
-(182, 'Scarlett', 'Ingrid', 'Johansson', 'Nueva York', '6643187612'),
-(183, 'Dwayne', 'Douglas', 'Johnson', 'California', '7514982313'),
-(184, 'Mary', 'Louise', 'Streep', 'Nueva Jersey', '7220115061'),
-(185, 'Quentin', 'Jerome', 'Tarantino', 'Tennessee', '6643187854'),
-(186, 'James', 'Eugene', 'Carrey', 'Ontario', '6330001663'),
-(187, 'John', 'Joseph', 'Travolta', 'Nueva Jersey', '6334134451'),
-(188, 'Walter', 'Bruce', 'Willis', ' Alemania Occidental', '6336292830'),
-(189, 'Christopher', 'Hemsworth', 'Hemsworth', 'Melbourne', '6642109923'),
-(190, 'Keanu', 'Charles', 'Reeves', 'Ontario', '6641220301'),
-(191, 'Nicole', 'Mary', 'Kidman', 'Hawái', '6333231102'),
-(192, 'Mark', 'Sinclair', 'Vincent', 'California', '6670226801'),
-(193, 'Benjamin', 'Geza', 'Affleck', 'California', '6676904574'),
-(194, 'Mel', 'Columcille', 'Gibson', 'Nueva York', '6673908089'),
-(195, 'Richard', 'Tiffany', 'Gere', 'Filadelfia', '6673081054'),
-(196, 'Sean', 'Justin', 'Penn', 'Santa Mónica', '6647816100'),
-(197, 'Jennifer', 'Shrader', 'Lawrence', 'Kentucky', '6331090617'),
-(198, 'Nicolas', 'Kim', 'Coppola', 'California', '6330420610'),
-(199, 'Charlize', 'Theron', 'Theron', 'Benoni', '6333229603'),
-(200, 'Ryan', 'Thomas', 'Gosling', 'London', '6675030571'),
-(201, 'Jason', 'Statham', 'Statham', 'Derbyshire', '6676831539'),
-(202, 'George', 'Walton', 'Lucas Jr.', 'San Francisco', '3460129612'),
-(203, 'Steven', 'Allan', 'Spielberg', 'Cincinati', '3468901123'),
-(204, 'James', 'Francis', 'Cameron', 'Kapuskasing', '4561108902'),
-(205, 'Martin', 'Charles', 'Scorsese', 'Queens', '8905671143'),
-(206, 'Quentin', 'Jerome', 'Tarantino', 'Knoxville', '4568967712'),
-(207, 'Guillermo', 'del Toro', 'Gomez', 'Guadalajara', '7226661684'),
-(208, 'Alejandro', 'González', 'Iñarritu', 'Ciudad de México', '5523065555'),
-(209, 'Alfonso', 'Cuarón', 'Orozco', 'Ciudad de México', '5553678912'),
-(210, 'Timothy', 'Walter', 'Burton', 'Burbank', '3460097823'),
-(211, 'Clinton', 'Eastwood', 'Jr.', 'San Francisco', '3467861098'),
-(212, 'Michael', 'Benjamin', 'Bay', 'Los Angeles', '8901235432'),
-(213, 'Peter', 'Robert', 'Jackson', 'Pukerua Bay', '8903541875'),
-(214, 'Samuel', 'Marshall', 'Raimi', 'Royal Oak', '3568793210'),
-(215, 'Rajmund Roman', 'Thierry', 'Polanski', 'Francia', '7895647761'),
-(216, 'Kevin', 'Feige', '', 'Boston', '4567520194'),
-(217, 'George', 'Andrew', 'Romero', 'Toronto', '4560174429'),
-(218, 'Jeffrey', 'Jacob', 'Abrams', 'Nueva York', '8906443008'),
-(219, 'Ridley', 'Scott', 'Kt', 'South Shields', '7764531230'),
-(220, 'Christopher', 'Edward', 'Nolan', 'Westminster', '6763412897'),
-(221, 'Matthew', 'George', 'Reeves', 'Rockville Centre', '6714239870'),
-(222, 'Richard', 'Stuart', 'Linklater', 'Illinois', '7225545091'),
-(223, 'David', 'Kehit', 'Lynch', 'Los Angeles', '7267940056'),
-(224, 'Allan', 'Stewart', 'Konigsberg', 'Texas', '5567901000'),
-(225, 'Richard', 'Stuart', 'Linklater', 'Manhattan', '7225545091'),
-(226, 'Michael', 'Haneke', 'Linklater', 'Illinois', '7225545091'),
-(227, 'Francis', 'Ford', 'Coppola', 'Kentucky', '7225545091'),
-(228, 'Paul', 'Thomas', 'Anderson', 'Frandford', '7225545091'),
-(229, 'Werner', 'Herzog', 'Stipetic', 'Massachusets', '7225890134'),
-(230, 'Mike', 'Leigh', 'OBE', 'Amsterdam', '7226891700'),
-(231, 'Jafar', 'Panahi', '', 'Teheran', '5590543155'),
-(232, 'Alfred', 'Joseph', 'Hitchcock', 'Leytonstone', '8102856273'),
-(233, 'Paolo', 'Sorrentino', '', 'Italia', '9108271853'),
-(234, 'David', 'Keith', 'Lynch', 'Montana', '7281028401'),
-(235, 'Terrence', 'Vance', 'Gilliam', 'Minnesota', '9101894231'),
-(236, 'Friedrich', 'Christian', 'Anton Lang', 'Los Angeles', '9018275191'),
-(237, 'Serguéi', 'Mijáilovich', 'Eizenshtéin', 'Riga', '8920564721'),
-(238, 'Hayao', 'Miyazaki', '', 'Bunkyo', '4526172852'),
-(239, 'Isao', 'Takahata', '', 'Tokyo', '6571828594'),
-(240, 'Allan', 'Stewart', 'Konigsberg', 'Bronx', '1827564728'),
-(241, 'Howard', 'Winchester', 'Hawks', 'Goshen', '8192746234'),
-(242, 'Joseph', 'Leo', 'Mankiewicz', 'Pensilvania', '9102857462'),
-(243, 'George', 'Dewey', 'Cukor', 'Nueva York', '6172643123'),
-(244, 'George', 'Orson', 'Welles', 'Winsconsin', '0192748572'),
-(245, 'Henry', 'Chance', 'Aronofsky', 'Nueva York', '6273817264'),
-(246, 'Wesley', 'Wales', 'Anderson', 'Houston', '1827430195'),
-(247, 'Jan', 'Tomáš', 'Forman', 'Republica Checa', '6647721287'),
-(248, 'David', 'Samuel', 'Peckinpah', 'Fresno', '8274663123'),
-(249, 'Sergio', 'Leone', '', 'Roma', '7281726542'),
-(250, 'William', 'Wyler', '', 'MulHouse', '6632817265'),
-(251, 'Billy', 'Wilder', 'Chaplin', 'Londres', '7273040252'),
-(252, 'Ingmar', 'Bergman', 'Cocteau', 'Minnesota', '7264035412'),
-(253, 'Federico', 'Fellini', 'Malick', 'Los Ángeles', '7267637348'),
-(254, 'Charles', 'Chaplin', 'Mankiewicz', 'Los Ángeles', '7269438316'),
-(255, 'Terrence', 'Malick', 'Ford', 'Salinas', '7271239284'),
-(256, 'Andrei', 'Tarkovsky', 'Welles', 'Filadelfia', '7264035412'),
-(257, 'Vittorio', 'De', 'Aronofsky', 'Santa Mónica', '7267637348'),
-(258, 'Buster', 'Keaton', 'Godard', 'Hammersmith', '7269438316'),
-(259, 'François', 'Truffaut', 'Forman', 'Nueva York', '7273040252'),
-(260, 'John', 'Huston', 'Gibson', 'Nueva York', '7271239284'),
-(261, 'Elia', 'Kazan', 'Peckinpah', 'Nueva York', '7264035412'),
-(262, 'Fred', 'Zinnemann', 'Leone', 'Los Ángeles', '7267637348'),
-(263, 'John', 'Lasseter', 'Wyler', 'Fitchburg', '7269438316'),
-(264, 'Frank', 'Capra', 'Chaplin', 'Santa Mónica', '7271239284'),
-(265, 'Ridley', 'Scott', 'Cocteau', 'Texas', '7271239284'),
-(266, 'David', 'Lean', 'Malick', 'Los Ángeles', '7264035412'),
-(267, 'David', 'Fincher', 'Peckinpah', 'Indianápolis', '7271239284'),
-(268, 'Luis', 'García', 'Leone', 'Guadalajara', '7273040252'),
-(269, 'Peter', 'Jackson', 'Cocteau', 'Filadelfia', '7269438316'),
-(270, 'Victor', 'Fleming', 'Lynch', 'Santa Mónica', '7264035412'),
-(271, 'Michael', 'Curtiz', 'Gilliam', 'Hammersmith', '7267637348'),
-(272, 'Giuseppe', 'Tornatore', 'Kubrick', 'London', '7269438316'),
-(273, 'D.W.', 'Griffith', 'Lang', 'Nueva York', '7271239284'),
-(274, 'Carl', 'Theodor', 'Murnau', 'Nueva York', '7273040252'),
-(275, 'Masaki', 'Kobayashi', 'Wiene', 'Nueva York', '7271239284'),
-(276, 'Paul', 'Verhoeven', 'Wilder', 'Santa Mónica', '7269438316'),
-(277, 'Bela', 'Tarr', 'Bergman', 'Texas', '7273040252'),
-(278, 'Oliver', 'Stone', 'Lang', 'Los Ángeles', '7271239284'),
-(279, 'Robert', 'Zemeckis', 'Murnau', 'Dalby', '7264035412'),
-(280, 'David', 'Cronenberg', 'Wiene', 'Boston', '7267637348'),
-(281, 'Kathryn', 'Bigelow', 'Scorsese', 'Guadalajara', '7271239284'),
-(282, 'Robert', 'Altman', 'Wilder', 'París', '7273040252'),
-(283, 'Paul', 'Thomas', 'Bergman', 'Los Ángeles', '7264035412'),
-(284, 'Jean', 'Jacques', 'Anaud', 'Filadelfia', '7267637348'),
-(285, 'Juan', 'José', 'Campanella', 'Salinas', '7271239284'),
-(286, 'Peter', 'Greenaway', 'Wiene', 'Filadelfia', '7273040252'),
-(287, 'Richard', 'Donner', 'Wilder', 'London', '7267637348'),
-(288, 'Ang', 'Lee', 'Leone', 'Fitchburg', '7264035412'),
-(289, 'Jim', 'Sheridan', 'Wyler', 'Santa Mónica', '7267637348'),
-(290, 'Sam', 'Mendes', 'Cocteau', 'Los Ángeles', '7273040252'),
-(291, 'George', 'A.', 'Malick', 'Dalby', '7271239284'),
-(292, 'Brian', 'Russell', 'De Palma', 'Nueva Jersey', '9918274623'),
-(293, 'Lars', 'von', 'Trier', 'Copenhague', '7726355123'),
-(294, 'Pedro', 'Almodóvar', 'Caballero', 'Ciudad Real', '8019982645'),
-(295, 'Frank', 'Arpad', 'Darabont', 'Doubs', '6672212764'),
-(296, 'Béla', 'Tarr', '', 'Hungria', '8918275431'),
-(297, 'Thomas', 'Vinterberg', '', 'Dinamarca', '8109902453'),
-(298, 'Kathryn', 'Ann', 'Bigelow', 'California', '2234125678'),
-(299, 'Peter', 'Greenaway', '', 'Newport', '3425678675'),
-(300, 'Richard', 'Donald', 'Schwartzberg', 'Nueva York', '1892866578'),
-(301, 'Jean', 'Jacques', 'Anaud', 'Filadelfia', '8956423456'),
-(307, 'Antonio', 'Lujano', 'Bautista', 'Colorienes', '5555555555'),
-(315, 'lujano', 'a', 'a', 'aa', '1');
+(100, 'Jean', 'Jacques', 'Anaud', 'Filadelfia', '8956423456'),
+(101, 'Antonio', 'Lujano', 'Bautista', 'Colorienes', '5555555555'),
+(102, 'lujano', 'a', 'a', 'aa', '1'),
+(103, 'Michel', 'Benjamin', 'Bay', 'Miami USA', '5522019715'),
+(104, 'Jos', 'Zarate', 'Lopez', 'San lucas', '8446064742'),
+(105, 'Salvador', 'Velazquez', 'De paz', 'Villa Victoria', '5522019715'),
+(106, 'Ximena', 'Velazquez', 'De paz', 'Villa Victoria', '8446064142'),
+(107, 'Carlos', 'Castro', 'Garcia', 'Saltillo', '8443433706'),
+(108, 'Mariana', 'Cruz', 'Mendoza', 'Valle de Bravo', '7221564812'),
+(109, 'Leo', 'Delgado', 'Castillo', 'Valle de Bravo', '7226547894');
 
 -- --------------------------------------------------------
 
@@ -1397,10 +1185,6 @@ CREATE TABLE `prestamos` (
   `fecha` datetime DEFAULT NULL,
   `id_socio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=REDUNDANT;
-
---
--- RELACIONES PARA LA TABLA `prestamos`:
---
 
 --
 -- Volcado de datos para la tabla `prestamos`
@@ -1516,118 +1300,135 @@ INSERT INTO `prestamos` (`id_prestamo`, `fecha`, `id_socio`) VALUES
 
 CREATE TABLE `socios` (
   `id_socio` int(11) NOT NULL,
-  `id_persona` int(11) DEFAULT NULL
+  `id_persona` int(11) DEFAULT NULL,
+  `ine` varchar(100) DEFAULT NULL,
+  `domicilio` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `socios`:
---
 
 --
 -- Volcado de datos para la tabla `socios`
 --
 
-INSERT INTO `socios` (`id_socio`, `id_persona`) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6),
-(7, 7),
-(8, 8),
-(9, 9),
-(10, 10),
-(11, 11),
-(12, 12),
-(13, 13),
-(14, 14),
-(15, 15),
-(16, 16),
-(17, 17),
-(18, 18),
-(19, 19),
-(20, 20),
-(21, 21),
-(22, 22),
-(23, 23),
-(24, 24),
-(25, 25),
-(26, 26),
-(27, 27),
-(28, 28),
-(29, 29),
-(30, 30),
-(31, 31),
-(32, 32),
-(33, 33),
-(34, 34),
-(35, 35),
-(36, 36),
-(37, 37),
-(38, 38),
-(39, 39),
-(40, 40),
-(41, 41),
-(42, 42),
-(43, 43),
-(44, 44),
-(45, 45),
-(46, 46),
-(47, 47),
-(48, 48),
-(49, 49),
-(50, 50),
-(51, 51),
-(52, 52),
-(53, 53),
-(54, 54),
-(55, 55),
-(56, 56),
-(57, 57),
-(58, 58),
-(59, 59),
-(60, 60),
-(61, 61),
-(62, 62),
-(63, 63),
-(64, 64),
-(65, 65),
-(66, 66),
-(67, 67),
-(68, 68),
-(69, 69),
-(70, 70),
-(71, 71),
-(72, 72),
-(73, 73),
-(74, 74),
-(75, 75),
-(76, 76),
-(77, 77),
-(78, 78),
-(79, 79),
-(80, 80),
-(81, 81),
-(82, 82),
-(83, 83),
-(84, 84),
-(85, 85),
-(86, 86),
-(87, 87),
-(88, 88),
-(89, 89),
-(90, 90),
-(91, 91),
-(92, 92),
-(93, 93),
-(94, 94),
-(95, 95),
-(96, 96),
-(97, 97),
-(98, 98),
-(99, 99),
-(100, 100);
+INSERT INTO `socios` (`id_socio`, `id_persona`, `ine`, `domicilio`) VALUES
+(1, 1, NULL, NULL),
+(2, 2, NULL, NULL),
+(3, 3, NULL, NULL),
+(4, 4, NULL, NULL),
+(5, 5, NULL, NULL),
+(6, 6, NULL, NULL),
+(7, 7, NULL, NULL),
+(8, 8, NULL, NULL),
+(9, 9, NULL, NULL),
+(10, 10, NULL, NULL),
+(11, 11, NULL, NULL),
+(12, 12, NULL, NULL),
+(13, 13, NULL, NULL),
+(14, 14, NULL, NULL),
+(15, 15, NULL, NULL),
+(16, 16, NULL, NULL),
+(17, 17, NULL, NULL),
+(18, 18, NULL, NULL),
+(19, 19, NULL, NULL),
+(20, 20, NULL, NULL),
+(21, 21, NULL, NULL),
+(22, 22, NULL, NULL),
+(23, 23, NULL, NULL),
+(24, 24, NULL, NULL),
+(25, 25, NULL, NULL),
+(26, 26, NULL, NULL),
+(27, 27, NULL, NULL),
+(28, 28, NULL, NULL),
+(29, 29, NULL, NULL),
+(30, 30, NULL, NULL),
+(31, 31, NULL, NULL),
+(32, 32, NULL, NULL),
+(33, 33, NULL, NULL),
+(34, 34, NULL, NULL),
+(35, 35, NULL, NULL),
+(36, 36, NULL, NULL),
+(37, 37, NULL, NULL),
+(38, 38, NULL, NULL),
+(39, 39, NULL, NULL),
+(40, 40, NULL, NULL),
+(41, 41, NULL, NULL),
+(42, 42, NULL, NULL),
+(43, 43, NULL, NULL),
+(44, 44, NULL, NULL),
+(45, 45, NULL, NULL),
+(46, 46, NULL, NULL),
+(47, 47, NULL, NULL),
+(48, 48, NULL, NULL),
+(49, 49, NULL, NULL),
+(50, 50, NULL, NULL),
+(51, 51, NULL, NULL),
+(52, 52, NULL, NULL),
+(53, 53, NULL, NULL),
+(54, 54, NULL, NULL),
+(55, 55, NULL, NULL),
+(56, 56, NULL, NULL),
+(57, 57, NULL, NULL),
+(58, 58, NULL, NULL),
+(59, 59, NULL, NULL),
+(60, 60, NULL, NULL),
+(61, 61, NULL, NULL),
+(62, 62, NULL, NULL),
+(63, 63, NULL, NULL),
+(64, 64, NULL, NULL),
+(65, 65, NULL, NULL),
+(66, 66, NULL, NULL),
+(67, 67, NULL, NULL),
+(68, 68, NULL, NULL),
+(69, 69, NULL, NULL),
+(70, 70, NULL, NULL),
+(71, 71, NULL, NULL),
+(72, 72, NULL, NULL),
+(73, 73, NULL, NULL),
+(74, 74, NULL, NULL),
+(75, 75, NULL, NULL),
+(76, 76, NULL, NULL),
+(77, 77, NULL, NULL),
+(78, 78, NULL, NULL),
+(79, 79, NULL, NULL),
+(80, 80, NULL, NULL),
+(81, 81, NULL, NULL),
+(82, 82, NULL, NULL),
+(83, 83, NULL, NULL),
+(84, 84, NULL, NULL),
+(85, 85, NULL, NULL),
+(86, 86, NULL, NULL),
+(87, 87, NULL, NULL),
+(88, 88, NULL, NULL),
+(89, 89, NULL, NULL),
+(90, 90, NULL, NULL),
+(91, 91, NULL, NULL),
+(92, 92, NULL, NULL),
+(93, 93, NULL, NULL),
+(94, 94, NULL, NULL),
+(95, 95, NULL, NULL),
+(96, 96, NULL, NULL),
+(97, 97, NULL, NULL),
+(98, 98, NULL, NULL),
+(99, 99, NULL, NULL),
+(100, 100, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `id_persona` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `id_persona`) VALUES
+(1, 108),
+(2, 109);
 
 --
 -- Índices para tablas volcadas
@@ -1645,8 +1446,7 @@ ALTER TABLE `actfav`
 -- Indices de la tabla `actores`
 --
 ALTER TABLE `actores`
-  ADD PRIMARY KEY (`id_actor`),
-  ADD KEY `id_persona` (`id_persona`);
+  ADD PRIMARY KEY (`id_actor`);
 
 --
 -- Indices de la tabla `copias`
@@ -1666,8 +1466,7 @@ ALTER TABLE `devoluciones`
 -- Indices de la tabla `directores`
 --
 ALTER TABLE `directores`
-  ADD PRIMARY KEY (`id_director`),
-  ADD KEY `id_persona` (`id_persona`);
+  ADD PRIMARY KEY (`id_director`);
 
 --
 -- Indices de la tabla `dirfav`
@@ -1738,6 +1537,13 @@ ALTER TABLE `socios`
   ADD KEY `id_persona` (`id_persona`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD KEY `id_persona` (`id_persona`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -1769,7 +1575,7 @@ ALTER TABLE `devoluciones`
 -- AUTO_INCREMENT de la tabla `directores`
 --
 ALTER TABLE `directores`
-  MODIFY `id_director` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id_director` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT de la tabla `dirfav`
@@ -1781,7 +1587,7 @@ ALTER TABLE `dirfav`
 -- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `genfav`
@@ -1811,7 +1617,7 @@ ALTER TABLE `peliprestada`
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=327;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
@@ -1824,6 +1630,87 @@ ALTER TABLE `prestamos`
 --
 ALTER TABLE `socios`
   MODIFY `id_socio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `actfav`
+--
+ALTER TABLE `actfav`
+  ADD CONSTRAINT `actfav2_ibfk_1` FOREIGN KEY (`id_actor`) REFERENCES `actores` (`id_actor`),
+  ADD CONSTRAINT `actfav_ibfk_1` FOREIGN KEY (`id_socio`) REFERENCES `socios` (`id_socio`);
+
+--
+-- Filtros para la tabla `copias`
+--
+ALTER TABLE `copias`
+  ADD CONSTRAINT `copias_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`);
+
+--
+-- Filtros para la tabla `devoluciones`
+--
+ALTER TABLE `devoluciones`
+  ADD CONSTRAINT `devoluciones_ibfk_1` FOREIGN KEY (`id_prestamo`) REFERENCES `prestamos` (`id_prestamo`);
+
+--
+-- Filtros para la tabla `dirfav`
+--
+ALTER TABLE `dirfav`
+  ADD CONSTRAINT `dirfav2_ibfk_1` FOREIGN KEY (`id_director`) REFERENCES `directores` (`id_director`),
+  ADD CONSTRAINT `dirfav_ibfk_1` FOREIGN KEY (`id_socio`) REFERENCES `socios` (`id_socio`);
+
+--
+-- Filtros para la tabla `genfav`
+--
+ALTER TABLE `genfav`
+  ADD CONSTRAINT `genfav2_ibfk_1` FOREIGN KEY (`id_genero`) REFERENCES `generos` (`id_genero`),
+  ADD CONSTRAINT `genfav_ibfk_1` FOREIGN KEY (`id_socio`) REFERENCES `socios` (`id_socio`);
+
+--
+-- Filtros para la tabla `listaespera`
+--
+ALTER TABLE `listaespera`
+  ADD CONSTRAINT `listaespera2_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`),
+  ADD CONSTRAINT `listaespera_ibfk_1` FOREIGN KEY (`id_socio`) REFERENCES `socios` (`id_socio`);
+
+--
+-- Filtros para la tabla `peliculas`
+--
+ALTER TABLE `peliculas`
+  ADD CONSTRAINT `peliculas2_ibfk_1` FOREIGN KEY (`id_genero`) REFERENCES `generos` (`id_genero`),
+  ADD CONSTRAINT `peliculas_ibfk_1` FOREIGN KEY (`id_director`) REFERENCES `directores` (`id_director`);
+
+--
+-- Filtros para la tabla `peliprestada`
+--
+ALTER TABLE `peliprestada`
+  ADD CONSTRAINT `peliprestada_ibfk_1` FOREIGN KEY (`id_prestamo`) REFERENCES `prestamos` (`id_prestamo`);
+
+--
+-- Filtros para la tabla `prestamos`
+--
+ALTER TABLE `prestamos`
+  ADD CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`id_socio`) REFERENCES `socios` (`id_socio`);
+
+--
+-- Filtros para la tabla `socios`
+--
+ALTER TABLE `socios`
+  ADD CONSTRAINT `socios_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
