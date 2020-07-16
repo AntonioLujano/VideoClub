@@ -22,7 +22,7 @@
   </head>
 <body>
   <div class="p-3 bg-info text-center card card-header">
-    <h1 class="font-weight-bold">Cinema PRO-SIX</h1>
+    <h1 class="font-weight-bold text-center">Cinema PRO-SIX</h1>
   </div>
   <div class="container-fluid">
     <div class="row">
