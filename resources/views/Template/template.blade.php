@@ -1,3 +1,6 @@
+@extends('layouts.app')
+@section('content')
+
 <!doctype html>
 <html lang="es">
 
@@ -22,9 +25,6 @@
 </head>
 
 <body>
-    <div class="p-3 bg-info text-center card card-header">
-        <h1 class="font-weight-bold text-center">Cinema PRO-SIX</h1>
-    </div>
     <div class="container-fluid">
         <div class="row">
             <nav id="sidebarMenu" class="col-2 d-md-block bg-info text-center sidebar collapse">
@@ -37,7 +37,6 @@
                             <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-user"> Usuarios</i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-film"> Peliculas</i></a>
                         </li>
                         <li class="nav-item">
                             <a href="{{url('/Generos')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-photo-video"> Generos</i></a>
@@ -70,6 +69,13 @@
             <main role="main" class="col-10">
                 @yield('content')
             </main>
+  <!-- <div class="p-3 bg-info text-center card card-header">
+    <h1 class="font-weight-bold text-center">Cinema PRO-SIX</h1>
+  </div> -->
+                            <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-film"> Peliculas</i></a>
+    <div class="p-3 bg-info text-center card card-header">
+        <h1 class="font-weight-bold text-center">Cinema PRO-SIX</h1>
+    </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -78,3 +84,5 @@
 </body>
 
 </html>
+
+@endsection

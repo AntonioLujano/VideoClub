@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="432906f4-36cb-4048-aad1-fa12e267caea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ListaEsperas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ListaEsperas/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/MasPopulares/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/MasPopulares/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Socios/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Socios/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Template/template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Template/template.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Template/template2.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Template/template2.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +169,7 @@
       <workItem from="1593032601579" duration="1596000" />
       <workItem from="1593056119212" duration="590000" />
       <workItem from="1593056794060" duration="301000" />
+      <workItem from="1594965417816" duration="11373000" />
     </task>
     <servers />
   </component>
@@ -194,5 +197,13 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="223" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1593034210567" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1594969989375">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1536.864@0.0.1536.864" timestamp="1594969989375" />
+    <state x="425" y="197" key="run.anything.popup" timestamp="1594968729617">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1594968729617" />
   </component>
 </project>
