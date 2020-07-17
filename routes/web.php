@@ -30,3 +30,5 @@ Route::resource('/Socios', 'SociosController');
 Route::resource('/ListaEsperas', 'ListaEsperasController');
 Route::resource('/RentadePeliculas', 'PrestamosController');
 Route::resource('/Generos','GenerosController');
+Route::resource('/Actores','ActoresController');
+Route::resource('/Directores','DirectoresController');

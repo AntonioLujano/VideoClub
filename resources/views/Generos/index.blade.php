@@ -23,11 +23,13 @@
                     <td>{{$Genero->id_genero}}</td>
                     <td>{{$Genero->des_gen}}</td>
                     <td>
-                        <form action="/Socios/destroy" method="POST">
-                            <a href="#" type="button" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons">edit</i>Editar</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-dark btn-round" name="eliminar"><i class="material-icons">restore_from_trash</i>Eliminar</button>
+                        <a href="{{url('/Generos/'.$Genero->id_genero.'/edit') }}" type="button" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons">edit</i>Editar</a>
+                        
+                        <form action="{{ url('/Generos/'.$Genero->id_genero) }}" method="POST" style="display:inline">
+                            
+                        {{csrf_field() }}    
+                        {{ method_field('DELETE')}}
+                        <button type="submit" class="btn btn-dark btn-round" name="eliminar" onclick="return confirm('¿Borrar?');" > <i class="material-icons">restore_from_trash</i>Eliminar</button>
                         </form>
                     </td>
                 </tr>

@@ -1,34 +1,35 @@
 @extends('Template/template')
-@section('title', 'Registro de Socios')
+@section('title', 'Editar Socio')
 @section('content')
 <div class="container-fluid">
     <meta charset="utf-8">
-    <h3 class="centrar">Registro de Socios</h3>
+    <h3 class="centrar">Editar Socio</h3>
     <div>.</div>
-    <form class="form-group" action="/Socios" method="POST" enctype="multipart/form-data">
-        @csrf
+    <form action="{{ url('/Socios/'.$socios->id_socio)}}" method="post" enctype="multipart/form-data">
+    {{ csrf_field() }}
+{{ method_field('PATCH') }}
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="txtNombre">Nombre(s):</label>
-                <input name="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre">
+                <input name="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre" >
             </div>
             <div class="form-group col-md-4">
                 <label for="txtApPaterno">Apellido Paterno:</label>
-                <input name="ap_paterno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Paterno">
+                <input name="ap_paterno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Paterno" value="{{$socios->ap_paterno}}">
             </div>
             <div class="form-group col-md-4">
                 <label for="txtApMaterno">Apellido Materno:</label>
-                <input name="ap_materno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Materno">
+                <input name="ap_materno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Materno" value="{{$socios->ap_materno}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
                 <label for="txtDireccion">Dirección:</label>
-                <input name="dir" type="text" class="form-control" id="txtDireccion" placeholder="Dirección">
+                <input name="dir" type="text" class="form-control" id="txtDireccion" placeholder="Dirección" >
             </div>
             <div class="form-group col-md-4">
                 <label for="txtTelefono">Telefono:</label>
-                <input name="telefono" type="text" class="form-control" id="txtTelefono" placeholder="Telefono">
+                <input name="telefono" type="text" class="form-control" id="txtTelefono" placeholder="Telefono" >
             </div>
         </div>
         <div class="form-row">
@@ -41,7 +42,7 @@
                         </svg>   INE</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" name="ine" class="form-control">
+                    <input type="file" name="ine" class="form-control" >
                 </div>
             </div>
         </div>

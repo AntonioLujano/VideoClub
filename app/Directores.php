@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Directores extends Model
 {
     protected $table = 'Directores';
-    protected $primaryKey = 'id_director';
-    protected $fillable = ['id_persona'];
-    protected $timestamp = false;
+    protected $primaryKey ='id_director';
+    protected $fillable = ['nombre_dire','ap_paterno','ap_materno'];
+    public $timestamps = false;
 }

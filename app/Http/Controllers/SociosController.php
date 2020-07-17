@@ -14,14 +14,18 @@ class SociosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //$Personas = Personas::all();
-        //$Socios = Socios::all();
-        //return view('Socios.index',compact('Personas','Socios'));
-        $socios = DB::select('select p.nombre, p.ap_paterno, p.ap_materno, p.dir, p.telefono FROM personas p,socios s WHERE p.id_persona=s.id_persona');
-
-        return view('Socios.index', ['socios' => $socios]);
+        if (!$request) {
+            $socios = DB::select('select s.id_socio,p.nombre, p.ap_paterno, p.ap_materno, p.dir, p.telefono,s.ine,s.domicilio FROM personas p,socios s WHERE p.id_persona=s.id_persona order by s.id_socio desc');
+            return view('Socios.index',['socios' => $socios]);
+        }else{
+            if ($request) {
+                $query=trim($request->get('search'));
+                $socios = DB::select('select s.id_socio,p.nombre, p.ap_paterno, p.ap_materno, p.dir, p.telefono,s.ine,s.domicilio FROM personas p,socios s WHERE p.id_persona=s.id_persona and p.nombre LIKE '."'%".$query."%'".' order by s.id_socio desc');
+                return view('Socios.index',['socios' => $socios, 'search' => $query]);
+            }
+        }
     }
 
     /**
@@ -43,32 +47,25 @@ class SociosController extends Controller
     public function store(Request $request)
     {
         //try {
-          //  DB::beginTransaction();
+            //  DB::beginTransaction();
             $nombre = $request->input('nombre');
             $ap_paterno = $request->input('ap_paterno');
             $ap_materno = $request->input('ap_materno');
             $dir = $request->input('dir');
             $telefono = $request->input('telefono');
+            if ($request ->hasFile('ine')){
+                $file = $request->file('ine');
+                $ine = time().$file->getClientOriginalName();
+                $file ->move(public_path().'/PDF/INE',$ine);
+            }
+            if ($request ->hasFile('domicilio')){
+                $file = $request->file('domicilio');
+                $domicilio = time().$file->getClientOriginalName();
+                $file ->move(public_path().'/PDF/Comprobantes',$domicilio);
+            }
 
-            //$data = array("nombre" => $nombre, "ap_paterno" => $ap_paterno, "ap_materno" => $ap_materno, "dir" => $dir, "telefono" => $telefono);
-
-            //DB::table('Personas')->insert($data);
-
-            //$persona = DB::select('select id_persona FROM personas WHERE nombre = :nombre and ap_paterno = :ap_paterno and ap_materno =:ap_materno and dir = :dir and telefono = :telefono',["nombre" => $nombre, "ap_paterno" => $ap_paterno, "ap_materno" => $ap_materno, "dir" => $dir, "telefono" => $telefono]);
-
-            //$regSocio = array('id_socio'=>0,'id_persona'=>$persona);
-
-            //DB::table('Socios')->insert($regSocio);
-            //DB::insert('insert into Socios (id_socio,id_persona) values (?, ?)', [0,'id_persona'=>$persona]);
-            //DB::insert('insert INTO personas(nombre,ap_paterno,ap_materno,dir,telefono) values (?,?,?,?,?)',["nombre"=>$nombre,"ap_paterno"=>$ap_paterno,"ap_materno"=>$ap_materno,"dir"=>$dir,"telefono"=>$telefono]);
-           // DB::commit();
-           DB::select('call insert_Socios(?,?,?,?,?)',[$nombre,$ap_paterno,$ap_materno,$dir,$telefono]);
-            return redirect('/Socios');//->with('status', '1');
-            //return redirect('/Socios');
-        /*} catch (\Exception $e) {
-            DB::rollBack();
-            return redirect('/Socios')->with('status', $e->getMessage());
-        }*/
+            DB::select('call insert_Socios2(?,?,?,?,?,?,?)',[$nombre,$ap_paterno,$ap_materno,$dir,$telefono,$ine,$domicilio]);
+            return redirect('/Socios');
     }
 
     /**
@@ -88,9 +85,12 @@ class SociosController extends Controller
      * @param  \App\Socios  $socios
      * @return \Illuminate\Http\Response
      */
-    public function edit(Socios $socios)
+    public function edit($id_socio)
     {
-        //
+        // $Socios= Socios::findOrFail($id_socio);
+        $socios = DB::select('select s.id_socio,p.nombre, p.ap_paterno, p.ap_materno, p.dir, p.telefono FROM personas p,socios s WHERE p.id_persona=s.id_persona and s.id_socio= ?',$id_socio);
+
+        return view('Socios.editar',['socios' => $socios]);
     }
 
     /**
@@ -100,9 +100,12 @@ class SociosController extends Controller
      * @param  \App\Socios  $socios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Socios $socios)
+    public function update(Request $request,$id_socio)
     {
-        //
+        $datosSocios=request()->except(['_token','_method']);
+        Socios::where('id_socio','=',$id_socio)->update($datosSocios);
+
+        return redirect('Socios')->with('Mensaje','Socio modificado con exito');
     }
 
     /**
@@ -111,10 +114,9 @@ class SociosController extends Controller
      * @param  \App\Socios  $socios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Socios $socios)
+    public function destroy($id_socio)
     {
-        //DB::table('Socios')->where('id_persona',$socios->id_persona)->delete();
-        $deleted = DB::delete('delete from personas WHERE personas.id_persona = ?', $socios->id_persona);
-        return redirect('/Socios');
+        Socios::destroy($id_socio);
+        return redirect('Socios');
     }
 }

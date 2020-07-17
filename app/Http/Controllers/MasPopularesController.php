@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\MasPopulares;
 use App\Directores;
 use App\Generos;
 use App\Peliculas;
@@ -19,13 +18,12 @@ class MasPopularesController extends Controller
     public function index(Request $request)
     {
         if (!$request) {
-            $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Per.nombre,Per.ap_paterno, Per.ap_materno ,Gen.des_gen from Personas Per,Peliculas Pel, Directores Dir, Generos Gen
-            where Per.id_persona=Dir.id_persona and Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director order by Pel.id_pelicula');
+            $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Dir.nombre_dire,Dir.ap_paterno, Dir.ap_materno ,Gen.des_gen from Peliculas Pel, Directores Dir, Generos Gen where Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director order by Pel.id_pelicula ');
             return view('MasPopulares.index',['peliculas' => $peliculas]);
         }else{
             if ($request) {
                 $query=trim($request->get('search'));
-                $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Per.nombre,Per.ap_paterno, Per.ap_materno ,Gen.des_gen from Personas Per,Peliculas Pel, Directores Dir, Generos Gen where Per.id_persona=Dir.id_persona and Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director and Pel.titulo LIKE '."'%".$query."%'".' order by Pel.id_pelicula');
+                $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Dir.nombre_dire,Dir.ap_paterno, Dir.ap_materno ,Gen.des_gen from Peliculas Pel, Directores Dir, Generos Gen where Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director and Pel.titulo LIKE '."'%".$query."%'".' order by Pel.id_pelicula');
                 return view('MasPopulares.index',['peliculas' => $peliculas, 'search' => $query]);
             }
         }
@@ -55,10 +53,10 @@ class MasPopularesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\MasPopulares  $masPopulares
+     * @param  \App\Peliculas  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function show(MasPopulares $masPopulares)
+    public function show(Peliculas $masPopulares)
     {
         //
     }
@@ -66,10 +64,10 @@ class MasPopularesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MasPopulares  $masPopulares
+     * @param  \App\Peliculas  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasPopulares $masPopulares)
+    public function edit(Peliculas $masPopulares)
     {
         //
     }
@@ -78,10 +76,10 @@ class MasPopularesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MasPopulares  $masPopulares
+     * @param  \App\Peliculas  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasPopulares $masPopulares)
+    public function update(Request $request, Peliculas $masPopulares)
     {
         //
     }
@@ -89,11 +87,12 @@ class MasPopularesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MasPopulares  $masPopulares
+     * @param  \App\Peliculas  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasPopulares $masPopulares)
+    public function destroy($id_pelicula)
     {
-        //
+        Peliculas::destroy($id_pelicula);
+        return redirect('MasPopulares');
     }
 }

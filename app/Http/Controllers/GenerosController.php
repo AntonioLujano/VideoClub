@@ -28,6 +28,7 @@ class GenerosController extends Controller
     {
         //
         return view('Generos.registrar');
+
     }
 
     /**
@@ -39,8 +40,10 @@ class GenerosController extends Controller
     public function store(Request $request)
     {
         //
-        $datosgenero=$request->all();
-        return response()->json($datosgenero);
+        $des_gen = $request->input('des_gen');
+        $data = array("des_gen" => $des_gen);
+        DB::table('generos')->insert($data);
+        return redirect('/Generos');
     }
 
     /**
@@ -61,9 +64,12 @@ class GenerosController extends Controller
      * @param  \App\Generos  $generos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Generos $generos)
+    public function edit($id_genero)
     {
         //
+        $generos= Generos::findOrFail($id_genero);
+
+        return view('Generos.edit',compact('generos'));
     }
 
     /**
@@ -73,9 +79,19 @@ class GenerosController extends Controller
      * @param  \App\Generos  $generos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Generos $generos)
+    public function update(Request $request, $id_genero)
     {
         //
+        $datosGenero=request()->except(['_token','_method']);
+        Generos::where('id_genero','=',$id_genero)->update($datosGenero);
+
+        /**$generos= Generos::findOrFail($id_genero);
+
+        return view('Generos.edit',compact('generos'));
+        */
+       
+
+        return redirect('Generos')->with('Mensaje','Genero modificado con exito');
     }
 
     /**
@@ -84,8 +100,11 @@ class GenerosController extends Controller
      * @param  \App\Generos  $generos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Generos $generos)
+    public function destroy($id_genero)
     {
         //
+        Generos::destroy($id_genero);
+        return redirect('Generos');
+        
     }
 }
