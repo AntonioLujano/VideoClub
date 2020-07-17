@@ -1,8 +1,13 @@
 @extends('Template/template')
 @section('content')
 @section('title', 'Renta de Peliculas')
+<style type="text/css">
+    .alinear{
+        margin-left: 10.5em;
+    }
+</style>
 <meta charset="utf-8">
-<div class="container-fluid">
+<div class="container-fluid mt-3">
     <h3 class="text-center"><i class="fas fa-shopping-cart"></i>   Carrito de Rentas</h3>
     <div class="form-row">
         <div class="form-group col-md-5">
@@ -10,11 +15,22 @@
         </div>
     </div>
     <div class="form-row">
+        <div class="form-group col-md-2">
+            <button type="button" class="btn btn-primary">Rentar</button>
+        </div>
         <div class="form-group col-md-5">
-            <button type="button" class="btn btn-primary">Buscar</button>
-            <button type="button" class="btn btn-secondary">Limpiar</button>
-            <button type="button" class="btn btn-secondary">Guardar</button>
-            <button type="button" class="btn btn-secondary">Cancelar</button>
+            <label># Peliculas rentadas: </label>
+            <input type="text " name="" readonly="readonly">
+        </div>
+        <div class="form-group col-md-5">
+            <label>Total a Pagar: $</label>
+            <input type="text" name="" readonly="readonly">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="alinear" class="form-group col-md-5">
+            <label>Fecha de Entrega: </label>
+            <input type="date" name="" class="ml-3">
         </div>
     </div>
         <div class="form-row">
