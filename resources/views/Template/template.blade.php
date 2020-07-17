@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('contenedor')
+@section('conten')
 
 <!doctype html>
 <html lang="es">
