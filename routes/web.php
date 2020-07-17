@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Template.template');
-});
+
 /*Route::get('/MasPopulares', function () {
     return view('MasPopulares.index');
 });*/
@@ -25,8 +23,29 @@ Route::get('/', function () {
 
 });*/
 
-Route::resource('/MasPopulares', 'MasPopularesController');
-Route::resource('/Socios', 'SociosController');
-Route::resource('/ListaEsperas', 'ListaEsperasController');
-Route::resource('/RentadePeliculas', 'PrestamosController');
-Route::resource('/Generos','GenerosController');
+
+
+Auth::routes();
+
+
+Route::get('/', function () {
+    return view('layouts.app');
+});
+
+Route::group(['middleware'=>['auth']],function (){
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+
+    Route::get('/template', function () {
+        return view('Template.template');
+    });
+
+
+    Route::resource('/MasPopulares', 'MasPopularesController');
+    Route::resource('/Socios', 'SociosController');
+    Route::resource('/ListaEsperas', 'ListaEsperasController');
+    Route::resource('/RentadePeliculas', 'PrestamosController');
+    Route::resource('/Generos','GenerosController');
+
+});

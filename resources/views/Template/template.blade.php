@@ -1,3 +1,6 @@
+@extends('layouts.app')
+@section('content')
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -19,18 +22,20 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- Titulo cambia de acuerdo a la vista -->
     <title>@yield('title','Inicio')</title>
+
   </head>
 <body>
-  <div class="p-3 bg-info text-center card card-header">
+  <!-- <div class="p-3 bg-info text-center card card-header">
     <h1 class="font-weight-bold text-center">Cinema PRO-SIX</h1>
-  </div>
+  </div> -->
+
   <div class="container-fluid">
     <div class="row">
       <nav id="sidebarMenu" class="col-2 d-md-block bg-info text-center sidebar collapse">
         <div class="sidebar-sticky pt-4">
           <ul class="nav flex-column">
 <li class="nav-item">
-              <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-th">  Inicio</i></a>
+              <a href="{{url('/')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-th">  Inicio</i></a>
             </li>
             <li class="nav-item">
               <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-user">  Usuarios</i></a>
@@ -53,7 +58,6 @@
             <li class="nav-item">
               <a href="{{url('/RentadePeliculas')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart">  Prestamos</i></a>
             </li>
-            </li>
             <li class="nav-item">
               <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-handshake"> Devoluciones</i></a>
             </li>
@@ -66,7 +70,9 @@
           </ul>
         </div>
       </nav>
+
       <main role="main" class="col-10">
+
         @yield('content')
       </main>
     </div>
@@ -76,3 +82,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
 </html>
+
+@endsection
