@@ -3,7 +3,7 @@
 @section('title', 'Renta de Peliculas')
 <style type="text/css">
     .alinear{
-        margin-left: 10.5em;
+        margin-left: 11.7em;
     }
 </style>
 <meta charset="utf-8">
