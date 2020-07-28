@@ -24,7 +24,7 @@ class MasPopularesController extends Controller
             if ($request) {
                 $query=trim($request->get('search'));
                 $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Dir.nombre_dire,Dir.ap_paterno, Dir.ap_materno ,Gen.des_gen from Peliculas Pel, Directores Dir, Generos Gen where Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director and Pel.titulo LIKE '."'%".$query."%'".' order by Pel.id_pelicula');
-                return view('MasPopulares.index',['peliculas' => $peliculas, 'search' => $query]);
+                return view('MasPopulares.list',['peliculas' => $peliculas, 'search' => $query]);
             }
         }
     }
