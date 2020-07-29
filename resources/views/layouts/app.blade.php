@@ -1,16 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-
+    <link rel="icon" href="../img/logo/icon.png" type="image/png" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.css">
-
+    <link rel="icon" href="img/logo/icon.png" type="image/png" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
-
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,6 +41,7 @@
 <body>
 <div class="p-3 bg-info text-center ">
     <h1 class="font-weight-bold text-center">Cinema PRO-SIX</h1>
+	  <h5 class="font-weight-bold text-center">Disfruta de nuestras Películas 📺</h5>
 </div>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-info">
@@ -66,33 +65,32 @@
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Registrarme') }}</a>
+                                <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                             </li>
                         @endif
                     @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+                    <li class="nav-item dropdown">
+                           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                               {{ Auth::user()->name }} <span class="caret"></span>
+                           </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Salir') }}
-                                </a>
-                                <a class="dropdown-item" href="{{url('/template')}}">Socios</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
+                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                               <a class="dropdown-item" href="{{ route('logout') }}"
+                                  onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                   {{ __('Logout') }}
+                               </a>
+
+                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                   @csrf
+                               </form>
+                           </div>
+                       </li>
                     @endguest
                 </ul>
             </div>
         </div>
     </nav>
-
     <main class="py-4">
         @yield('conten')
     </main>

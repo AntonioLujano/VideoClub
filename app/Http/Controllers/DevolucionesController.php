@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Devoluciones;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Devoluciones;
+use App\Peliculas;
+use App\Socios;
+use App\Personas;
+use App\Prestamos;
 
 class DevolucionesController extends Controller
 {
@@ -14,7 +19,10 @@ class DevolucionesController extends Controller
      */
     public function index()
     {
-        //
+        $sql='SELECT id_devolucion,fecha,fecha_dev,nombre,ap_paterno,ap_materno from devoluciones,prestamos,personas,socios WHERE prestamos.id_prestamo=devoluciones.id_prestamo AND personas.id_persona=socios.id_persona ';
+        $Devoluciones=DB::select($sql);
+        $datos=Devoluciones::paginate(10);
+        return view('Devoluciones.index',$datos,compact('Devoluciones'));
     }
 
     /**
@@ -24,7 +32,10 @@ class DevolucionesController extends Controller
      */
     public function create()
     {
-        //
+        $peliculas=Peliculas::all();
+        $socios=Socios::all();
+        $Personas=Personas::all();
+        return view('Devoluciones.create',compact('peliculas','socios','personas'));
     }
 
     /**
@@ -38,13 +49,7 @@ class DevolucionesController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Devoluciones  $devoluciones
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Devoluciones $devoluciones)
+    public function show( )
     {
         //
     }
@@ -52,10 +57,10 @@ class DevolucionesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Devoluciones  $devoluciones
+     * @param  \App\MasPopulares  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function edit(Devoluciones $devoluciones)
+    public function edit( $id)
     {
         //
     }
@@ -64,10 +69,10 @@ class DevolucionesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Devoluciones  $devoluciones
+     * @param  \App\MasPopulares  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Devoluciones $devoluciones)
+    public function update(Request $request, devoluciones $devoluciones)
     {
         //
     }
@@ -75,11 +80,12 @@ class DevolucionesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Devoluciones  $devoluciones
+     * @param  \App\MasPopulares  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Devoluciones $devoluciones)
+    public function destroy($id)
     {
-        //
+        $lista = DB::delete('delete from devoluciones WHERE devoluciones.id_devolucion = ?', [$id]);
+        return redirect('Devoluciones')->with('Mensaje','Dato eliminado con exito');
     }
 }

@@ -16,15 +16,18 @@ class ListaEsperasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datos['ListaEsperas']=ListaEsperas::paginate(10);
-        //$Personas = Personas::all();
-        //$Socios = Socios::all();
-        //$peliculas=Peliculas::all();
-        $ListaEsperas=DB::select('SELECT titulo,fecha_registro,nombre,ap_paterno,ap_materno,estado FROM listaespera,peliculas,socios,personas WHERE personas.id_persona=socios.id_persona AND peliculas.id_pelicula=listaespera.id_pelicula AND socios.id_socio=listaespera.id_socio ORDER BY titulo ASC');
-
-        return view('ListaEsperas.index',['ListaEsperas' => $ListaEsperas],$datos);
+        if (!$request) {
+             $ListaEsperas=DB::select('SELECT id_espera,titulo,fecha_registro,nombre,ap_paterno,ap_materno,estado FROM listaespera,peliculas,socios,personas WHERE personas.id_persona=socios.id_persona AND peliculas.id_pelicula=listaespera.id_pelicula AND socios.id_socio=listaespera.id_socio ORDER BY titulo ASC');
+            return view('ListaEsperas.index',['ListaEsperas' => $ListaEsperas]);
+        }else{
+            if ($request) {
+                $query=trim($request->get('search'));
+                $ListaEsperas = DB::select('SELECT id_espera,titulo, fecha_registro,nombre,ap_paterno,ap_materno,estado FROM listaespera,peliculas,socios,personas WHERE personas.id_persona=socios.id_persona AND peliculas.id_pelicula=listaespera.id_pelicula AND socios.id_socio=listaespera.id_socio AND peliculas.titulo LIKE '."'%".$query."%'".' order by id_espera');
+                return view('ListaEsperas.index',['ListaEsperas' => $ListaEsperas, 'search' => $query]);
+            }
+        }
     }
 
     /**

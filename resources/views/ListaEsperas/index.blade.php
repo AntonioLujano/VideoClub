@@ -1,14 +1,23 @@
-@extends('Template/template')
+@extends('Template/empleados')
 @section('title', 'Lista de Espera')
 @section('content')
     <meta charset="UTF-8">
     <div class="container">
-        <span class="float-right mt-2">
-            <a href="{{url('/ListaEsperas/create')}}" type="button" rel="tooltip" class="btn btn-info btn-round">
-                <i class="fa fa-user-plus">Registrar</i>
-            </a>
-        </span>
         <h2 class="text-center card-title font-weight-normal mt-5">Lista de Espera</h2>
+         <div class="form-row">
+            <div class="form-group col-md-5 ml-5">
+                <label>Buscar Pelicula</label>
+                <form class="form-inline">
+                    <input type="search" name="search" placeholder="Nombre de la pelicula" class="form-control" arial-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-info btn-round" type="submit">Buscar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="form-group col-md-5 ml-5">
+                <a href="{{url('/ListaEsperas')}}" class="btn btn-outline-secondary mt-4 bg-info text-light">Mostrar Lista Completa</a>
+            </div>
+        </div>   
         <div class="table-responsive card card-body mt-5">
             <table class="table table-light table-hover">
                 <thead class="thead-light">
@@ -23,11 +32,11 @@
                 <tbody>
                         @foreach ($ListaEsperas as $lista)
                             <tr>
-                                <td>{{$lista->titulo}} </td>
-                                <td>{{$lista->fecha_registro}}</td>
-                                <td>{{$lista->nombre}} {{$lista->ap_paterno}} {{$lista->ap_materno}}</td>
-                                <td>{{$lista->estado}}</td>
-                                <td>
+                                <th>{{$lista->titulo}} </th>
+                                <th>{{$lista->fecha_registro}}</th>
+                                <th>{{$lista->nombre}} {{$lista->ap_paterno}} {{$lista->ap_materno}}</th>
+                                <th>{{$lista->estado}}</th>
+                                <th>
                                     <a href="#" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons">edit</i>Editar</a>
 
                                     <form method="post" action="{{url('/ListaEsperas/destroy')}}" style="display:inline">

@@ -1,16 +1,13 @@
 @extends('layouts.app')
-
 @section('conten')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card ">
                 <div class=" card card-header bg-info"><center class="text-light font-weight-normal text-center">{{ __('Inicio de Sesión') }}</center></div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>
 

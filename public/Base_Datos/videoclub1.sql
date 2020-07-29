@@ -21,8 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `videoclub1`
 --
-create database videoclub;
-use videoclub;
+
 DELIMITER $$
 --
 -- Procedimientos
@@ -828,11 +827,11 @@ CREATE TABLE `peliculas` (
 INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `id_director`, `id_genero`) VALUES
 (1, 'EL PAYASO DEL MAL', 1, 2),
 (2, 'EL JUEGO DE ENDER', 2, 4),
-(3, 'CAPITAN AMERICA Y EL SOLDADO DEL INVIERNO', 3, 5),
+(3, 'CAPITAN AMERICA Y EL SOLDADO DEL INVIERNO\r\n', 3, 5),
 (4, 'ANT-MAN', 4, 4),
 (5, 'ESCALOFRIOS', 5, 3),
 (6, 'LOS ILUSIONISTAS', 6, 7),
-(7, 'EL ORIGEN DEL PLANETA DE LOS SIMIOS', 7, 4),
+(7, 'EL ORIGEN DEL PLANETA DE LOS SIMIOS \r\n', 7, 4),
 (8, 'EL CONJURO', 8, 2),
 (9, 'DEADPOOL', 9, 5),
 (10, 'ALIEN COVENANT', 10, 7),
