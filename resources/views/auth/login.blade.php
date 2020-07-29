@@ -5,6 +5,7 @@
         <div class="col-md-8">
             <div class="card ">
                 <div class=" card card-header bg-info"><center class="text-light font-weight-normal text-center">{{ __('Inicio de Sesión') }}</center></div>
+                <center><img src="../img/inicio/robot-cookies.gif" alt="" width="100px"></center>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -58,7 +59,7 @@
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('¿Olvidaste tu contraseña?') }}
                                     </a>
-                                @endif
+                      .          @endif
                             </div>
                         </div>
                     </form>

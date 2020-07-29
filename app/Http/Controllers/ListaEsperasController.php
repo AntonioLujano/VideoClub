@@ -18,6 +18,7 @@ class ListaEsperasController extends Controller
      */
     public function index(Request $request)
     {
+      $datos['ListaEsperas']=ListaEsperas::paginate(20);
         if (!$request) {
              $ListaEsperas=DB::select('SELECT id_espera,titulo,fecha_registro,nombre,ap_paterno,ap_materno,estado FROM listaespera,peliculas,socios,personas WHERE personas.id_persona=socios.id_persona AND peliculas.id_pelicula=listaespera.id_pelicula AND socios.id_socio=listaespera.id_socio ORDER BY titulo ASC');
             return view('ListaEsperas.index',['ListaEsperas' => $ListaEsperas]);
@@ -91,7 +92,7 @@ class ListaEsperasController extends Controller
      */
     public function destroy( $id)
     {
-        
+
         $lista=DB::delete('DELETE FROM `listaespera` WHERE `listaespera`.`id_espera` = ?', $lista->id_persona);
         return redirect('ListaEsperas')->with('Registro eliminado con exito');;
     }
