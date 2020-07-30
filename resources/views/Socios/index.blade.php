@@ -31,8 +31,7 @@
                     <th>Apellido Materno</th>
                     <th>Dirección</th>
                     <th>Telefono</th>
-                    <th>INE</th>
-                    <th>Comprobante</th>
+                    <th>Correo</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -44,8 +43,7 @@
                     <td>{{$Socio->ap_materno}}</td>
                     <td>{{$Socio->dir}}</td>
                     <td>{{$Socio->telefono}}</td>
-                    <td>{{$Socio->ine}}</td>
-                    <td>{{$Socio->domicilio}}</td>
+                    <td>{{$Socio->correo}}</td>
                     <td>
 
                         <form action="{{ url('/Socios/'.$Socio->id_socio) }}" method="POST" style="display:inline">
@@ -60,6 +58,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $socios->links() }}
     </div>
 </div>
 @endsection

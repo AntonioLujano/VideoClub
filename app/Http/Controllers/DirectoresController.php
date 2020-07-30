@@ -9,10 +9,20 @@ use Illuminate\Support\Facades\DB;
 class DirectoresController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $directores = DB::select('select * from directores;');
-        return view('Directores.index', ['directores'=> $directores]);
+        if (!$request) {
+            $directores = DB::select('select * from directores;');
+            return view('Directores.index',['directores' => $directores]);
+        }else{
+            if ($request) {
+                $query=trim($request->get('search'));
+                $directores = Directores::where('nombre_dire', 'LIKE', '%'.$query.'%')
+                ->orderBy('nombre_dire')
+                ->paginate(10);
+                return view('Directores.index',['directores' => $directores, 'search' => $query]);
+            }
+        }
     }
 
     /**

@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                 <h2 class="bg-danger">Lo sentimos solo el administrador puede registrar nuevos usuarios</h2>
-                    <!-- <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -69,7 +69,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form> -->
+                    </form>
                 </div>
             </div>
         </div>

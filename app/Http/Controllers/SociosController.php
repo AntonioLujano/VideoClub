@@ -17,12 +17,14 @@ class SociosController extends Controller
     public function index(Request $request)
     {
         if (!$request) {
-            $socios = DB::select('select s.id_socio,p.nombre, p.ap_paterno, p.ap_materno, p.dir, p.telefono,s.ine,s.domicilio FROM personas p,socios s WHERE p.id_persona=s.id_persona order by s.id_socio desc');
+            $socios = DB::select('select s.id_socio,s.nombre, s.ap_paterno, s.ap_materno, s.dir, s.telefono, s.correo FROM socios s order by s.id_socio desc');
             return view('Socios.index',['socios' => $socios]);
         }else{
             if ($request) {
                 $query=trim($request->get('search'));
-                $socios = DB::select('select s.id_socio,p.nombre, p.ap_paterno, p.ap_materno, p.dir, p.telefono,s.ine,s.domicilio FROM personas p,socios s WHERE p.id_persona=s.id_persona and p.nombre LIKE '."'%".$query."%'".' order by s.id_socio desc');
+                $socios = Socios::where('nombre', 'LIKE', '%'.$query.'%')
+                ->orderBy('nombre')
+                ->paginate(10);
                 return view('Socios.index',['socios' => $socios, 'search' => $query]);
             }
         }
@@ -53,6 +55,8 @@ class SociosController extends Controller
             $ap_materno = $request->input('ap_materno');
             $dir = $request->input('dir');
             $telefono = $request->input('telefono');
+            $correo = $request->input('correo');
+            $contrasena = $request->input('contrasena');
             if ($request ->hasFile('ine')){
                 $file = $request->file('ine');
                 $ine = time().$file->getClientOriginalName();
@@ -88,7 +92,7 @@ class SociosController extends Controller
     public function edit($id_socio)
     {
         // $Socios= Socios::findOrFail($id_socio);
-        $socios = DB::select('select s.id_socio,p.nombre, p.ap_paterno, p.ap_materno, p.dir, p.telefono FROM personas p,socios s WHERE p.id_persona=s.id_persona and s.id_socio= ?',$id_socio);
+        $socios = DB::select('select s.id_socio,s.nombre, s.ap_paterno, s.ap_materno, s.dir, s.telefono, s.correo, s.contrase, s.ine, s.domicilio FROM socios s WHERE s.id_socio= ?',$id_socio);
 
         return view('Socios.editar',['socios' => $socios]);
     }

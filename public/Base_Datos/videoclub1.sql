@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `videoclub1`
 --
-
+create database videoclub;
+use videoclub;
 DELIMITER $$
 --
 -- Procedimientos

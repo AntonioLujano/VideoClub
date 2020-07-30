@@ -8,11 +8,24 @@
             </a>
         </span>
         <h2 class="text-center card-title font-weight-normal mt-5">Listado de Directores</h2>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Buscar Director</label>
+                <form class="form-inline">
+                    <input type="search" name="search" placeholder="Nombre de director" class="form-control" arial-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-info btn-round" type="submit">Buscar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="form-group col-md-5 ml-5">
+                <a href="{{url('/Directores')}}" class="btn btn-outline-secondary mt-4 bg-info text-light">Mostrar Lista Completa</a>
+            </div>
+        </div>
         <div class="table-responsive card card-body mt-5">
             <table class="table table-light" class="table table-striped table-sm">
                 <thead class="thead-light">
                 <tr>
-                    <th>#</th>
                     <th>Nombre</th>
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
@@ -23,7 +36,6 @@
                 <tbody>
                     @foreach($directores as $director)
                 <tr>
-                    <td>{{$director->id_director}}</td>
                     <td>{{$director->nombre_dire}}</td>
                     <td>{{$director->ap_paterno}}</td>
                     <td>{{$director->ap_materno}}</td>
@@ -42,6 +54,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {{ $directores->links() }}
         </div>
     </div>
 @endsection

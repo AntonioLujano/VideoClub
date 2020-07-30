@@ -12,10 +12,20 @@ class ActoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $actores = DB::select('select id_actor,nombre_act,ap_paterno,ap_materno FROM actores');
-        return view('Actores.index', ['actores'=> $actores] );
+        if (!$request) {
+            $actores = DB::select('select id_actor,nombre_act,ap_paterno,ap_materno FROM actores order by=nombre_act');
+            return view('Actores.index',['actores' => $actores]);
+        }else{
+            if ($request) {
+                $query=trim($request->get('search'));
+                $actores = Actores::where('nombre_act', 'LIKE', '%'.$query.'%')
+                ->orderBy('nombre_act')
+                ->paginate(10);
+                return view('Actores.index',['actores' => $actores, 'search' => $query]);
+            }
+        }
     }
 
     /**
