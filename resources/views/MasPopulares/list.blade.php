@@ -37,13 +37,10 @@
                                 {{csrf_field() }}
                                 {{ method_field('DELETE')}}
                                 <button hidden type="submit" class="btn btn-outline-primary border-0" name="eliminar" onclick="return confirm('¿Borrar a {{$Pelicula->titulo}}?');"> <i class="fas fa-thumbs-down"></i> Eliminar</button>
-<<<<<<< HEAD
-                                <a href="#"><button type="button" class="btn btn-outline-secondary border-0"><i class="fas fa-credit-card"> Rentar</i></button></a>
-                                <button type="button" class="btn btn-outline-warning border-0"><i class="far fa-star"> Favorita</i></button>
-=======
+
                                 <a href="{{url('/RentadePeliculas')}}"><button type="button" class="btn btn-outline-secondary border-0"data-toggle="button" aria-pressed="false" autocomplete="off"><i class="fas fa-credit-card"> Rentar</i></button></a>
                                 <button type="button" class="btn btn-outline-warning border-0" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="far fa-star"> Favorita</i></button>
->>>>>>> 9937667dafe67a9c6f7bdab4a024084d71126a65
+
                             </form>
                         </div>
                     </div>
