@@ -1,4 +1,4 @@
-@extends('Template/template')
+@extends('Template/empleados')
 @section('content')
     <div class="container">
         <h2 class="text-center card-title font-weight-normal mt-5">Lista de Espera</h2>
