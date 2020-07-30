@@ -40,17 +40,19 @@
                     <thead class="thead-light">
                         <h4 class="centrar">Peliculas Agregadas</h4>
                         <tr>
+                            <th>#</th>
                             <th>Titulos</th>
-                            <th>Directores</th>
-                            <th>Generos</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Alien Cavanat</td>
-                            <td>James Francis</td>
-                            <td>Ciencia Ficción</td>
+                            <td>1</td>
+                            <td>Alien Covenant</td>
+                            <td>1</td>
+                            <td>50</td>
                             <td>
                                 <button type="button" class="btn btn-outline-secondary"><svg class="bi bi-dash-circle" width="1em" height="1em" viewBox="0 0 16     16"         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>

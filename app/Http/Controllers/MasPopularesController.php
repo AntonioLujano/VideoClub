@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Directores;
 use App\Generos;
 use App\Peliculas;
+use App\Personas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,7 @@ class MasPopularesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
         if (!$request) {
@@ -29,6 +31,10 @@ class MasPopularesController extends Controller
         }
     }
 
+    public function add (Peliculas $Pelicula)
+    {
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -56,9 +62,9 @@ class MasPopularesController extends Controller
      * @param  \App\Peliculas  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function show(Peliculas $masPopulares)
+    public function show()
     {
-        //
+       
     }
 
     /**

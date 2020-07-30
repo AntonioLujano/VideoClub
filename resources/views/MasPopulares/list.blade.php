@@ -32,7 +32,7 @@
         <div class="form-group col-md-5 ml-5">
             <a href="{{url('/MasPopulares')}}" class="btn btn-outline-secondary mt-4 bg-info text-light">
                 Mostrar Lista Completa</a>
-            <a href="{{url('/RentadePeliculas')}}" class="btn btn-outline-secondary mt-4 bg-info text-light"><i class="fas fa-shopping-cart">Carrito de rentas</i></a>
+            <a href="{{ url('/RentadePeliculas') }}" class="btn btn-outline-secondary mt-4 bg-info text-light"><i class="fas fa-shopping-cart">Carrito de rentas</i></a>
         </div>
     </div>
     <div class="row">
@@ -53,7 +53,7 @@
                                 {{csrf_field() }}
                                 {{ method_field('DELETE')}}
                                 <button hidden type="submit" class="btn btn-outline-primary border-0" name="eliminar" onclick="return confirm('¿Borrar a {{$Pelicula->titulo}}?');"> <i class="fas fa-thumbs-down"></i> Eliminar</button>
-                                <a href="{{url('/RentadePeliculas')}}"><button type="button" class="btn btn-outline-secondary border-0"><i class="fas fa-credit-card"> Rentar</i></button></a>
+                                <a href="#"><button type="button" class="btn btn-outline-secondary border-0"><i class="fas fa-credit-card"> Rentar</i></button></a>
                                 <button type="button" class="btn btn-outline-warning border-0"><i class="far fa-star"> Favorita</i></button>
                             </form>
                         </div>
