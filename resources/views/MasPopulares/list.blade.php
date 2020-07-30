@@ -7,22 +7,6 @@
         <div class="form-group col-md-6">
             <label>Buscar Pelicula</label>
             <form class="form-inline">
-                <!--div class="input-group">
-  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
-  <div class="input-group-append">
-    <button type="button" class="btn btn-outline-secondary">Action</button>
-    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </div>
-</div-->
                 <input type="search" name="search" placeholder="Buscar Pelicula" class="form-control" arial-label="Search">
                 <div class="input-group-append">
                     <button class="btn btn-info btn-round" type="submit">Buscar</button>
@@ -36,7 +20,7 @@
         </div>
     </div>
     <div class="row">
-
+    <?php $id = 0 ?>
         @foreach($peliculas as $Pelicula)
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm" title="{{$Pelicula->titulo}}" >
@@ -53,8 +37,8 @@
                                 {{csrf_field() }}
                                 {{ method_field('DELETE')}}
                                 <button hidden type="submit" class="btn btn-outline-primary border-0" name="eliminar" onclick="return confirm('¿Borrar a {{$Pelicula->titulo}}?');"> <i class="fas fa-thumbs-down"></i> Eliminar</button>
-                                <a href="{{url('/RentadePeliculas')}}"><button type="button" class="btn btn-outline-secondary border-0"><i class="fas fa-credit-card"> Rentar</i></button></a>
-                                <button type="button" class="btn btn-outline-warning border-0"><i class="far fa-star"> Favorita</i></button>
+                                <a href="{{url('/RentadePeliculas')}}"><button type="button" class="btn btn-outline-secondary border-0"data-toggle="button" aria-pressed="false" autocomplete="off"><i class="fas fa-credit-card"> Rentar</i></button></a>
+                                <button type="button" class="btn btn-outline-warning border-0" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="far fa-star"> Favorita</i></button>
                             </form>
                         </div>
                     </div>

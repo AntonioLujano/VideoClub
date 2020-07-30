@@ -18,7 +18,8 @@ class RentadePeliculasController extends Controller
      */
     public function index()
     {
-        
+        $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Dir.nombre_dire,Dir.ap_paterno, Dir.ap_materno ,Gen.des_gen from Peliculas Pel, Directores Dir, Generos Gen where Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director order by Pel.id_pelicula');
+        return view('RentaFisicas.index',['peliculas' => $peliculas]);
     }
 
     /**
@@ -28,7 +29,7 @@ class RentadePeliculasController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
