@@ -64,7 +64,7 @@ class MasPopularesController extends Controller
      */
     public function show()
     {
-       
+
     }
 
     /**
