@@ -3,15 +3,15 @@
 @section('content')
 <div class="container-fluid">
     <meta charset="utf-8">
-    <h3 class="centrar">Editar Socio</h3>
+    <h3 class="text-center">Editar Socio</h3>
     <div>.</div>
-    <form action="{{ url('/Socios/'.$socios->id_socio)}}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('/Socios'.$socios->id_socio)}}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
 {{ method_field('PATCH') }}
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="txtNombre">Nombre(s):</label>
-                <input name="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre" >
+                <input name="name" type="text" class="form-control" id="txtNombre" placeholder="Nombre" value='{{$socios->name}}' >
             </div>
             <div class="form-group col-md-4">
                 <label for="txtApPaterno">Apellido Paterno:</label>
@@ -23,13 +23,25 @@
             </div>
         </div>
         <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="email">{{ __('Correo electrónico') }}</label>
+                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required placeholder="Correo electrónico" value="{{$socios->email}}">
+
+                @if ($errors->has('email'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+                @endif
+            </div>
+        </div>
+        <div class="form-row">
             <div class="form-group col-md-8">
                 <label for="txtDireccion">Dirección:</label>
-                <input name="dir" type="text" class="form-control" id="txtDireccion" placeholder="Dirección" >
+                <input name="dir" type="text" class="form-control" id="txtDireccion" placeholder="Dirección" value="{{$socios->dir}}">
             </div>
             <div class="form-group col-md-4">
                 <label for="txtTelefono">Telefono:</label>
-                <input name="telefono" type="text" class="form-control" id="txtTelefono" placeholder="Telefono" >
+                <input name="telefono" type="text" class="form-control" id="txtTelefono" placeholder="Telefono" value="{{$socios->telefono}}">
             </div>
         </div>
         <div class="form-row">
@@ -42,7 +54,7 @@
                         </svg>   INE</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" name="ine" class="form-control" >
+                    <input type="file" name="ine" class="form-control" value="{{$socios->ine}}">
                 </div>
             </div>
         </div>
@@ -56,7 +68,7 @@
                         </svg>   Comprobante de Domicilio</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" name="domicilio" class="form-control">
+                    <input type="file" name="domicilio" class="form-control" value="{{$socios->domicilio}}">
                 </div>
             </div>
         </div>
@@ -64,9 +76,9 @@
 
         <div class="form-row">
             <div class="form-group col-md-4">
-                <button type="button" class="btn btn-primary">Limpiar</button>
+                <button type="reset" class="btn btn-primary">Limpiar</button>
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <button type="button" class="btn btn-primary">Cancelar</button>
+                <a href="{{url('/Socios')}}"><button type="button" class="btn btn-primary">Cancelar</button></a>
             </div>
         </div>
     </form>

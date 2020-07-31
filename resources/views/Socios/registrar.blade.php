@@ -10,21 +10,21 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="txtNombre">Nombre(s):</label>
-                <input name="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre">
+                <input name="name" type="text" class="form-control" id="txtNombre" placeholder="Nombre" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="txtApPaterno">Apellido Paterno:</label>
-                <input name="ap_paterno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Paterno">
+                <input name="ap_paterno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Paterno" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="txtApMaterno">Apellido Materno:</label>
-                <input name="ap_materno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Materno">
+                <input name="ap_materno" type="text" class="form-control" id="txtApPaterno" placeholder="Apellido Materno" required>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="email">{{ __('Correo electrónico') }}</label>
-                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="Correo electrónico">
 
                 @if ($errors->has('email'))
                 <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="password">{{ __('Contraseña') }}</label>
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Contraseña">
 
                 @if ($errors->has('password'))
                 <span class="invalid-feedback" role="alert">
@@ -44,17 +44,17 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="password-confirm">{{ __('Confirmar contraseña') }}</label>
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirmar contraseña">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
                 <label for="txtDireccion">Dirección:</label>
-                <input name="dir" type="text" class="form-control" id="txtDireccion" placeholder="Dirección">
+                <input name="dir" type="text" class="form-control" id="txtDireccion" placeholder="Dirección" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="txtTelefono">Telefono:</label>
-                <input name="telefono" type="text" class="form-control" id="txtTelefono" placeholder="Telefono">
+                <input name="telefono" type="text" class="form-control" id="txtTelefono" placeholder="Telefono" required>
             </div>
         </div>
         <div class="form-row">
@@ -89,9 +89,9 @@
 
         <div class="form-row">
             <div class="form-group col-md-4">
-                <button type="button" class="btn btn-primary">Limpiar</button>
+                <button type="reset" class="btn btn-primary">Limpiar</button>
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <button type="button" class="btn btn-primary">Cancelar</button>
+                <a href="{{url('MasPopulares')}}"><button type="button" class="btn btn-primary">Cancelar</button></a>
             </div>
         </div>
     </form>

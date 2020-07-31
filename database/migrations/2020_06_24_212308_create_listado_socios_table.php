@@ -14,7 +14,7 @@ class CreateListadoSociosTable extends Migration
     public function up()
     {
         Schema::create('listado_socios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_listado');
             $table->timestamps();
         });
     }

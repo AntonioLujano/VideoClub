@@ -38,12 +38,12 @@
             <tbody>
                 @foreach($socios as $Socio)
                 <tr>
-                    <td>{{$Socio->nombre}}</td>
+                    <td>{{$Socio->name}}</td>
                     <td>{{$Socio->ap_paterno}}</td>
                     <td>{{$Socio->ap_materno}}</td>
                     <td>{{$Socio->dir}}</td>
                     <td>{{$Socio->telefono}}</td>
-                    <td>{{$Socio->correo}}</td>
+                    <td>{{$Socio->email}}</td>
                     <td>
 
                         <form action="{{ url('/Socios/'.$Socio->id_socio) }}" method="POST" style="display:inline">
@@ -51,7 +51,7 @@
 
                             {{csrf_field() }}
                             {{ method_field('DELETE')}}
-                            <button type="submit" class="btn btn-dark btn-round" name="eliminar" onclick="return confirm('¿Borrar a {{$Socio->nombre}} {{$Socio->ap_paterno}} {{$Socio->ap_materno}}?');"> <i class="material-icons">restore_from_trash</i>Eliminar</button>
+                            <button type="submit" class="btn btn-dark btn-round" name="eliminar" onclick="return confirm('¿Borrar a {{$Socio->name}} {{$Socio->ap_paterno}} {{$Socio->ap_materno}}?');"> <i class="material-icons">restore_from_trash</i>Eliminar</button>
                         </form>
                     </td>
                 </tr>

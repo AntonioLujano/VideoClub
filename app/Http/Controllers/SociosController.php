@@ -17,13 +17,13 @@ class SociosController extends Controller
     public function index(Request $request)
     {
         if (!$request) {
-            $socios = DB::select('select s.id_socio,s.nombre, s.ap_paterno, s.ap_materno, s.dir, s.telefono, s.correo FROM socios s order by s.id_socio desc');
+            $socios = DB::select('select s.id_socio,s.name, s.ap_paterno, s.ap_materno, s.dir, s.telefono, s.correo FROM socios s order by s.id_socio desc');
             return view('Socios.index',['socios' => $socios]);
         }else{
             if ($request) {
                 $query=trim($request->get('search'));
-                $socios = Socios::where('nombre', 'LIKE', '%'.$query.'%')
-                ->orderBy('nombre')
+                $socios = Socios::where('name', 'LIKE', '%'.$query.'%')
+                ->orderBy('name')
                 ->paginate(10);
                 return view('Socios.index',['socios' => $socios, 'search' => $query]);
             }
@@ -50,13 +50,13 @@ class SociosController extends Controller
     {
         //try {
             //  DB::beginTransaction();
-            $nombre = $request->input('nombre');
+            $nombre = $request->input('name');
             $ap_paterno = $request->input('ap_paterno');
             $ap_materno = $request->input('ap_materno');
             $dir = $request->input('dir');
             $telefono = $request->input('telefono');
-            $correo = $request->input('correo');
-            $contrasena = $request->input('contrasena');
+            $correo = $request->input('email');
+            $contrasena = $request->input('password');
             if ($request ->hasFile('ine')){
                 $file = $request->file('ine');
                 $ine = time().$file->getClientOriginalName();
@@ -68,8 +68,8 @@ class SociosController extends Controller
                 $file ->move(public_path().'/PDF/Comprobantes',$domicilio);
             }
 
-            DB::select('call insert_Socios2(?,?,?,?,?,?,?)',[$nombre,$ap_paterno,$ap_materno,$dir,$telefono,$ine,$domicilio]);
-            return redirect('/Socios');
+            DB::select('call Insertar_Socio(?,?,?,?,?,?,?,?,?)',[$nombre,$ap_paterno,$ap_materno,$dir,$telefono,$correo,$contrasena,$ine,$domicilio]);
+            return redirect('Socios.registrousuario')->with('Mensaje','Socio ingresado con exito');;
     }
 
     /**
@@ -92,7 +92,7 @@ class SociosController extends Controller
     public function edit($id_socio)
     {
         // $Socios= Socios::findOrFail($id_socio);
-        $socios = DB::select('select s.id_socio,s.nombre, s.ap_paterno, s.ap_materno, s.dir, s.telefono, s.correo, s.contrase, s.ine, s.domicilio FROM socios s WHERE s.id_socio= ?',$id_socio);
+        $socios = Socios::where('id_socio',$id_socio)->first();
 
         return view('Socios.editar',['socios' => $socios]);
     }
@@ -104,7 +104,7 @@ class SociosController extends Controller
      * @param  \App\Socios  $socios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id_socio)
+    public function update(Request $request, $id_socio)
     {
         $datosSocios=request()->except(['_token','_method']);
         Socios::where('id_socio','=',$id_socio)->update($datosSocios);
@@ -122,5 +122,10 @@ class SociosController extends Controller
     {
         Socios::destroy($id_socio);
         return redirect('Socios');
+    }
+
+    public function usuario()
+    {
+        return view('Socios/registrousuario');
     }
 }
