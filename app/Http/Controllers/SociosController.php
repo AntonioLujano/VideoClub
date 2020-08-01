@@ -69,7 +69,8 @@ class SociosController extends Controller
             }
 
             DB::select('call Insertar_Socio(?,?,?,?,?,?,?,?,?)',[$nombre,$ap_paterno,$ap_materno,$dir,$telefono,$correo,$contrasena,$ine,$domicilio]);
-            return redirect('Socios.registrousuario')->with('Mensaje','Socio ingresado con exito');;
+           // return redirect('Socios.registrousuario')->with('Mensaje','Socio ingresado con exito');
+        return view('auth.register');
     }
 
     /**
