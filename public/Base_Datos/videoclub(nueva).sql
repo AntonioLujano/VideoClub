@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-07-2020 a las 21:00:45
+-- Tiempo de generación: 01-08-2020 a las 21:47:02
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -19,10 +19,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `videoclub1`
+-- Base de datos: `videoclub`
 --
-create database videoclub;
-use videoclub;
+
 DELIMITER $$
 --
 -- Procedimientos
@@ -249,6 +248,10 @@ CREATE TABLE `copias` (
 
 INSERT INTO `copias` (`id_copia`, `id_pelicula`) VALUES
 (1, 1),
+(101, 1),
+(102, 1),
+(103, 1),
+(104, 1),
 (2, 2),
 (3, 3),
 (4, 4),
@@ -465,7 +468,8 @@ INSERT INTO `devoluciones` (`id_devolucion`, `id_prestamo`, `fecha_dev`) VALUES
 (97, 97, '2019-10-19 11:16:06'),
 (98, 98, '2003-08-09 10:17:11'),
 (99, 99, '2020-12-19 09:18:07'),
-(100, 100, '2019-09-28 18:19:33');
+(100, 100, '2019-09-28 18:19:33'),
+(101, 51, '2020-07-31 15:12:15');
 
 -- --------------------------------------------------------
 
@@ -691,6 +695,18 @@ INSERT INTO `genfav` (`id_generofav`, `id_genero`, `id_socio`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `listado_socios`
+--
+
+CREATE TABLE `listado_socios` (
+  `id_listado` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `listaespera`
 --
 
@@ -707,7 +723,7 @@ CREATE TABLE `listaespera` (
 --
 
 INSERT INTO `listaespera` (`id_espera`, `fecha_registro`, `id_pelicula`, `id_socio`, `estado`) VALUES
-(1, '2018-06-15', 1, 1, 'disponible'),
+(1, '2018-06-15', 1, 1, 'Disponible'),
 (2, '2019-09-25', 2, 2, 'disponible'),
 (3, '2019-10-30', 3, 3, 'dispponible'),
 (4, '2019-12-24', 4, 4, 'disponible'),
@@ -806,7 +822,40 @@ INSERT INTO `listaespera` (`id_espera`, `fecha_registro`, `id_pelicula`, `id_soc
 (97, '2018-06-02', 97, 4, 'no disponible'),
 (98, '2018-01-19', 98, 3, 'no disponible'),
 (99, '2019-10-08', 99, 2, 'no disponible'),
-(100, '2019-01-30', 100, 1, 'no disponible');
+(100, '2019-01-30', 100, 1, 'Disponible');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2020_06_24_212308_create_listado_socios_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1043,137 +1092,8 @@ INSERT INTO `peliprestada` (`id_peliprestada`, `id_prestamo`, `id_copia`) VALUES
 (97, 97, 97),
 (98, 98, 98),
 (99, 99, 99),
-(100, 100, 100);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `personas`
---
-
-CREATE TABLE `personas` (
-  `id_persona` int(11) NOT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
-  `ap_paterno` varchar(50) DEFAULT NULL,
-  `ap_materno` varchar(50) DEFAULT NULL,
-  `dir` varchar(50) DEFAULT NULL,
-  `telefono` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `personas`
---
-
-INSERT INTO `personas` (`id_persona`, `nombre`, `ap_paterno`, `ap_materno`, `dir`, `telefono`) VALUES
-(1, 'Patricia', 'Reyes', 'Reyes', 'La cuadrilla', '7223128976'),
-(2, 'Ariel', 'Moreno', 'Romualdo', 'El colibri', '7226854415'),
-(3, 'Alexis', 'Rebollar', 'López', 'Colorines', '7223474108'),
-(4, 'Aldo', 'Rodríguez', 'Reyes', 'El Arco', '7228429552'),
-(5, 'Alejandro', 'Miguel', 'Cruz', 'Villa Victoria', '7226661684'),
-(6, 'Eduardo', 'Agapito', 'Bobadilla', 'Villa de Allende', '5587603343'),
-(7, 'Gonzalo', 'Vazquez', 'Gutierrez', 'La Pedrera', '7221573419'),
-(8, 'Leontino', 'Delgado', 'Castillo', 'El colibri', '7226824529'),
-(9, 'Isidoro', 'Mendieta', 'Gutierrez', 'La cuadrilla', '7225054266'),
-(10, 'Maricruz', 'Miguel', 'Gomez', 'Amanalco', '7222348589'),
-(11, 'Francisco', 'Calixto', 'Garcia', 'San Francisco', '7225616554'),
-(12, 'Antonio', 'Aguilar', 'Mateo', 'San Juan', '7228452401'),
-(13, 'Tomas', 'Bañuelos', 'Colin', 'La Peña', '7222957429'),
-(14, 'Laura', 'Vazquez', 'Medina', 'La Pedrera', '5614160679'),
-(15, 'Gabriela', 'Mendieta', 'Gutierrez', 'La cuadrilla', '7223164439'),
-(16, 'Ricardo', 'Morales', 'Segundo', 'Luis Donaldo', '7291438512'),
-(17, 'Arturo', 'Dominguez', 'de Paz', 'Loma Bonita', '5566973074'),
-(18, 'Salvador', 'Morales', 'Gutierrez', 'Colosio', '7228730075'),
-(19, 'Enrique', 'Garcia', 'López', 'Villa Victoria', '7223702240'),
-(20, 'Ana', 'Garcia', 'Tinoco', 'Avenida Toluca', '7292327283'),
-(21, 'Brandon', 'Lopez', 'Lopez', 'Polvillos', '7222467466'),
-(22, 'Israel', 'Gomez', 'Reyes', 'Amanalco', '7224750083'),
-(23, 'Jorge', 'Mondragon', 'Bartolo', 'El Arco', '7225859910'),
-(24, 'Agustin', 'Mendez', 'Cardozo', 'Colonia Sanchez', '7224738589'),
-(25, 'Jesus', 'Sanchez', 'Sanchez', 'Colonia Sanchez', '7222356099'),
-(26, 'Luis', 'Valencia', 'Romo', 'Agua Prieta', '7226804854'),
-(27, 'Jose', 'Bernardo', 'Osorio', 'El chorrito', '7227807845'),
-(28, 'Maximino', 'Santana', 'López', 'Santo Tomas', '7228098760'),
-(29, 'Alejandro', 'Negron', 'Sanchez', 'Adolfo Ruiz', '7228903876'),
-(30, 'Georgina', 'Guzman', 'Osorio', 'Colorines', '7227908798'),
-(31, 'Renata', 'Guadarrama', 'Valencia', 'Angostura', '5587603343'),
-(32, 'Jorge', 'Cambron', 'Lopez', 'La Cruz', '7221503456'),
-(33, 'Diego', 'Valencia', 'Romo', 'Colorines', '7221346090'),
-(34, 'Israel', 'Perez', 'Rodriguez', 'El rincon', '7223908909'),
-(35, 'Jose', 'Hernandez', 'Tapia', 'Rincon Grande', '7228765678'),
-(36, 'Maria', 'Romo', 'Lopez', 'Rincon', '7229807809'),
-(37, 'Jafet', 'Vazquez', 'Casas', 'El Durazno', '7228903456'),
-(38, 'Juan', 'Medina', 'Lopez', 'Atezcapan', '7224567890'),
-(39, 'Juan', 'Faustino', 'Marquez', 'La cruz', '6643807854'),
-(40, 'Jose', 'Guadarrama', 'Vargas', 'El colibri', '7228901234'),
-(41, 'Blanca', 'Solorzano', 'Limas', 'Las fincas', '7227604312'),
-(42, 'Alejandro', 'Dominguez', 'Santana', 'El durazno', '7223400981'),
-(43, 'Salvador', 'Velazquez', 'de Paz', 'Villa Victoria', '5522019715'),
-(44, 'Carlos', 'Villazteca', 'Rebollo', 'Villa Victoria', '7225854841'),
-(45, 'Antonio', 'Calvillo', 'Valencia', 'Colorines', '6331326633'),
-(46, 'Irving', 'Juarez', 'Calvillo', 'Colorines', '7223917436'),
-(47, 'Consuelo', 'Guzman', 'Tapia', 'Santo Tomas', '7224010083'),
-(48, 'Antonio', 'Yepez', 'Torres', 'Colorines', '7221664211'),
-(49, 'Manuel', 'Felix', 'Gallardo', 'El Pinal', '7222818591'),
-(50, 'Cesar', 'Casas', 'Rebollar', 'El Sifon', '7224316091'),
-(51, 'Alexis', 'Tavira', 'Rebollar', 'Chichipicas', '7226448752'),
-(52, 'Alfredo', 'Lopez', 'Marcos', 'San Bartolo', '7227325722'),
-(53, 'Alma', 'Aguilar', 'Fuentes', 'Alcantarilla', '7256937639'),
-(54, 'Andrea', 'Acosta', 'Garduño', 'Avandaro', '7228325693'),
-(55, 'Andrea', 'Sanchez', 'Lopez', 'La capilla', '7223212335'),
-(56, 'Luisa', 'Reyes', 'Lopez', 'San Bartolo', '7222345667'),
-(57, 'Antonio', 'Carbajal', 'Gomez', 'Santa Maria', '7222738890'),
-(58, 'Areli', 'Lopez', 'Lopez', 'San Bartolo', '7221235784'),
-(59, 'Azarael', 'Lopez', 'Gomez', 'San Juan', '7298635282'),
-(60, 'Bethsabe', 'Velazquez', 'Alcantar', 'Avenida Juarez', '7227937353'),
-(61, 'Brandon', 'Jaimes', 'Martinez', 'Camino a la Peña', '7222627725'),
-(62, 'Brenda', 'Lopez', 'Segundo', 'Polvillos', '7224563735'),
-(63, 'Brian', 'Carbajal', 'Ruiz', 'Palito verde', '7226726652'),
-(64, 'Mijael', 'Guadarrama', 'Hernandez', 'Casas viejas', '7227895437'),
-(65, 'Carlos', 'Rojas', 'Espinoza', 'La Peña', '7226734590'),
-(66, 'Cecilia', 'Guerrero', 'Martinez', 'Acatitlan', '7224908590'),
-(67, 'Citlali', 'Mora', 'Mora', 'San Lucas', '7228456073'),
-(68, 'Daniela', 'Estrada', 'Estrada', 'El Refugio', '7228554399'),
-(69, 'Daniel', 'Martinez', 'Olvera', 'San Bartolo', '7229909453'),
-(70, 'Daniela', 'Bautista', 'Ruiz', 'Alfareros', '7225630080'),
-(71, 'Diego', 'Gonzalez', 'Tinoco', 'Chichipicas', '7223008589'),
-(72, 'Edith', 'Nava', 'Suarez', 'El deposito', '7225638020'),
-(73, 'Eduardo', 'Mendieta', 'Vilchis', 'Tierras Blancas', '7226936432'),
-(74, 'Eduardo', 'Mercado', 'Gomez', 'San Bartolo', '7225367431'),
-(75, 'Eliu', 'Calzada', 'Suarez', 'Independencia', '7227893753'),
-(76, 'Eric', 'Garcia', 'Montes', 'Acaticlan', '7225687590'),
-(77, 'Esmeralda', 'Bautista', 'Mendez', 'La Escondida', '7228885590'),
-(78, 'Everardo', 'Robles', 'Marcos', 'Pipioltepec', '7235476599'),
-(79, 'Fernanda', 'Mercado', 'Solis', 'Impepsa', '7223004433'),
-(80, 'Fernando', 'Olvera', 'Vera', 'Pipioltepec', '7228628843'),
-(81, 'Lali', 'Leines', 'Maldonado', 'El Arco', '7224293764'),
-(82, 'Guadalupe', 'Mercado', 'Sanchez', 'Avenida Toluca', '7225638745'),
-(83, 'Jose', 'Tavira', 'Lopez', 'Los Girasoles', '7226536346'),
-(84, 'Ismael', 'Ruiz', 'Gomez', 'Tierras Blancas', '7219865326'),
-(85, 'Ivan', 'Patena', 'Mujica', 'Loma Bonita', '7254526244'),
-(86, 'Jennifer', 'Ramirez', 'Sanchez', 'El colibri', '7226772633'),
-(87, 'Mario', 'Blanco', 'Morales', 'Colonos', '7228172552'),
-(88, 'Jesus', 'Delgado', 'Colin', 'La Estrella', '7229653463'),
-(89, 'Johana', 'Vargas', 'Quintero', 'San Juan', '7225555920'),
-(90, 'Marcus', 'Fenix', 'Cole', 'Loto Azul', '7235376436'),
-(91, 'Carlos', 'Johnson', 'Lopez', 'San Antonio', '7222536352'),
-(92, 'Cesar', 'Mendez', 'Hernandez', 'Colosio', '7222653636'),
-(93, 'Jonathan', 'Ruiz', 'Palacios', 'Los Rosales', '7236273789'),
-(94, 'Emilio', 'Azcarraga', 'Ñañez', 'Centro', '7229383746'),
-(95, 'Gabriel', 'Trejo', 'Alfaro', 'Fray Gregorio', '7236235624'),
-(96, 'Mauro', 'Osorio', 'Mateo', 'La cuadrilla', '7235477523'),
-(97, 'Jorge', 'Rivera', 'Ramirez', 'Centro', '7222736783'),
-(98, 'Braulio', 'Mendieta', 'Rojas', 'La Pedrera', '7233898961'),
-(99, 'Emanuel', 'Valencia', 'Lopez', 'Palito verde', '7234866498'),
-(100, 'Jean', 'Jacques', 'Anaud', 'Filadelfia', '8956423456'),
-(101, 'Antonio', 'Lujano', 'Bautista', 'Colorienes', '5555555555'),
-(102, 'lujano', 'a', 'a', 'aa', '1'),
-(103, 'Michel', 'Benjamin', 'Bay', 'Miami USA', '5522019715'),
-(104, 'Jos', 'Zarate', 'Lopez', 'San lucas', '8446064742'),
-(105, 'Salvador', 'Velazquez', 'De paz', 'Villa Victoria', '5522019715'),
-(106, 'Ximena', 'Velazquez', 'De paz', 'Villa Victoria', '8446064142'),
-(107, 'Carlos', 'Castro', 'Garcia', 'Saltillo', '8443433706'),
-(108, 'Mariana', 'Cruz', 'Mendoza', 'Valle de Bravo', '7221564812'),
-(109, 'Leo', 'Delgado', 'Castillo', 'Valle de Bravo', '7226547894');
+(100, 100, 100),
+(101, 51, 2);
 
 -- --------------------------------------------------------
 
@@ -1301,7 +1221,13 @@ INSERT INTO `prestamos` (`id_prestamo`, `fecha`, `id_socio`) VALUES
 
 CREATE TABLE `socios` (
   `id_socio` int(11) NOT NULL,
-  `id_persona` int(11) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `ap_paterno` varchar(50) DEFAULT NULL,
+  `ap_materno` varchar(50) DEFAULT NULL,
+  `dir` varchar(50) DEFAULT NULL,
+  `telefono` varchar(10) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
   `ine` varchar(100) DEFAULT NULL,
   `domicilio` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1310,107 +1236,140 @@ CREATE TABLE `socios` (
 -- Volcado de datos para la tabla `socios`
 --
 
-INSERT INTO `socios` (`id_socio`, `id_persona`, `ine`, `domicilio`) VALUES
-(1, 1, NULL, NULL),
-(2, 2, NULL, NULL),
-(3, 3, NULL, NULL),
-(4, 4, NULL, NULL),
-(5, 5, NULL, NULL),
-(6, 6, NULL, NULL),
-(7, 7, NULL, NULL),
-(8, 8, NULL, NULL),
-(9, 9, NULL, NULL),
-(10, 10, NULL, NULL),
-(11, 11, NULL, NULL),
-(12, 12, NULL, NULL),
-(13, 13, NULL, NULL),
-(14, 14, NULL, NULL),
-(15, 15, NULL, NULL),
-(16, 16, NULL, NULL),
-(17, 17, NULL, NULL),
-(18, 18, NULL, NULL),
-(19, 19, NULL, NULL),
-(20, 20, NULL, NULL),
-(21, 21, NULL, NULL),
-(22, 22, NULL, NULL),
-(23, 23, NULL, NULL),
-(24, 24, NULL, NULL),
-(25, 25, NULL, NULL),
-(26, 26, NULL, NULL),
-(27, 27, NULL, NULL),
-(28, 28, NULL, NULL),
-(29, 29, NULL, NULL),
-(30, 30, NULL, NULL),
-(31, 31, NULL, NULL),
-(32, 32, NULL, NULL),
-(33, 33, NULL, NULL),
-(34, 34, NULL, NULL),
-(35, 35, NULL, NULL),
-(36, 36, NULL, NULL),
-(37, 37, NULL, NULL),
-(38, 38, NULL, NULL),
-(39, 39, NULL, NULL),
-(40, 40, NULL, NULL),
-(41, 41, NULL, NULL),
-(42, 42, NULL, NULL),
-(43, 43, NULL, NULL),
-(44, 44, NULL, NULL),
-(45, 45, NULL, NULL),
-(46, 46, NULL, NULL),
-(47, 47, NULL, NULL),
-(48, 48, NULL, NULL),
-(49, 49, NULL, NULL),
-(50, 50, NULL, NULL),
-(51, 51, NULL, NULL),
-(52, 52, NULL, NULL),
-(53, 53, NULL, NULL),
-(54, 54, NULL, NULL),
-(55, 55, NULL, NULL),
-(56, 56, NULL, NULL),
-(57, 57, NULL, NULL),
-(58, 58, NULL, NULL),
-(59, 59, NULL, NULL),
-(60, 60, NULL, NULL),
-(61, 61, NULL, NULL),
-(62, 62, NULL, NULL),
-(63, 63, NULL, NULL),
-(64, 64, NULL, NULL),
-(65, 65, NULL, NULL),
-(66, 66, NULL, NULL),
-(67, 67, NULL, NULL),
-(68, 68, NULL, NULL),
-(69, 69, NULL, NULL),
-(70, 70, NULL, NULL),
-(71, 71, NULL, NULL),
-(72, 72, NULL, NULL),
-(73, 73, NULL, NULL),
-(74, 74, NULL, NULL),
-(75, 75, NULL, NULL),
-(76, 76, NULL, NULL),
-(77, 77, NULL, NULL),
-(78, 78, NULL, NULL),
-(79, 79, NULL, NULL),
-(80, 80, NULL, NULL),
-(81, 81, NULL, NULL),
-(82, 82, NULL, NULL),
-(83, 83, NULL, NULL),
-(84, 84, NULL, NULL),
-(85, 85, NULL, NULL),
-(86, 86, NULL, NULL),
-(87, 87, NULL, NULL),
-(88, 88, NULL, NULL),
-(89, 89, NULL, NULL),
-(90, 90, NULL, NULL),
-(91, 91, NULL, NULL),
-(92, 92, NULL, NULL),
-(93, 93, NULL, NULL),
-(94, 94, NULL, NULL),
-(95, 95, NULL, NULL),
-(96, 96, NULL, NULL),
-(97, 97, NULL, NULL),
-(98, 98, NULL, NULL),
-(99, 99, NULL, NULL),
-(100, 100, NULL, NULL);
+INSERT INTO `socios` (`id_socio`, `name`, `ap_paterno`, `ap_materno`, `dir`, `telefono`, `email`, `password`, `ine`, `domicilio`) VALUES
+(1, 'Patricia', 'Reyes', 'Reyes', 'La cuadrilla', '7223128976', '', '', '', ''),
+(2, 'Ariel', 'Moreno', 'Romualdo', 'El colibri', '7226854415', '', '', '', ''),
+(3, 'Alexis', 'Rebollar', 'López', 'Colorines', '7223474108', '', '', '', ''),
+(4, 'Aldo', 'Rodríguez', 'Reyes', 'El Arco', '7228429552', '', '', '', ''),
+(5, 'Alejandro', 'Miguel', 'Cruz', 'Villa Victoria', '7226661684', '', '', '', ''),
+(6, 'Eduardo', 'Agapito', 'Bobadilla', 'Villa de Allende', '5587603343', '', '', '', ''),
+(7, 'Gonzalo', 'Vazquez', 'Gutierrez', 'La Pedrera', '7221573419', '', '', '', ''),
+(8, 'Leontino', 'Delgado', 'Castillo', 'El colibri', '7226824529', '', '', '', ''),
+(9, 'Isidoro', 'Mendieta', 'Gutierrez', 'La cuadrilla', '7225054266', '', '', '', ''),
+(10, 'Maricruz', 'Miguel', 'Gomez', 'Amanalco', '7222348589', '', '', '', ''),
+(11, 'Francisco', 'Calixto', 'Garcia', 'San Francisco', '7225616554', '', '', '', ''),
+(12, 'Antonio', 'Aguilar', 'Mateo', 'San Juan', '7228452401', '', '', '', ''),
+(13, 'Tomas', 'Bañuelos', 'Colin', 'La Peña', '7222957429', '', '', '', ''),
+(14, 'Laura', 'Vazquez', 'Medina', 'La Pedrera', '5614160679', '', '', '', ''),
+(15, 'Gabriela', 'Mendieta', 'Gutierrez', 'La cuadrilla', '7223164439', '', '', '', ''),
+(16, 'Ricardo', 'Morales', 'Segundo', 'Luis Donaldo', '7291438512', '', '', '', ''),
+(17, 'Arturo', 'Dominguez', 'de Paz', 'Loma Bonita', '5566973074', '', '', '', ''),
+(18, 'Salvador', 'Morales', 'Gutierrez', 'Colosio', '7228730075', '', '', '', ''),
+(19, 'Enrique', 'Garcia', 'López', 'Villa Victoria', '7223702240', '', '', '', ''),
+(20, 'Ana', 'Garcia', 'Tinoco', 'Avenida Toluca', '7292327283', '', '', '', ''),
+(21, 'Brandon', 'Lopez', 'Lopez', 'Polvillos', '7222467466', '', '', '', ''),
+(22, 'Israel', 'Gomez', 'Reyes', 'Amanalco', '7224750083', '', '', '', ''),
+(23, 'Jorge', 'Mondragon', 'Bartolo', 'El Arco', '7225859910', '', '', '', ''),
+(24, 'Agustin', 'Mendez', 'Cardozo', 'Colonia Sanchez', '7224738589', '', '', '', ''),
+(25, 'Jesus', 'Sanchez', 'Sanchez', 'Colonia Sanchez', '7222356099', '', '', '', ''),
+(26, 'Luis', 'Valencia', 'Romo', 'Agua Prieta', '7226804854', '', '', '', ''),
+(27, 'Jose', 'Bernardo', 'Osorio', 'El chorrito', '7227807845', '', '', '', ''),
+(28, 'Maximino', 'Santana', 'López', 'Santo Tomas', '7228098760', '', '', '', ''),
+(29, 'Alejandro', 'Negron', 'Sanchez', 'Adolfo Ruiz', '7228903876', '', '', '', ''),
+(30, 'Georgina', 'Guzman', 'Osorio', 'Colorines', '7227908798', '', '', '', ''),
+(31, 'Renata', 'Guadarrama', 'Valencia', 'Angostura', '5587603343', '', '', '', ''),
+(32, 'Jorge', 'Cambron', 'Lopez', 'La Cruz', '7221503456', '', '', '', ''),
+(33, 'Diego', 'Valencia', 'Romo', 'Colorines', '7221346090', '', '', '', ''),
+(34, 'Israel', 'Perez', 'Rodriguez', 'El rincon', '7223908909', '', '', '', ''),
+(35, 'Jose', 'Hernandez', 'Tapia', 'Rincon Grande', '7228765678', '', '', '', ''),
+(36, 'Maria', 'Romo', 'Lopez', 'Rincon', '7229807809', '', '', '', ''),
+(37, 'Jafet', 'Vazquez', 'Casas', 'El Durazno', '7228903456', '', '', '', ''),
+(38, 'Juan', 'Medina', 'Lopez', 'Atezcapan', '7224567890', '', '', '', ''),
+(39, 'Juan', 'Faustino', 'Marquez', 'La cruz', '6643807854', '', '', '', ''),
+(40, 'Jose', 'Guadarrama', 'Vargas', 'El colibri', '7228901234', '', '', '', ''),
+(41, 'Blanca', 'Solorzano', 'Limas', 'Las fincas', '7227604312', '', '', '', ''),
+(42, 'Alejandro', 'Dominguez', 'Santana', 'El durazno', '7223400981', '', '', '', ''),
+(43, 'Salvador', 'Velazquez', 'de Paz', 'Villa Victoria', '5522019715', '', '', '', ''),
+(44, 'Carlos', 'Villazteca', 'Rebollo', 'Villa Victoria', '7225854841', '', '', '', ''),
+(45, 'Antonio', 'Calvillo', 'Valencia', 'Colorines', '6331326633', '', '', '', ''),
+(46, 'Irving', 'Juarez', 'Calvillo', 'Colorines', '7223917436', '', '', '', ''),
+(47, 'Consuelo', 'Guzman', 'Tapia', 'Santo Tomas', '7224010083', '', '', '', ''),
+(48, 'Antonio', 'Yepez', 'Torres', 'Colorines', '7221664211', '', '', '', ''),
+(49, 'Manuel', 'Felix', 'Gallardo', 'El Pinal', '7222818591', '', '', '', ''),
+(50, 'Cesar', 'Casas', 'Rebollar', 'El Sifon', '7224316091', '', '', '', ''),
+(51, 'Alexis', 'Tavira', 'Rebollar', 'Chichipicas', '7226448752', '', '', '', ''),
+(52, 'Alfredo', 'Lopez', 'Marcos', 'San Bartolo', '7227325722', '', '', '', ''),
+(53, 'Alma', 'Aguilar', 'Fuentes', 'Alcantarilla', '7256937639', '', '', '', ''),
+(54, 'Andrea', 'Acosta', 'Garduño', 'Avandaro', '7228325693', '', '', '', ''),
+(55, 'Andrea', 'Sanchez', 'Lopez', 'La capilla', '7223212335', '', '', '', ''),
+(56, 'Luisa', 'Reyes', 'Lopez', 'San Bartolo', '7222345667', '', '', '', ''),
+(57, 'Antonio', 'Carbajal', 'Gomez', 'Santa Maria', '7222738890', '', '', '', ''),
+(58, 'Areli', 'Lopez', 'Lopez', 'San Bartolo', '7221235784', '', '', '', ''),
+(59, 'Azarael', 'Lopez', 'Gomez', 'San Juan', '7298635282', '', '', '', ''),
+(60, 'Bethsabe', 'Velazquez', 'Alcantar', 'Avenida Juarez', '7227937353', '', '', '', ''),
+(61, 'Brandon', 'Jaimes', 'Martinez', 'Camino a la Peña', '7222627725', '', '', '', ''),
+(62, 'Brenda', 'Lopez', 'Segundo', 'Polvillos', '7224563735', '', '', '', ''),
+(63, 'Brian', 'Carbajal', 'Ruiz', 'Palito verde', '7226726652', '', '', '', ''),
+(64, 'Mijael', 'Guadarrama', 'Hernandez', 'Casas viejas', '7227895437', '', '', '', ''),
+(65, 'Carlos', 'Rojas', 'Espinoza', 'La Peña', '7226734590', '', '', '', ''),
+(66, 'Cecilia', 'Guerrero', 'Martinez', 'Acatitlan', '7224908590', '', '', '', ''),
+(67, 'Citlali', 'Mora', 'Mora', 'San Lucas', '7228456073', '', '', '', ''),
+(68, 'Daniela', 'Estrada', 'Estrada', 'El Refugio', '7228554399', '', '', '', ''),
+(69, 'Daniel', 'Martinez', 'Olvera', 'San Bartolo', '7229909453', '', '', '', ''),
+(70, 'Daniela', 'Bautista', 'Ruiz', 'Alfareros', '7225630080', '', '', '', ''),
+(71, 'Diego', 'Gonzalez', 'Tinoco', 'Chichipicas', '7223008589', '', '', '', ''),
+(72, 'Edith', 'Nava', 'Suarez', 'El deposito', '7225638020', '', '', '', ''),
+(73, 'Eduardo', 'Mendieta', 'Vilchis', 'Tierras Blancas', '7226936432', '', '', '', ''),
+(74, 'Eduardo', 'Mercado', 'Gomez', 'San Bartolo', '7225367431', '', '', '', ''),
+(75, 'Eliu', 'Calzada', 'Suarez', 'Independencia', '7227893753', '', '', '', ''),
+(76, 'Eric', 'Garcia', 'Montes', 'Acaticlan', '7225687590', '', '', '', ''),
+(77, 'Esmeralda', 'Bautista', 'Mendez', 'La Escondida', '7228885590', '', '', '', ''),
+(78, 'Everardo', 'Robles', 'Marcos', 'Pipioltepec', '7235476599', '', '', '', ''),
+(79, 'Fernanda', 'Mercado', 'Solis', 'Impepsa', '7223004433', '', '', '', ''),
+(80, 'Fernando', 'Olvera', 'Vera', 'Pipioltepec', '7228628843', '', '', '', ''),
+(81, 'Lali', 'Leines', 'Maldonado', 'El Arco', '7224293764', '', '', '', ''),
+(82, 'Guadalupe', 'Mercado', 'Sanchez', 'Avenida Toluca', '7225638745', '', '', '', ''),
+(83, 'Jose', 'Tavira', 'Lopez', 'Los Girasoles', '7226536346', '', '', '', ''),
+(84, 'Ismael', 'Ruiz', 'Gomez', 'Tierras Blancas', '7219865326', '', '', '', ''),
+(85, 'Ivan', 'Patena', 'Mujica', 'Loma Bonita', '7254526244', '', '', '', ''),
+(86, 'Jennifer', 'Ramirez', 'Sanchez', 'El colibri', '7226772633', '', '', '', ''),
+(87, 'Mario', 'Blanco', 'Morales', 'Colonos', '7228172552', '', '', '', ''),
+(88, 'Jesus', 'Delgado', 'Colin', 'La Estrella', '7229653463', '', '', '', ''),
+(89, 'Johana', 'Vargas', 'Quintero', 'San Juan', '7225555920', '', '', '', ''),
+(90, 'Marcus', 'Fenix', 'Cole', 'Loto Azul', '7235376436', '', '', '', ''),
+(91, 'Carlos', 'Johnson', 'Lopez', 'San Antonio', '7222536352', '', '', '', ''),
+(92, 'Cesar', 'Mendez', 'Hernandez', 'Colosio', '7222653636', '', '', '', ''),
+(93, 'Jonathan', 'Ruiz', 'Palacios', 'Los Rosales', '7236273789', '', '', '', ''),
+(94, 'Emilio', 'Azcarraga', 'Ñañez', 'Centro', '7229383746', '', '', '', ''),
+(95, 'Gabriel', 'Trejo', 'Alfaro', 'Fray Gregorio', '7236235624', '', '', '', ''),
+(96, 'Mauro', 'Osorio', 'Mateo', 'La cuadrilla', '7235477523', '', '', '', ''),
+(97, 'Jorge', 'Rivera', 'Ramirez', 'Centro', '7222736783', '', '', '', ''),
+(98, 'Braulio', 'Mendieta', 'Rojas', 'La Pedrera', '7233898961', '', '', '', ''),
+(99, 'Emanuel', 'Valencia', 'Lopez', 'Palito verde', '7234866498', '', '', '', ''),
+(100, 'Jean', 'Jacques', 'Anaud', 'Filadelfia', '8956423456', '', '', '', ''),
+(101, 'Antonio', 'Lujano', 'Bautista', 'Colorienes', '5555555555', '', '', '', ''),
+(102, 'lujano', 'a', 'a', 'aa', '1', '', '', '', ''),
+(103, 'Michel', 'Benjamin', 'Bay', 'Miami USA', '5522019715', '', '', '', ''),
+(104, 'Jos', 'Zarate', 'Lopez', 'San lucas', '8446064742', '', '', '', ''),
+(105, 'Salvador', 'Velazquez', 'De paz', 'Villa Victoria', '5522019715', '', '', '', ''),
+(106, 'Ximena', 'Velazquez', 'De paz', 'Villa Victoria', '8446064142', '', '', '', ''),
+(107, 'Carlos', 'Castro', 'Garcia', 'Saltillo', '8443433706', '', '', '', ''),
+(108, 'Mariana', 'Cruz', 'Mendoza', 'Valle de Bravo', '7221564812', '', '', '', ''),
+(109, 'Leo', 'Delgado', 'Castillo', 'Valle de Bravo', '7226547894', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Antonio', 'lujano@cinema.com', NULL, '$2y$10$lzWhZFZisEDJu7mL/wVLquC9iqlxPIRIQFNq7YbjF/hqiTswI7BR6', 'LMM1sLSUzzTwGaCIObhAoh3g8EwYy1WZ0Sw1ebKgc7nTVY8fLbJAZ3GuzDfp', '2020-07-31 23:13:30', '2020-07-31 23:13:30');
 
 -- --------------------------------------------------------
 
@@ -1420,14 +1379,14 @@ INSERT INTO `socios` (`id_socio`, `id_persona`, `ine`, `domicilio`) VALUES
 
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
-  `id_persona` int(11) NOT NULL
+  `id_socio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `id_persona`) VALUES
+INSERT INTO `usuarios` (`id_usuario`, `id_socio`) VALUES
 (1, 108),
 (2, 109);
 
@@ -1493,12 +1452,30 @@ ALTER TABLE `genfav`
   ADD KEY `id_socio` (`id_socio`);
 
 --
+-- Indices de la tabla `listado_socios`
+--
+ALTER TABLE `listado_socios`
+  ADD PRIMARY KEY (`id_listado`);
+
+--
 -- Indices de la tabla `listaespera`
 --
 ALTER TABLE `listaespera`
   ADD PRIMARY KEY (`id_espera`),
   ADD KEY `id_pelicula` (`id_pelicula`),
   ADD KEY `id_socio` (`id_socio`);
+
+--
+-- Indices de la tabla `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indices de la tabla `peliculas`
@@ -1518,12 +1495,6 @@ ALTER TABLE `peliprestada`
   ADD KEY `id_copia` (`id_copia`);
 
 --
--- Indices de la tabla `personas`
---
-ALTER TABLE `personas`
-  ADD PRIMARY KEY (`id_persona`);
-
---
 -- Indices de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
@@ -1534,15 +1505,21 @@ ALTER TABLE `prestamos`
 -- Indices de la tabla `socios`
 --
 ALTER TABLE `socios`
-  ADD PRIMARY KEY (`id_socio`),
-  ADD KEY `id_persona` (`id_persona`);
+  ADD PRIMARY KEY (`id_socio`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD KEY `id_persona` (`id_persona`);
+  ADD KEY `id_socio` (`id_socio`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -1564,13 +1541,13 @@ ALTER TABLE `actores`
 -- AUTO_INCREMENT de la tabla `copias`
 --
 ALTER TABLE `copias`
-  MODIFY `id_copia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id_copia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT de la tabla `devoluciones`
 --
 ALTER TABLE `devoluciones`
-  MODIFY `id_devolucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id_devolucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT de la tabla `directores`
@@ -1597,10 +1574,22 @@ ALTER TABLE `genfav`
   MODIFY `id_generofav` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
+-- AUTO_INCREMENT de la tabla `listado_socios`
+--
+ALTER TABLE `listado_socios`
+  MODIFY `id_listado` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `listaespera`
 --
 ALTER TABLE `listaespera`
   MODIFY `id_espera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT de la tabla `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `peliculas`
@@ -1612,13 +1601,7 @@ ALTER TABLE `peliculas`
 -- AUTO_INCREMENT de la tabla `peliprestada`
 --
 ALTER TABLE `peliprestada`
-  MODIFY `id_peliprestada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
-
---
--- AUTO_INCREMENT de la tabla `personas`
---
-ALTER TABLE `personas`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=327;
+  MODIFY `id_peliprestada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
@@ -1630,7 +1613,13 @@ ALTER TABLE `prestamos`
 -- AUTO_INCREMENT de la tabla `socios`
 --
 ALTER TABLE `socios`
-  MODIFY `id_socio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id_socio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -1693,7 +1682,8 @@ ALTER TABLE `peliculas`
 -- Filtros para la tabla `peliprestada`
 --
 ALTER TABLE `peliprestada`
-  ADD CONSTRAINT `peliprestada_ibfk_1` FOREIGN KEY (`id_prestamo`) REFERENCES `prestamos` (`id_prestamo`);
+  ADD CONSTRAINT `peliprestada_ibfk_1` FOREIGN KEY (`id_prestamo`) REFERENCES `prestamos` (`id_prestamo`),
+  ADD CONSTRAINT `peliprestada_ibfk_2` FOREIGN KEY (`id_copia`) REFERENCES `copias` (`id_copia`);
 
 --
 -- Filtros para la tabla `prestamos`
@@ -1702,16 +1692,10 @@ ALTER TABLE `prestamos`
   ADD CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`id_socio`) REFERENCES `socios` (`id_socio`);
 
 --
--- Filtros para la tabla `socios`
---
-ALTER TABLE `socios`
-  ADD CONSTRAINT `socios_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
-
---
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_socio`) REFERENCES `socios` (`id_socio`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
