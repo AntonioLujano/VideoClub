@@ -8,6 +8,6 @@ class Socios extends Model
 {
     protected $table = 'Socios';
     protected $primaryKey ='id_socio';
-    protected $fillable = ['id_persona'];
+    protected $fillable = ['name', 'ap_paterno', 'ap_materno', 'dir', 'telefono', 'email', 'password', 'ine', 'domicilio'];
     public $timestamps = false;
 }

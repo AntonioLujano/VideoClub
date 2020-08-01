@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('conten')
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" >
         <nav id="sidebarMenu" class="col-2 d-md-block bg-info  sidebar collapse">
             <div class="position-fixed" class="sidebar-sticky pt-4">
                 <ul class="nav flex-column">

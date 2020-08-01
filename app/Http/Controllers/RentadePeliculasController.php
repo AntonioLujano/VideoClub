@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\RentadePeliculas;
 use App\Directores;
 use App\Generos;
 use App\Peliculas;
+use App\Socios;
+use App\Peliprestada;
+use App\Prestamos;
+use App\Copias;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,6 +22,7 @@ class RentadePeliculasController extends Controller
      */
     public function index()
     {
+        $pelicula = DB::select('select pp.id_peliprestada FROM socios s,prestamos pre,peliprestada pp,copias c,peliculas p WHERE s.id_socio=pre.id_socio and pre.id_prestamo=pp.id_prestamo and pp.id_copia=c.id_copia AND p.id_pelicula=c.id_pelicula AND s.id_socio=1');
         $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Dir.nombre_dire,Dir.ap_paterno, Dir.ap_materno ,Gen.des_gen from Peliculas Pel, Directores Dir, Generos Gen where Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director order by Pel.id_pelicula');
         return view('RentaFisicas.index',['peliculas' => $peliculas]);
     }
