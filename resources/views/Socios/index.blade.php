@@ -38,7 +38,7 @@
             <tbody>
                 @foreach($socios as $Socio)
                 <tr>
-                    <td>{{$Socio->name}}</td>
+                    <td>{{$Socio->nombre}}</td>
                     <td>{{$Socio->ap_paterno}}</td>
                     <td>{{$Socio->ap_materno}}</td>
                     <td>{{$Socio->dir}}</td>
