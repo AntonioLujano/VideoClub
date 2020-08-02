@@ -85,8 +85,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="form-row">
             <div class="form-group col-md-4">
                 <button type="reset" class="btn btn-primary">Limpiar</button>

@@ -33,18 +33,13 @@ Auth::routes();
 Route::get('/', function () {
     return view('Template.template');
 });
-Route::resource('/Socios', 'SociosController');
 
 Route::group(['middleware'=>['auth']],function (){
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-
-
-
-
     Route::resource('/MasPopulares', 'MasPopularesController');
-
+    Route::resource('/Socios', 'SociosController');
     Route::resource('/ListaEsperas', 'ListaEsperasController');
     Route::resource('/Devoluciones', 'DevolucionesController');
     Route::resource('/Renta', 'RentadePeliculasController');
