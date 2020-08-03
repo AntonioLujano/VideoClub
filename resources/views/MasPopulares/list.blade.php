@@ -19,9 +19,9 @@
                     <hr>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <form action="{{ url('/MasPopulares/'.$Pelicula->id_pelicula) }}" method="POST" class="form-inline">
-                                <a href="{{url('/RentadePeliculas/'.$Pelicula->id_pelicula)}}" class="btn btn-outline-secondary border-0" aria-pressed="true" autocomplete="on"><i class="fas fa-credit-card"> Rentar</i></a>
-                                <!-- <button type="submit" class="btn btn-outline-warning border-0" aria-pressed="false" autocomplete="off"><i class="far fa-star"> Favorita</i></button> -->
+                            <form class="form-inline col">
+                                <input type="text" name="rentar" value="{{$Pelicula->id_pelicula}}" hidden>
+                                <button class="btn btn-outline-secondary btn-round" type="submit"><i class="fa fa-credit-card"></i> Rentar</button>
                             </form>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
     <br>
     <br>
     <hr>
-    <span class="shadow p-4 bg-info rounded d-block text-white">Lista de Espera<a href="{{url('/MasPopulares')}}" class="btn btn-secondary border-0" aria-pressed="false" autocomplete="off"><i class="fas fa-arrow-alt-circle-up"></i></a></span>
+    <div class="shadow p-4 bg-info rounded d-block text-white"><label class="col-11" for="">Lista de Espera</label><a href="{{url('/MasPopulares')}}" class="btn btn-secondary border-0" aria-pressed="false" autocomplete="off"><i class="fas fa-arrow-alt-circle-up"></i></a></div>
     <hr>
     <div class="row">
         @foreach($espera as $lista)
@@ -53,15 +53,20 @@
                     <label class="col-12">Director: {{$lista->nombre_dire}} {{$lista->ap_paterno}} {{$lista->ap_materno}}</label>
                     <label class="col-12">Genero: {{$lista->des_gen}}</label>
                     <hr>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between ">
                         <div class="btn-group">
-                            <form action="{{ url('/MasPopulares/'.$lista->id_pelicula) }}" method="POST" class="form-inline">
                             <label for="" class=" bg-outline-secondary border-1">{{$lista->estado}}</label>
+                        </div>
+                        <form class="form-inline col-5">
                             @if($lista->estado=="Disponible")
-                            <a href="{{url('/RentadePeliculas/'.$lista->id_pelicula)}}" class="btn btn-outline-secondary border-0" aria-pressed="true" autocomplete="on"><i class="fas fa-credit-card"></i></a>
+                            <input type="text" name="espera" value="{{$lista->id_espera}}" hidden>
+                            <button class="btn btn-outline-secondary btn-round" type="submit">Renta<i class="material-icons"></i></button>
+                            @else
+                            <input type="text" name="noesperar" value="{{$lista->id_espera}}" hidden>
+                            <button class="btn btn-outline-danger btn-round" type="submit">Quitar<i class="material-icons"></i></button>
                             @endif
                         </form>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -76,7 +81,7 @@
     <br>
     <br>
     <hr>
-    <span class="shadow p-4 bg-info rounded d-block text-white">Peliculas Prestadas<a href="{{url('/MasPopulares')}}" class="btn btn-secondary border-0" aria-pressed="false" autocomplete="off"><i class="fas fa-arrow-alt-circle-up"></i></a></span>
+    <span class="shadow p-4 bg-info rounded d-block text-white"><label class="col-11" for="">Peliculas Prestadas</label><a href="{{url('/MasPopulares')}}" class="btn btn-secondary border-0" aria-pressed="false" autocomplete="off"><i class="fas fa-arrow-alt-circle-up"></i></a></span>
     <hr>
     <div class="row">
         @foreach($prestadas as $prestada)
@@ -93,8 +98,9 @@
                     <hr>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <form action="{{ url('/MasPopulares/'.$prestada->id_pelicula) }}" method="POST" class="form-inline">
-                                <a href="{{url('/RentadePeliculas/'.$prestada->id_pelicula)}}" class="btn btn-outline-primary border-0" aria-pressed="true" autocomplete="on">Devolver</a>
+                            <form class="form-inline col">
+                                <input type="text" name="devolver" value="{{$prestada->id_pelicula}}" hidden>
+                                <button class="btn btn-outline-primary btn-round" type="submit">Devorver</button>
                             </form>
                         </div>
                     </div>
