@@ -5,24 +5,16 @@ namespace App\Http\Controllers;
 use App\Directores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\AssignOp\Concat;
+use PhpParser\Node\Expr\BinaryOp\Concat as BinaryOpConcat;
 
 class DirectoresController extends Controller
 {
-
-    public function index(Request $request)
+   
+    public function index()
     {
-        if (!$request) {
-            $directores = DB::select('select * from directores;');
-            return view('Directores.index',['directores' => $directores]);
-        }else{
-            if ($request) {
-                $query=trim($request->get('search'));
-                $directores = Directores::where('nombre_dire', 'LIKE', '%'.$query.'%')
-                ->orderBy('nombre_dire')
-                ->paginate(10);
-                return view('Directores.index',['directores' => $directores, 'search' => $query]);
-            }
-        }
+        $directores = DB::select('select * from directores;');
+        return view('Directores.index', ['directores'=> $directores]);
     }
 
     /**
@@ -35,19 +27,34 @@ class DirectoresController extends Controller
         return view('Directores.registrar');
     }
 
-
+   
     public function store(Request $request)
     {
+        $v = \validator($request->all(), [
+
+            
+            'nombre_dire' => 'required',
+            'ap_paterno'    =>'required',
+            'ap_materno' => 'required'
+            
+
+            ]);
+
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
+            $id_director = $request->input ('id_director');
             $nombre_dire = $request->input('nombre_dire');
             $ap_paterno = $request->input('ap_paterno');
             $ap_materno = $request->input('ap_materno');
+            $nombre_completo = $request->input('nombre_completo');
+            
+            //$data = array("nombre_dire" => $nombre_dire, "ap_paterno" => $ap_paterno, 
+            //"ap_materno" => $ap_materno, "nombre_completo" => $nombre_completo);
 
-            $data = array("nombre_dire" => $nombre_dire, "ap_paterno" => $ap_paterno,
-            "ap_materno" => $ap_materno);
-
-            DB::table('Directores')->insert($data);
-
-
+            DB::select('call insertdirector(?,?,?,?,?)',[$id_director,$nombre_dire,$ap_paterno,$ap_materno,$nombre_completo]);
+           
             return redirect('/Directores');
     }
 
@@ -63,7 +70,7 @@ class DirectoresController extends Controller
     }
 
     /**
-     *
+     * 
      * Show the form for editing the specified resource.
      *
      * @param  \App\Directores  $directores

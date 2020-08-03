@@ -6,6 +6,7 @@
         <div class="col-12">
             <br>
             <h2 class="text-center card-title font-weight-normal ">Lista de Peliculas</h2>
+            {{ Auth::user()->name }}{{ Auth::user()->id }}
         </div>
         <div class="col-4">
             <label>Buscar Pelicula</label>
@@ -21,14 +22,14 @@
             <!-- <a href="{{url('/RentadePeliculas')}}" class="btn btn-outline-secondary mt-4 bg-info text-light"><i class="fas fa-shopping-cart">Carrito de rentas</i></a> -->
         <!-- </div> -->
         <div class="form-group col-2">
-            <a href="#espera" class="btn mt-4 bg-info text-light" aria-pressed="true" autocomplete="on"><i class="fas fa-film"> Lista de espera</i></a>
+            <a href="#espera" class="btn mt-4 bg-info text-light" aria-pressed="true" autocomplete="on"><i class="fas fa-film"> Lista de Espera</i></a>
         </div>
         <div class="form-group col-2">
-            <a href="#maspeliculas" class="btn mt-4 bg-info text-light" aria-pressed="true" autocomplete="on"><i class="fas fa-film"> Mas peliculas</i></a>
+            <a href="#maspeliculas" class="btn mt-4 bg-info text-light" aria-pressed="true" autocomplete="on"><i class="fas fa-film">   Peliculas Prestadas</i></a>
         </div>
-        <div class="form-group col-2">
+        <!-- <div class="form-group col-2">
             <a href="#vistas" class="btn mt-4 bg-info text-light" aria-pressed="true" autocomplete="on"><i class="fas fa-film"> Vistas</i></a>
-        </div>
+        </div> -->
     </div>
 
 

@@ -17,12 +17,16 @@ class DevolucionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sql='SELECT id_devolucion,fecha,fecha_dev,nombre,ap_paterno,ap_materno from devoluciones,prestamos,personas,socios WHERE prestamos.id_prestamo=devoluciones.id_prestamo AND personas.id_persona=socios.id_persona ';
-        $Devoluciones=DB::select($sql);
-        $datos=Devoluciones::paginate(10);
-        return view('Devoluciones.index',$datos,compact('Devoluciones'));
+        $query = trim($request->get('search'));
+        $devorver=trim($request->get('devolver'));
+        $listado = DB::select('SELECT * FROM socios s,prestamos pre,peliprestada pp,copias c,peliculas p WHERE s.id_socio=pre.id_socio and pre.id_prestamo=pp.id_prestamo and pp.id_copia=c.id_copia AND p.id_pelicula=c.id_pelicula and s.email like ' . "'%" . $query . "%'" . ' ORDER by pp.id_peliprestada asc');
+         if(!$devorver==null)
+         {
+             DB::delete('DELETE FROM peliprestada WHERE id_peliprestada = ?', [$devorver]);
+         }
+        return view('Devoluciones.index', ['listado' => $listado, 'search' => $query]);
     }
 
     /**
@@ -34,8 +38,7 @@ class DevolucionesController extends Controller
     {
         $peliculas=Peliculas::all();
         $socios=Socios::all();
-        $Personas=Personas::all();
-        return view('Devoluciones.create',compact('peliculas','socios','personas'));
+        return view('Devoluciones.create',['peliculas'=>$peliculas,'socios'=>$socios]);
     }
 
     /**

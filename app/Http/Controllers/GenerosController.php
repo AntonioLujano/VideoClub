@@ -40,10 +40,21 @@ class GenerosController extends Controller
     public function store(Request $request)
     {
         //
+        
+        $v = \validator($request->all(), [
+            
+            'des_gen' => 'required|unique:Generos'
+            
+             
+         ]);
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
         $des_gen = $request->input('des_gen');
-        $data = array("des_gen" => $des_gen);
-        DB::table('generos')->insert($data);
-        return redirect('/Generos');
+         $data = array("des_gen" => $des_gen);
+         DB::table('generos')->insert($data);
+         return redirect('/Generos');   
     }
 
     /**

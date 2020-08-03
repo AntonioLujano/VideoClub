@@ -34,7 +34,7 @@
                     </li>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-handshake"> Devoluciones</i></a>
+                        <a href="{{url('/Devoluciones')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-handshake"> Devoluciones</i></a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-money-bill-wave"> Deudas</i></a>

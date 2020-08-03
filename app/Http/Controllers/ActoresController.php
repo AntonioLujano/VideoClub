@@ -12,20 +12,10 @@ class ActoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if (!$request) {
-            $actores = DB::select('select id_actor,nombre_act,ap_paterno,ap_materno FROM actores order by=nombre_act');
-            return view('Actores.index',['actores' => $actores]);
-        }else{
-            if ($request) {
-                $query=trim($request->get('search'));
-                $actores = Actores::where('nombre_act', 'LIKE', '%'.$query.'%')
-                ->orderBy('nombre_act')
-                ->paginate(10);
-                return view('Actores.index',['actores' => $actores, 'search' => $query]);
-            }
-        }
+        $actores = DB::select('select id_actor, nombre_act, ap_paterno, ap_materno FROM actores ');
+        return view('Actores.index', ['actores'=> $actores] );
     }
 
     /**
@@ -46,13 +36,30 @@ class ActoresController extends Controller
      */
     public function store(Request $request)
     {
+        $v = \validator($request->all(), [
+
+            
+            'nombre_act' => 'required',
+            'ap_paterno'    =>'required',
+            'ap_materno' => 'required'
+
+            ]);
+
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
+        $id_actor = $request->input ('id_actor');
             $nombre_act = $request->input('nombre_act');
             $ap_paterno = $request->input('ap_paterno');
             $ap_materno = $request->input('ap_materno');
+            $nom_completo = $request->input('nom_completo');
+            
+            //$data = array("nombre_act" => $nombre_act, "ap_paterno" => $ap_paterno, "ap_materno" => $ap_materno, );
 
-            $data = array("nombre_act" => $nombre_act, "ap_paterno" => $ap_paterno, "ap_materno" => $ap_materno, );
-
-            DB::table('Actores')->insert($data);
+            //DB::table('Actores')->insert($data);
+            DB::select('call insertactor(?,?,?,?,?)',[$id_actor,$nombre_act,$ap_paterno,$ap_materno,$nom_completo]);
+           
 
             return redirect('/Actores');
     }
@@ -88,7 +95,7 @@ class ActoresController extends Controller
      * @param  \App\Actores  $actores
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id_actor)
+    public function update(Request $request, $id_actor)
     {
         //
         $datosActor=request()->except(['_token','_method']);
@@ -107,6 +114,6 @@ class ActoresController extends Controller
     {
         Actores::destroy($id_actor);
         return redirect('Actores');
-
+   
     }
 }

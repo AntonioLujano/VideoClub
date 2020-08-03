@@ -8,6 +8,6 @@ class Directores extends Model
 {
     protected $table = 'Directores';
     protected $primaryKey ='id_director';
-    protected $fillable = ['nombre_dire','ap_paterno','ap_materno'];
+    protected $fillable = ['nombre_dire','ap_paterno','ap_materno','nombre_completo'];
     public $timestamps = false;
 }

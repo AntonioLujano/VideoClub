@@ -10,14 +10,14 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Socio</label>
                         <select class="form-control" id="exampleFormControlSelect1">
-                        @foreach($peliculas as $Pelicula)
-                            <option name="{{$Pelicula->id_pelicula}}">{{$Pelicula->titulo}}</option>
+                        @foreach($socios as $Socio)
+                            <option name="{{$Socio->id_socio}}">{{$Socio->name}} {{$Socio->ap_paterno}} {{$Socio->ap_materno}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col"></div>
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Socio</label>
+                        <label for="exampleFormControlSelect1">Pelicula</label>
                         <select class="form-control" id="exampleFormControlSelect1">
                         @foreach($peliculas as $Pelicula)
                             <option name="{{$Pelicula->id_pelicula}}">{{$Pelicula->titulo}}</option>

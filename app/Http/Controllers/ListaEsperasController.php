@@ -18,17 +18,15 @@ class ListaEsperasController extends Controller
      */
     public function index(Request $request)
     {
-      $datos['ListaEsperas']=ListaEsperas::paginate(20);
-        if (!$request) {
-             $ListaEsperas=DB::select('SELECT id_espera,titulo,fecha_registro,nombre,ap_paterno,ap_materno,estado FROM listaespera,peliculas,socios,personas WHERE personas.id_persona=socios.id_persona AND peliculas.id_pelicula=listaespera.id_pelicula AND socios.id_socio=listaespera.id_socio ORDER BY fecha_registro ASC');
-            return view('ListaEsperas.index',['ListaEsperas' => $ListaEsperas]);
-        }else{
-            if ($request) {
-                $query=trim($request->get('search'));
-                $ListaEsperas = DB::select('SELECT id_espera,titulo, fecha_registro,nombre,ap_paterno,ap_materno,estado FROM listaespera,peliculas,socios,personas WHERE personas.id_persona=socios.id_persona AND peliculas.id_pelicula=listaespera.id_pelicula AND socios.id_socio=listaespera.id_socio AND peliculas.titulo LIKE '."'%".$query."%'".' order by fecha_registro ASC' );
-                return view('ListaEsperas.index',['ListaEsperas' => $ListaEsperas, 'search' => $query]);
-            }
+        $query = trim($request->get('search'));
+        $prestar=trim($request->get('llamar'));
+        $listado = DB::select('SELECT * FROM socios s,listaespera l,peliculas p,generos g,directores d WHERE s.id_socio=l.id_socio and l.id_pelicula=p.id_pelicula and p.id_genero=g.id_genero and p.id_director= d.id_director and  p.titulo like ' . "'%" . $query . "%'" . ' ORDER by l.estado asc');
+        if(!$prestar==null)
+        {
+            DB::select('CALL llamadadisponible(?)',[$prestar]);
+            return view('ListaEsperas.index', ['peliculas' => $listado, 'search' => $query]);
         }
+        return view('ListaEsperas.index', ['peliculas' => $listado, 'search' => $query]);
     }
 
     /**
@@ -38,10 +36,7 @@ class ListaEsperasController extends Controller
      */
     public function create()
     {
-        $peliculas=Peliculas::all();
-        $socios=Socios::all();
-        $Personas=Personas::all();
-        return view('ListaEsperas.create',compact('ListaEsperas','peliculas'),compact('socios'));
+        return view('ListaEsperas.index');
     }
 
     /**
@@ -52,10 +47,9 @@ class ListaEsperasController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
-    public function show( )
+    public function show()
     {
         //
     }
@@ -66,9 +60,9 @@ class ListaEsperasController extends Controller
      * @param  \App\MasPopulares  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function edit($id )
+    public function edit($id)
     {
-        $lista=ListaEsperas::findOrFail($id);
+        $lista = ListaEsperas::findOrFail($id);
         return view('ListaEsperas.edit');
     }
 
@@ -90,10 +84,10 @@ class ListaEsperasController extends Controller
      * @param  \App\MasPopulares  $masPopulares
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
 
-        $lista=DB::delete('DELETE FROM `listaespera` WHERE `listaespera`.`id_espera` = ?', $lista->id_persona);
+        $lista = DB::delete('DELETE FROM `listaespera` WHERE `listaespera`.`id_espera` = ?', $lista->id_persona);
         return redirect('ListaEsperas')->with('Registro eliminado con exito');;
     }
 }

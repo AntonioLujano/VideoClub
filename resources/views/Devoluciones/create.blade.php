@@ -10,7 +10,7 @@
                 <option>Seleccionar Pelicula</option>
                     @foreach ($peliculas as $pelicula)
                         <option value="{{ $pelicula['id_pelicula'] }}">{{ $pelicula['titulo'] }}</option>
-                    @endforeach  
+                    @endforeach
             </select>
             <br>
             <label for="">Numero de copias</label>
@@ -20,8 +20,8 @@
             <select id="my-select" class="form-control" name="">
                 <option>Seleccionar Socio</option>
                     @foreach ($socios as $socio)
-                        <option value="{{ $socio['id_socio'] }}">{{ $socio['id_persona'] }}</option>
-                    @endforeach 
+                        <option value="{{ $socio['id_socio'] }}">{{ $socio['name'] }}</option>
+                    @endforeach
             </select>
             <br>
             <button class="btn btn-danger" type="button">Limpiar</button>

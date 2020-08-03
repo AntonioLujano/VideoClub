@@ -12,7 +12,7 @@
             <table class="table table-light" class="table table-striped table-sm">
                 <thead class="thead-light">
                 <tr>
-                    <th>#</th>
+                    
                     <th>Genero</th>
                     <th>Acciones</th>
                 </tr>
@@ -20,7 +20,7 @@
                 <tbody>
                 @foreach($generos as $Genero)
                 <tr>
-                    <td>{{$Genero->id_genero}}</td>
+                    
                     <td>{{$Genero->des_gen}}</td>
                     <td>
                         <a href="{{url('/Generos/'.$Genero->id_genero.'/edit') }}" type="button" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons">edit</i>Editar</a>
