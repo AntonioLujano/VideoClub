@@ -8,7 +8,7 @@
                 <div class="card-header bg-info"><center class="text-light font-weight-normal text-center">{{ __('Registro') }}</center></div>
 
                 <div class="card-body">
-                <h2 class="bg-danger">Lo sentimos solo el administrador puede registrar nuevos usuarios</h2>
+                <!-- <h2 class="bg-danger">Lo sentimos solo el administrador puede registrar nuevos usuarios</h2> -->
                 <form method="POST" action="{{ route('register') }}">
                         @csrf
 

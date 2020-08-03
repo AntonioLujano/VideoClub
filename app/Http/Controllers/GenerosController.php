@@ -13,9 +13,10 @@ class GenerosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $generos=DB::select('select *from generos order by id_genero');
+        $query=trim($request->get('search'));
+        $generos=DB::select('select *from generos where des_gen LIKE '."'%".$query."%'".'order by id_genero');
         return view('Generos.index',['generos' => $generos]);
     }
 
@@ -40,12 +41,12 @@ class GenerosController extends Controller
     public function store(Request $request)
     {
         //
-        
+
         $v = \validator($request->all(), [
-            
+
             'des_gen' => 'required|unique:Generos'
-            
-             
+
+
          ]);
         if ($v->fails())
         {
@@ -54,7 +55,7 @@ class GenerosController extends Controller
         $des_gen = $request->input('des_gen');
          $data = array("des_gen" => $des_gen);
          DB::table('generos')->insert($data);
-         return redirect('/Generos');   
+         return redirect('/Generos');
     }
 
     /**
@@ -100,7 +101,7 @@ class GenerosController extends Controller
 
         return view('Generos.edit',compact('generos'));
         */
-       
+
 
         return redirect('Generos')->with('Mensaje','Genero modificado con exito');
     }
@@ -116,6 +117,6 @@ class GenerosController extends Controller
         //
         Generos::destroy($id_genero);
         return redirect('Generos');
-        
+
     }
 }

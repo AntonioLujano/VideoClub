@@ -6,7 +6,7 @@
         <div class="col-12">
             <br>
             <h2 class="text-center card-title font-weight-normal ">Lista de Peliculas</h2>
-            {{ Auth::user()->name }}{{ Auth::user()->id }}
+
         </div>
         <div class="col-4">
             <label>Buscar Pelicula</label>
