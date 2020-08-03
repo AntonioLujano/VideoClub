@@ -56,6 +56,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $ListaEsperas->links()}}
         </div>
     </div>
 </div>

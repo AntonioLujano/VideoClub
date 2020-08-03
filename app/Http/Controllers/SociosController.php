@@ -6,6 +6,7 @@ use App\Socios;
 use App\Personas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class SociosController extends Controller
 {
@@ -56,7 +57,7 @@ class SociosController extends Controller
             $dir = $request->input('dir');
             $telefono = $request->input('telefono');
             $correo = $request->input('email');
-            $contrasena = $request->input('password');
+            $contrasena = Hash::make($request->input('password'));
             if ($request ->hasFile('ine')){
                 $file = $request->file('ine');
                 $ine = time().$file->getClientOriginalName();
@@ -69,8 +70,9 @@ class SociosController extends Controller
             }
 
             DB::select('call Insertar_Socio(?,?,?,?,?,?,?,?,?)',[$nombre,$ap_paterno,$ap_materno,$dir,$telefono,$correo,$contrasena,$ine,$domicilio]);
-           // return redirect('Socios.registrousuario')->with('Mensaje','Socio ingresado con exito');
-        return view('auth.register');
+            DB::select('call Insertar_Usuario(?,?,?)',[$nombre,$correo,$contrasena]);
+           return redirect('Socios')->with('Mensaje','Socio ingresado con exito');
+        //return view('auth.register');
     }
 
     /**

@@ -4,6 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card ">
+                <br><br><br>
                 <div class=" card card-header bg-info"><center class="text-light font-weight-normal text-center">{{ __('Inicio de Sesión') }}</center></div>
                 <center><img src="../img/inicio/robot-cookies.gif" alt="" width="100px"></center>
                 <div class="card-body">

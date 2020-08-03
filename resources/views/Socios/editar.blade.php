@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <h3 class="text-center">Editar Socio</h3>
     <div>.</div>
-    <form action="{{ url('/Socios'.$socios->id_socio)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('/Socios/'.$socios->id_socio)}}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
 {{ method_field('PATCH') }}
         <div class="form-row">
