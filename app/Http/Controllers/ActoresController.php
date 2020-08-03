@@ -12,9 +12,10 @@ class ActoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $actores = DB::select('select id_actor, nombre_act, ap_paterno, ap_materno FROM actores ');
+        $query=trim($request->get('search'));
+        $actores = DB::select('select id_actor, nombre_act, ap_paterno, ap_materno FROM actores where nombre_act LIKE '."'%".$query."%'".'order by id_actor');
         return view('Actores.index', ['actores'=> $actores] );
     }
 
@@ -38,7 +39,7 @@ class ActoresController extends Controller
     {
         $v = \validator($request->all(), [
 
-            
+
             'nombre_act' => 'required',
             'ap_paterno'    =>'required',
             'ap_materno' => 'required'
@@ -54,12 +55,12 @@ class ActoresController extends Controller
             $ap_paterno = $request->input('ap_paterno');
             $ap_materno = $request->input('ap_materno');
             $nom_completo = $request->input('nom_completo');
-            
+
             //$data = array("nombre_act" => $nombre_act, "ap_paterno" => $ap_paterno, "ap_materno" => $ap_materno, );
 
             //DB::table('Actores')->insert($data);
             DB::select('call insertactor(?,?,?,?,?)',[$id_actor,$nombre_act,$ap_paterno,$ap_materno,$nom_completo]);
-           
+
 
             return redirect('/Actores');
     }
@@ -114,6 +115,6 @@ class ActoresController extends Controller
     {
         Actores::destroy($id_actor);
         return redirect('Actores');
-   
+
     }
 }

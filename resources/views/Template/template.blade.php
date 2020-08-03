@@ -9,10 +9,17 @@
                         <a href="{{url('/MasPopulares')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-th"> Inicio</i></a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{url('/Actfav')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-users"> Actores</i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('/Dirfav')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-users"> Actores</i></a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-user"> Usuarios</i></a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('/MasPopulares')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-film"> Peliculas</i></a>
+                        <a href="{{url('/Peliculas')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-film"> Peliculas</i></a>
                     </li>
                     <li class="nav-item">
                         <a href="{{url('/Generos')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-photo-video"> Generos</i></a>

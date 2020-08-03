@@ -10,10 +10,11 @@ use PhpParser\Node\Expr\BinaryOp\Concat as BinaryOpConcat;
 
 class DirectoresController extends Controller
 {
-   
-    public function index()
+
+    public function index(Request $request)
     {
-        $directores = DB::select('select * from directores;');
+        $query=trim($request->get('search'));
+        $directores = DB::select('select * from directores where nombre_dire LIKE '."'%".$query."%'".' order by id_director asc');
         return view('Directores.index', ['directores'=> $directores]);
     }
 
@@ -27,16 +28,16 @@ class DirectoresController extends Controller
         return view('Directores.registrar');
     }
 
-   
+
     public function store(Request $request)
     {
         $v = \validator($request->all(), [
 
-            
+
             'nombre_dire' => 'required',
             'ap_paterno'    =>'required',
             'ap_materno' => 'required'
-            
+
 
             ]);
 
@@ -49,12 +50,12 @@ class DirectoresController extends Controller
             $ap_paterno = $request->input('ap_paterno');
             $ap_materno = $request->input('ap_materno');
             $nombre_completo = $request->input('nombre_completo');
-            
-            //$data = array("nombre_dire" => $nombre_dire, "ap_paterno" => $ap_paterno, 
+
+            //$data = array("nombre_dire" => $nombre_dire, "ap_paterno" => $ap_paterno,
             //"ap_materno" => $ap_materno, "nombre_completo" => $nombre_completo);
 
             DB::select('call insertdirector(?,?,?,?,?)',[$id_director,$nombre_dire,$ap_paterno,$ap_materno,$nombre_completo]);
-           
+
             return redirect('/Directores');
     }
 
@@ -70,7 +71,7 @@ class DirectoresController extends Controller
     }
 
     /**
-     * 
+     *
      * Show the form for editing the specified resource.
      *
      * @param  \App\Directores  $directores
