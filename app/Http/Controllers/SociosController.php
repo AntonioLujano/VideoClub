@@ -123,6 +123,9 @@ class SociosController extends Controller
      */
     public function destroy($id_socio)
     {
+        GenFav::destroy($id_socio);
+        DirFav::destroy($id_socio);
+        ActFav::destroy($id_socio);
         Socios::destroy($id_socio);
         return redirect('Socios');
     }

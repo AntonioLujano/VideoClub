@@ -76,7 +76,7 @@
 
         <div class="form-row">
             <div class="form-group col-md-4">
-                <button type="reset" class="btn btn-primary">Limpiar</button>
+                <button type="reset" class="btn btn-primary">Restablecer valores</button>
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <a href="{{url('/Socios')}}"><button type="button" class="btn btn-primary">Cancelar</button></a>
             </div>
