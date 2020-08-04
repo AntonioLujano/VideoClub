@@ -2,7 +2,7 @@
 @section('title', 'Generos')
 @section('content')
 <div class="container">
-        <h2 class="text-center card-title font-weight-normal mt-5">Listado de Generos</h2>
+        <h2 class="text-center card-title font-weight-normal mt-5">Listado de Generos selecione su Favorito </h2>
         <div class="col-4">
             <label>Buscar Pelicula</label>
             <form class="form-inline">
@@ -28,7 +28,7 @@
                     <td>{{$Genero->des_gen}}</td>
                     <td>
                     @foreach($genf as $genfa)
-                    <form action="{{url('/GenFav/favorito') }}" class="form-inline col-5">
+                    <form class="form-inline col-5">
                         @if($Genero->id_genero==$genfa->id_genero)
                         <input type="text" name="nofav" value="{{$Genero->id_genero}}" hidden>
                         <button class="btn btn-outline-danger border-0 btn-round" type="submit"><i class="fas fa-heart"></i></i></button>

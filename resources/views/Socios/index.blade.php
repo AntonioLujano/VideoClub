@@ -32,6 +32,8 @@
                     <th>Dirección</th>
                     <th>Telefono</th>
                     <th>Correo</th>
+                    <th>INE</th>
+                    <th>Domicilio</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -44,6 +46,16 @@
                     <td>{{$Socio->dir}}</td>
                     <td>{{$Socio->telefono}}</td>
                     <td>{{$Socio->email}}</td>
+                    @if(!$Socio->ine==null)
+                    <td><a class="btn btn-secondary btn-round" target="_blank" href="{{asset('PDF/INE/'.$Socio->ine)}}">PDF</a></td>
+                    @else
+                    <td></td>
+                    @endif
+                    @if(!$Socio->domicilio==null)
+                    <td><a class="btn btn-secondary btn-round" target="_blank" href="{{asset('PDF/Comprobantes/'.$Socio->domicilio)}}">PDF</a></td>
+                    @else
+                    <td></td>
+                    @endif
                     <td>
                         <form action="{{ url('/Socios/'.$Socio->id_socio) }}" method="POST" style="display:inline">
                         <a href="{{url('/Socios/'.$Socio->id_socio.'/edit') }}" type="button" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons">edit</i>Editar</a>
