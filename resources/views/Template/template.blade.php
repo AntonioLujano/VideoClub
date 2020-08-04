@@ -12,6 +12,9 @@
                         <a href="{{url('/Favoritos')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-users">Favoritos </i></a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{url('/GenFav')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-photo-video">Generos Favoritos </i></a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-user"> Usuarios</i></a>
                     </li>
                     <li class="nav-item">

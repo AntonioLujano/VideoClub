@@ -2,7 +2,7 @@
 @section('contenido')
 <div class="col-12" class="container-fluid">
     <hr>
-    <span class="shadow p-4 bg-info rounded d-block text-white">Mas Peliculas</span>
+    <span class="shadow p-4 bg-info rounded d-block text-white"><label>Mas Peliculas    ({{count($peliculas)}})</label></span>
     <hr>
     <div class="row">
         @foreach($peliculas as $Pelicula)
@@ -14,7 +14,7 @@
                 </div> -->
                 <div class="card-body">
                     <label class="col-12">Titulo: {{$Pelicula->titulo}}</label>
-                    <label class="col-12">Director: {{$Pelicula->nombre_dire}} {{$Pelicula->ap_paterno}} {{$Pelicula->ap_materno}}</label>
+                    <label class="col-10">Director: {{$Pelicula->nombre_dire}} {{$Pelicula->ap_paterno}} {{$Pelicula->ap_materno}}</label>
                     <label class="col-12">Genero: {{$Pelicula->des_gen}}</label>
                     <hr>
                     <div class="d-flex justify-content-between align-items-center">
@@ -41,6 +41,7 @@
     <div class="shadow p-4 bg-info rounded d-block text-white"><label class="col-11" for="">Lista de Espera</label><a href="{{url('/MasPopulares')}}" class="btn btn-secondary border-0" aria-pressed="false" autocomplete="off"><i class="fas fa-arrow-alt-circle-up"></i></a></div>
     <hr>
     <div class="row">
+        @if(count($peliculas)<=0)
         @foreach($espera as $lista)
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm" title="{{$lista->titulo}}">
@@ -72,6 +73,9 @@
             </div>
         </div>
         @endforeach
+        @else
+        sin resultados
+        @endif
     </div>
     <div id="maspeliculas"></div>
     <br>

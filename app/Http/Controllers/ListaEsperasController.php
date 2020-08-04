@@ -20,8 +20,13 @@ class ListaEsperasController extends Controller
     {
         $query = trim($request->get('search'));
         $prestar=trim($request->get('llamar'));
+        $presta=1;
         $listado = DB::select('SELECT * FROM socios s,listaespera l,peliculas p,generos g,directores d WHERE s.id_socio=l.id_socio and l.id_pelicula=p.id_pelicula and p.id_genero=g.id_genero and p.id_director= d.id_director and  p.titulo like ' . "'%" . $query . "%'" . ' ORDER by l.estado asc');
         if(!$prestar==null)
+        {
+            DB::select('CALL llamadadisponible(?)',[$prestar]);
+            return view('ListaEsperas.index', ['peliculas' => $listado, 'search' => $query]);
+        }else if(!$presta==null)
         {
             DB::select('CALL llamadadisponible(?)',[$prestar]);
             return view('ListaEsperas.index', ['peliculas' => $listado, 'search' => $query]);

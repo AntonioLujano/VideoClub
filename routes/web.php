@@ -45,6 +45,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::resource('/Renta', 'RentadePeliculasController');
     Route::resource('/RentadePeliculas', 'PrestamosController');
     Route::resource('/Generos','GenerosController');
+    Route::resource('/GenFav','GenfavController');
     Route::resource('/Directores','DirectoresController');
     Route::resource('/Actores','ActoresController');
     Route::resource('/Peliculas','PeliculasController');

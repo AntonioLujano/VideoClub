@@ -22,6 +22,11 @@ class MasPopularesController extends Controller
 
     public function index(Request $request)
     {
+        //listar por directores favoritos
+        // SELECT * FROM peliculas p, directores d,generos g,dirfav df,socios s WHERE g.id_genero=p.id_genero and d.id_director=p.id_director and d.id_director=df.id_director AND df.id_socio=s.id_socio
+        // listar por generos favoritos
+        // SELECT * FROM peliculas p, directores d,generos g,genfav gf,socios s WHERE g.id_genero=p.id_genero and d.id_director=p.id_director and g.id_genero=gf.id_genero and gf.id_socio=s.id_socio
+
         $id = Auth::id();
 
         $query = trim($request->get('search'));
@@ -29,8 +34,9 @@ class MasPopularesController extends Controller
         $noesperar=trim($request->get('noesperar'));
         $esperar=trim($request->get('espera'));
         $rentar=trim($request->get('espera'));
-        $peliculas = DB::select('select * FROM socios s,prestamos pre,peliprestada pp,copias c,peliculas p,directores d,generos g WHERE s.id_socio=pre.id_socio and pre.id_prestamo=pp.id_prestamo and pp.id_copia=c.id_copia AND p.id_pelicula=c.id_pelicula AND p.id_director=d.id_director AND p.id_genero=g.id_genero AND not s.id_socio=' . $id . '  and P.titulo LIKE ' . "'%" . $query . "%'" . ' order by P.id_pelicula');
-
+        // $peliculas = DB::select('select * FROM socios s,prestamos pre,peliprestada pp,copias c,peliculas p,directores d,generos g WHERE s.id_socio=pre.id_socio and pre.id_prestamo=pp.id_prestamo and pp.id_copia=c.id_copia AND p.id_pelicula=c.id_pelicula AND p.id_director=d.id_director AND p.id_genero=g.id_genero AND not s.id_socio=' . $id . '  and P.titulo LIKE ' . "'%" . $query . "%'" . ' order by P.id_pelicula');
+        $peliculas = DB::select('SELECT * FROM peliculas p, directores d,generos g WHERE g.id_genero=p.id_genero and d.id_director=p.id_director and P.titulo LIKE ' . "'%" . $query . "%'" . ' order by P.id_pelicula');
+        // $cantP = DB::select('select * FROM peliculas p, directores d,generos g WHERE g.id_genero=p.id_genero and d.id_director=p.id_director');
         if (!$devolver == null) {
             DB::delete('DELETE FROM peliprestada WHERE id_peliprestada = ?', [$devolver]);
         }
