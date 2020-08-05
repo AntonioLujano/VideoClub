@@ -6,7 +6,6 @@
 <div class="container-fluid mt-3">
     <h3 class="text-center"><i class="fas fa-shopping-cart"></i> Detalle del pedido</h3>
     <br>
-
     <div>
     	<div class="table-responsive">
     		<h3>Datos del usuario</h3>
@@ -22,7 +21,7 @@
     			<tr>
     				<td>Fecha de entrega:</td>
     				<td>    
-            			<input type="date" name="" class="text-center">
+            			<input type="date" name="" class="text-center" required="" id="fecha">
 					</td>
     			</tr>
     		</table>
@@ -51,18 +50,35 @@
     			</span>
     			<input type="text" name="" readonly="readonly" id="total">
     		</h3><hr>
+    		<div id="pago" class="text-center label-success" style="display: none;">
+    			<h3 class="label label-success">Deposita a este numero de cuenta: 5523-0655-55456</h3>
+    			<h3>Tu pedido se esta procesando</h3>
+    		</div><hr>
     		<p>
     			<a href=" {{ route('cart-show') }} " class="btn btn-primary">
     				<i class="fa fa-chevron-circle-left"> Regresar</i>
     			</a>
 
-    			<a href=" # " class="btn btn-warning" style="color: rgb(255,255,255);">
-    				Pagar con <i class="fa fa-paypal"></i>
-    			</a>
+    			<button class="btn btn-warning" style="color: rgb(255,255,255);" onclick="Mostrar()" id="pagando">
+    				Pagar <i class="fa fa-credit-card"></i>
+    			</button>
     		</p>
     		<script type="text/javascript">
                var tabla=document.getElementById("orden").rows.length;
                var total=document.getElementById("total").value=((tabla*50)-50);
+
+               function Mostrar()
+               {
+               		var x=document.getElementById("pago");
+               		if(x.style.display === "none"){
+               			x.style.display = "block";
+               			var b = document.getElementById("fecha");
+               			b.setAttribute("readonly","");
+
+               			var a = document.getElementById("pagando");
+               			a.setAttribute("disabled","");
+               		}
+               }
             </script>
     	</div>
     </div>

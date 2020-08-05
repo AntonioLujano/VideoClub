@@ -26,6 +26,7 @@
                     <table class="table table-light" class="table table-striped table-sm" id="carrito">
                     <thead class="thead-light">
                         <h4 class="centrar">Peliculas Agregadas</h4>
+                        @if(count(session()->get('cart')))
                         <tr>
                             <th>Titulos</th>
                             <th>Cantidad</th>
@@ -56,9 +57,14 @@
                         var total=document.getElementById("total").value=((tabla*50)-50);
                     </script>
                     <div class="form-group col-md-5">
-                        <a href="{{route('order-detail')}}" class="btn btn-primary">Rentar</a>
-                        
+                        <a href=" {{ url('MasPopulares') }} " class="btn btn-primary">
+                            <i class="fa fa-chevron-circle-left"> Regresar</i>
+                        </a>
+                        <a href="{{route('order-detail')}}" class="btn btn-primary">Continuar compra</a>
                     </div>
+                    @endif
+                    @else
+                        <h3 class="label label-warning"><label class="label label-warning text-center">No hay productos en el carrito</label></h3>
                     @endif
                 </div>
             </div>
