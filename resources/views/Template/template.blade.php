@@ -65,7 +65,7 @@
             <div class="position-fixed" class="sidebar-sticky pt-4">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a href="{{url('/RentadePeliculas')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart"> Rentas</i></a>
+                        <a href="{{url('/cart')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart"> Rentas</i></a>
                     </li>
                     <li class="nav-item">
                         <a href="{{url('/Devoluciones')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-handshake"> Devoluciones</i></a>
@@ -98,6 +98,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{url('/GenFav')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-photo-video">      Generos Favoritos </i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('/cart')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart"> Rentas</i></a>
                     </li>
                 </ul>
             </div>

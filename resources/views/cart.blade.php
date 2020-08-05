@@ -58,9 +58,8 @@
                     <script type="text/javascript">
                         var tabla=document.getElementById("carrito").rows.length;
                         var numero=document.getElementById("totalpeliculas").value=(tabla-1);
-                        var suma=document.getElementById("valor");
-                        suma2=parseInt(suma);
-                        var total=document.getElementById("total").value=(suma2+=suma2);
+                        var suma=document.getElementById("totalpeliculas");
+                        var total=document.getElementById("total").value=((tabla*50)-50);
                     </script>
                     <div class="form-group col-md-5">
                         <button type="button" class="btn btn-primary">Rentar</button>
