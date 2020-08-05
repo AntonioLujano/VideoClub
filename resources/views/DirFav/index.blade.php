@@ -18,14 +18,16 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <h4 class="text-center card-title font-weight-normal mt-5">Todos los Generos </h4>
+            <h4 class="text-center card-title font-weight-normal mt-5">Todos los Directores </h4>
             <div class="table-responsive card card-body mt-5">
                 <div class="row">
                     @foreach($directores as $director)
                     <div class="col-12">
                         <div class="card shadow-sm" title="{{$director->nombre_dire}} {{$director->ap_paterno}} {{$director->ap_materno}}">
-                            <!-- <img src="img/pelicula.png" class="card-img-top"> -->
-                            <label class="col-10">Director: {{$director->id_director}} {{$director->nombre_dire}} {{$director->ap_paterno}} {{$director->ap_materno}}</label>
+                            <br><!-- <img src="img/pelicula.png" class="card-img-top"> -->
+                            <label class="col-12">Director:
+                            </label>
+                            <label class="col-12">{{$director->nombre_dire}} {{$director->ap_paterno}} {{$director->ap_materno}}</label>
                             <hr>
                             <div class="card-body">
                                 @foreach($directores as $dfav)
@@ -60,8 +62,6 @@
                     <thead class="thead-light">
                         <tr>
                             <th>Nombre</th>
-                            <th>Apellido Paterno</th>
-                            <th>Apellido Materno</th>
 
                             <th>Acciones</th>
                         </tr>
@@ -69,9 +69,7 @@
                     <tbody>
                         @foreach($dirf as $director)
                         <tr>
-                            <td>{{$director->nombre_dire}}</td>
-                            <td>{{$director->ap_paterno}}</td>
-                            <td>{{$director->ap_materno}}</td>
+                            <td>Director: {{$director->nombre_dire}}  {{$director->ap_paterno}}   {{$director->ap_materno}}</td>
                             <td>
                             <form class="form-inline col-5">
                                     <input type="text" name="nofav" value="{{$director->id_dirfav}}" hidden>
