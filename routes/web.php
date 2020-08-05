@@ -31,7 +31,7 @@ Auth::routes();
     return view('layouts.app');
 });*/
 Route::get('/', function () {
-    return view('Template.template');
+    return view('/auth/login');
 });
 
 Route::group(['middleware'=>['auth']],function (){

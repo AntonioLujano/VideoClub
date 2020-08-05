@@ -104,7 +104,7 @@
                         <div class="btn-group">
                             <form class="form-inline col">
                                 <input type="text" name="devolver" value="{{$prestada->id_pelicula}}" hidden>
-                                <button class="btn btn-outline-primary btn-round" type="submit">Devorver</button>
+                                <button class="btn btn-outline-primary btn-round" type="submit">Devolver</button>
                             </form>
                         </div>
                     </div>
