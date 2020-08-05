@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('conten')
 
-@if (auth()->user()->email === 'lujano@cinema.com')
+@if (auth()->user()->email === 'Administrador@cinema.com')
 <div class="container-fluid">
     <div class="row" >
         <nav id="sidebarMenu" class="col-2 d-md-block bg-info  sidebar collapse">
