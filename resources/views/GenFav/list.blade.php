@@ -12,7 +12,6 @@
             </div>
             <div class="col">
                 <a href="{{url('/GenFav')}}" class="btn btn-info border-0" aria-pressed="false" autocomplete="off"><i class="fas fa-sync"></i></a>
-
                 </div>
         </form>
     </div>
