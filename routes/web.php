@@ -51,5 +51,9 @@ Route::group(['middleware'=>['auth']],function (){
     Route::resource('/Peliculas','PeliculasController');
 
     Route::get('add-to-cart/{id_pelicula}','MasPopularesController@addToCart');
+    Route::get('delete-cart/{id_pelicula}','MasPopularesController@delete');
+    Route::get('show',[
+        'as' => 'cart-show',
+        'uses' => 'MasPopularesController@show']);
 });
 

@@ -69,9 +69,9 @@ class MasPopularesController extends Controller
         return view('MasPopulares.list', ['peliculas' => $peliculas, 'search' => $query, 'prestadas' => $prestadas, 'devueltas' => $devueltas, 'espera' => $espera,'listargen' => $listargen]);
     }
 
-    public function addToCart ($id_pelicula)
+    public function addToCart ($id)
     {
-        $product = Peliculas::find($id_pelicula);
+        $product = Peliculas::find($id);
 
         if(!$product){
             abort(400);
@@ -80,8 +80,9 @@ class MasPopularesController extends Controller
         $cart = session()->get('cart');
         if(!$cart){
             $cart = [
-                $id_pelicula => [
-                    'titulo' => $product->titulo
+                $id => [
+                    "id_pelicula" =>$product->id_pelicula,
+                    "titulo" => $product->titulo
                 ]
             ];
             
@@ -89,15 +90,25 @@ class MasPopularesController extends Controller
             return view('cart');
         }
 
-        $cart[$id_pelicula] = [
-            'titulo' => $product->titulo
+        $cart[$id] = [
+            "id_pelicula" => $product->id_pelicula,
+            "titulo" => $product->titulo
         ];
         session()->put('cart',$cart);
-        return view('cart');
+        return redirect()->route('cart-show');
     }
 
-    public function cart ()
+    public function show ()
     {
-        return view('cart');
+        $cart = session()->get('cart');
+        return view('cart', compact('cart'));
+    }
+
+    public function delete($id_pelicula)
+    {
+        $cart = session()->get('cart');
+        unset($cart[$id_pelicula]);
+        session()->put('cart',$cart);
+        return redirect()->route('cart-show');
     }
 }

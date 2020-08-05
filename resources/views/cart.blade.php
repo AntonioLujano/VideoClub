@@ -9,28 +9,21 @@
 <meta charset="utf-8">
 <div class="container-fluid mt-3">
     <h3 class="text-center"><i class="fas fa-shopping-cart"></i>   Carrito de Rentas</h3>
+    <br>
     <div class="form-row">
-        <div class="form-group col-md-5">
-            
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-2">
-            <button type="button" class="btn btn-primary">Rentar</button>
-        </div>
-        <div class="form-group col-md-5">
-            <label># Peliculas rentadas: </label>
+        <div class="form-group col-md-3">
+            <label for="totalpeliculas"># Peliculas rentadas: </label>
             <input type="text " name="" readonly="readonly" id="totalpeliculas" class="text-center">
         </div>
-        <div class="form-group col-md-5">
-            <label>Total a Pagar: $</label>
+        <div class="form-group col-md-3">
+            <label for="total">Total a Pagar: $</label>
             <input type="text" name="" readonly="readonly" id="total" class="text-center">
         </div>
     </div>
     <div class="form-row">
-        <div class="alinear" class="form-group col-md-5">
+        <div class="form-group col-md-4">
             <label>Fecha de Entrega: </label>
-            <input type="date" name="" class="ml-3">
+            <input type="date" name="" class="text-center">
         </div>
     </div>
         <div class="form-row">
@@ -54,25 +47,28 @@
                             <td>1</td>
                             <td id="valor">50</td>
                             <td>
-                                <button type="button" class="btn btn-outline-secondary"><svg class="bi bi-dash-circle" width="1em" height="1em" viewBox="0 0 16     16"         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path fill-rule="evenodd" d="M3.5 8a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.5-.5z"/>
-                            </svg> Quitar</button>
+                                <a href="{{url('delete-cart/'.$details['id_pelicula'])}}" class="btn btn-danger">
+                                    <i class="fa fa-remove"></i>
+                                </a>
                             </td>
                         </tr>
                         @endforeach;
-                    @endif
                     </tbody>
                     </table>
+                    <script type="text/javascript">
+                        var tabla=document.getElementById("carrito").rows.length;
+                        var numero=document.getElementById("totalpeliculas").value=(tabla-1);
+                        var suma=document.getElementById("valor");
+                        suma2=parseInt(suma);
+                        var total=document.getElementById("total").value=(suma2+=suma2);
+                    </script>
+                    <div class="form-group col-md-5">
+                        <button type="button" class="btn btn-primary">Rentar</button>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </form>
 </div>
-<script type="text/javascript">
-    var tabla=document.getElementById("carrito").rows.length;
-    var numero=document.getElementById("totalpeliculas").value=tabla;
-    var suma=document.getElementById("valor");
-    var total=document.getElementById("total").value=(suma+=suma);
-</script>
 @endsection
