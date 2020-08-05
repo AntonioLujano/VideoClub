@@ -33,6 +33,14 @@
                 </span>
                 @endif
             </div>
+            <div class="form-group col-md-4">
+                <label for="ine">INE:</label>
+                <input type="text" name="" readonly="readonly" value="{{$socios->ine}}" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="ine">Comprobante:</label>
+                <input type="text" name="" readonly="readonly" value="{{$socios->domicilio}}" class="form-control">
+            </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
@@ -54,7 +62,7 @@
                         </svg>   INE</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" name="ine" class="form-control" value="{{$socios->ine}}">
+                    <input type="file" name="ine" class="form-control">
                 </div>
             </div>
         </div>
@@ -68,7 +76,7 @@
                         </svg>   Comprobante de Domicilio</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" name="domicilio" class="form-control" value="{{$socios->domicilio}}">
+                    <input type="file" name="domicilio" class="form-control">
                 </div>
             </div>
         </div>

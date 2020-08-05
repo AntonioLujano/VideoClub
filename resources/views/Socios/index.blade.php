@@ -58,8 +58,8 @@
                     @endif
                     <td>
                         <form action="{{ url('/Socios/'.$Socio->id_socio) }}" method="POST" style="display:inline">
-                        <a href="{{url('/Socios/'.$Socio->id_socio.'/edit') }}" type="button" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons">edit</i>Editar</a>
-
+                            <a href="{{url('/Socios/'.$Socio->id_socio.'/edit') }}" type="button" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons">edit</i>Editar</a>
+                            <br>
                             {{csrf_field() }}
                             {{ method_field('DELETE')}}
                             <button type="submit" class="btn btn-dark btn-round" name="eliminar" onclick="return confirm('¿Borrar a {{$Socio->name}} {{$Socio->ap_paterno}} {{$Socio->ap_materno}}?');"><i class="material-icons">restore_from_trash</i>Eliminar</button>
