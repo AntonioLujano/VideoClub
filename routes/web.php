@@ -53,8 +53,15 @@ Route::group(['middleware'=>['auth']],function (){
 
     Route::get('add-to-cart/{id_pelicula}','MasPopularesController@addToCart');
     Route::get('delete-cart/{id_pelicula}','MasPopularesController@delete');
+    
     Route::get('show',[
         'as' => 'cart-show',
         'uses' => 'MasPopularesController@show']);
+
+    Route::get('order-detail',[
+        'middleware' => 'auth',
+        'as' => 'order-detail',
+        'uses' => 'RentadePeliculasController@orderDetail'
+    ]);
 });
 

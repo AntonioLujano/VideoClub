@@ -90,4 +90,11 @@ class RentadePeliculasController extends Controller
     {
         //
     }
+
+    public function orderDetail()
+    {
+        if(count(session()->get('cart'))<=0) return redirect()->route('home');
+        $cart = session()->get('cart');
+        return view('order-detail',compact('cart'));
+    }
 }
