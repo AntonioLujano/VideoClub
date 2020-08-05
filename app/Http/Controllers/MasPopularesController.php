@@ -7,6 +7,7 @@ use App\Generos;
 use App\Peliculas;
 use App\Personas;
 use App\User;
+use App\RentadePeliculas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -67,5 +68,37 @@ class MasPopularesController extends Controller
 
         }
         return view('MasPopulares.list', ['peliculas' => $peliculas, 'search' => $query, 'prestadas' => $prestadas, 'devueltas' => $devueltas, 'espera' => $espera,'listargen' => $listargen,'listardir' => $listardir]);
+    }
+
+    public function addToCart ($id_pelicula)
+    {
+        $product = Peliculas::find($id_pelicula);
+
+        if(!$product){
+            abort(400);
+        }
+
+        $cart = session()->get('cart');
+        if(!$cart){
+            $cart = [
+                $id_pelicula => [
+                    'titulo' => $product->titulo
+                ]
+            ];
+            
+            session()->put('cart', $cart);
+            return view('cart');
+        }
+
+        $cart[$id_pelicula] = [
+            'titulo' => $product->titulo
+        ];
+        session()->put('cart',$cart);
+        return view('cart');
+    }
+
+    public function cart ()
+    {
+        return view('cart');
     }
 }

@@ -35,7 +35,7 @@
                         <a href="{{url('/Socios')}}" class="list-group-item list-group-item-action bg-info text-white border-0" id="socio"><i class="fas fa-user-tie"> Socios</i></a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('/RentadePeliculas')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart"> Rentas</i></a>
+                        <a href="{{url('/cart')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart"> Rentas</i></a>
                     </li>
                     <li class="nav-item">
                         <a href="{{url('/Renta')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart"> Renta Fisica</i></a>
@@ -74,7 +74,7 @@
                         <a href="#" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-money-bill-wave"> Deudas</i></a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('/ListaEsperas')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-list-alt"> Lista de Espera</i></a>
+                        <a href="{{url('/cart')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart"> Rentas</i></a>
                     </li>
                 </ul>
             </div>

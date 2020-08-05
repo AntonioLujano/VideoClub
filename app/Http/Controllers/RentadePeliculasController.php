@@ -22,9 +22,7 @@ class RentadePeliculasController extends Controller
      */
     public function index()
     {
-        $socios = DB::select('select * FROM socios order by name asc');
-        $peliculas = DB::select('select Pel.id_pelicula,Pel.titulo, Dir.nombre_dire,Dir.ap_paterno, Dir.ap_materno ,Gen.des_gen from Peliculas Pel, Directores Dir, Generos Gen where Gen.id_genero=Pel.id_genero and Pel.id_director=Dir.id_director order by Pel.titulo asc');
-        return view('RentaFisicas.index',['peliculas' => $peliculas,'socios' => $socios]);
+        return view('cart');
     }
 
     /**
