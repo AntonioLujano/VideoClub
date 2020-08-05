@@ -30,6 +30,45 @@
         </div>
         @endforeach
     </div>
+    <div id="listgen"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div class="shadow p-4 bg-info rounded d-block text-white"><label class="col-11" for="">Recomendaciones Según su Genero Favorito {{count($listargen)}} Coincidencias de {{count($peliculas)}} Titulos</label><a href="{{url('/MasPopulares')}}" class="btn btn-secondary border-0" aria-pressed="false" autocomplete="off"><i class="fas fa-arrow-alt-circle-up"></i></a></div>
+    <hr>
+    <div class="row">
+        @if(count($listargen)>0)
+        @foreach($listargen as $listag)
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" title="{{$listag->titulo}}">
+                <img src="img/pelicula.png" class="card-img-top">
+                <!-- <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rqmHSR0bFU8?controls=0" allowfullscreen></iframe>
+                </div> -->
+                <div class="card-body">
+                    <label class="col-12">Titulo: {{$listag->titulo}}</label>
+                    <label class="col-12">Director: {{$listag->nombre_dire}} {{$listag->ap_paterno}} {{$listag->ap_materno}}</label>
+                    <label class="col-12">Genero: {{$listag->des_gen}}</label>
+                    <hr>
+                    <div class="d-flex justify-content-between ">
+                        <form class="form-inline col-5">
+                            <input type="text" name="rentar" value="{{$listag->id_pelicula}}" hidden>
+                            <button class="btn btn-outline-secondary btn-round" type="submit">Renta<i class="material-icons"></i></button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        @else
+        sin resultados
+        @endif
+    </div>
     <div id="espera"></div>
     <br>
     <br>
