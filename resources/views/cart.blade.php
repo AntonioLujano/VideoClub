@@ -20,11 +20,11 @@
         </div>
         <div class="form-group col-md-5">
             <label># Peliculas rentadas: </label>
-            <input type="text " name="" readonly="readonly">
+            <input type="text " name="" readonly="readonly" id="totalpeliculas" class="text-center">
         </div>
         <div class="form-group col-md-5">
             <label>Total a Pagar: $</label>
-            <input type="text" name="" readonly="readonly">
+            <input type="text" name="" readonly="readonly" id="total" class="text-center">
         </div>
     </div>
     <div class="form-row">
@@ -36,11 +36,10 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <div class="table-sm">
-                    <table class="table table-light" class="table table-striped table-sm">
+                    <table class="table table-light" class="table table-striped table-sm" id="carrito">
                     <thead class="thead-light">
                         <h4 class="centrar">Peliculas Agregadas</h4>
                         <tr>
-                            <th>#</th>
                             <th>Titulos</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
@@ -51,10 +50,9 @@
                         @if(session('cart'))
                             @foreach(session('cart') as $id => $details)
                         <tr>
-                            <td>1</td>
                             <td>{{$details['titulo']}}</td>
                             <td>1</td>
-                            <td>50</td>
+                            <td id="valor">50</td>
                             <td>
                                 <button type="button" class="btn btn-outline-secondary"><svg class="bi bi-dash-circle" width="1em" height="1em" viewBox="0 0 16     16"         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -71,4 +69,10 @@
         </div>
     </form>
 </div>
+<script type="text/javascript">
+    var tabla=document.getElementById("carrito").rows.length;
+    var numero=document.getElementById("totalpeliculas").value=tabla;
+    var suma=document.getElementById("valor");
+    var total=document.getElementById("total").value=(suma+=suma);
+</script>
 @endsection

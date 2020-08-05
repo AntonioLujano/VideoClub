@@ -20,8 +20,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <form class="form-inline col">
-                                <input type="text" name="rentar" value="{{$Pelicula->id_pelicula}}" hidden>
-                                <button class="btn btn-outline-secondary btn-round" type="submit"><i class="fa fa-credit-card"></i> Rentar</button>
+                                <!--<input type="text" name="rentar" value="{{$Pelicula->id_pelicula}}" hidden> -->
+                                <a href="{{url('add-to-cart/'.$Pelicula->id_pelicula)}}" class="btn btn-outline-secondary btn-round" role="button" aria-pressed="true"><i class="fa fa-credit-card"></i> Rentar</a>
                             </form>
                         </div>
                     </div>

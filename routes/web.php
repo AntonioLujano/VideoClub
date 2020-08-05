@@ -43,11 +43,13 @@ Route::group(['middleware'=>['auth']],function (){
     Route::resource('/ListaEsperas', 'ListaEsperasController');
     Route::resource('/Devoluciones', 'DevolucionesController');
     Route::resource('/Renta', 'RentadePeliculasController');
-    Route::resource('/RentadePeliculas', 'PrestamosController');
+    Route::resource('/cart','RentadePeliculasController');
     Route::resource('/Generos','GenerosController');
     Route::resource('/GenFav','GenfavController');
     Route::resource('/Directores','DirectoresController');
     Route::resource('/Actores','ActoresController');
     Route::resource('/Peliculas','PeliculasController');
+
+    Route::get('add-to-cart/{id_pelicula}','MasPopularesController@addToCart');
 });
 

@@ -65,11 +65,11 @@
                                     <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
                                 </li>
                                 @if (Route::has('register'))
-                                <li class="nav-item">
+                                <!--<li class="nav-item">
                                     <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                                </li>
+                                </li>-->
                                 @endif
-                                @else
+                                @else 
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
