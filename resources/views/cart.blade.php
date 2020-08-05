@@ -20,12 +20,6 @@
             <input type="text" name="" readonly="readonly" id="total" class="text-center">
         </div>
     </div>
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label>Fecha de Entrega: </label>
-            <input type="date" name="" class="text-center">
-        </div>
-    </div>
         <div class="form-row">
             <div class="form-group col-md-12">
                 <div class="table-sm">
@@ -62,7 +56,8 @@
                         var total=document.getElementById("total").value=((tabla*50)-50);
                     </script>
                     <div class="form-group col-md-5">
-                        <button type="button" class="btn btn-primary">Rentar</button>
+                        <a href="{{route('order-detail')}}" class="btn btn-primary">Rentar</a>
+                        
                     </div>
                     @endif
                 </div>
