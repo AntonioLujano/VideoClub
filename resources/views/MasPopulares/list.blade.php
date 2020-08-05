@@ -30,7 +30,7 @@
         </div>
         @endforeach
     </div>
-    <div id="listgen"></div>
+    <div id="gf"></div>
     <br>
     <br>
     <br>
@@ -57,6 +57,45 @@
                     <div class="d-flex justify-content-between ">
                         <form class="form-inline col-5">
                             <input type="text" name="rentar" value="{{$listag->id_pelicula}}" hidden>
+                            <button class="btn btn-outline-secondary btn-round" type="submit">Renta<i class="material-icons"></i></button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        @else
+        sin resultados
+        @endif
+    </div>
+    <div id="df"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div class="shadow p-4 bg-info rounded d-block text-white"><label class="col-11" for="">Recomendaciones Según su Director Favorito {{count($listardir)}} Coincidencias de {{count($peliculas)}} Titulos</label><a href="{{url('/MasPopulares')}}" class="btn btn-secondary border-0" aria-pressed="false" autocomplete="off"><i class="fas fa-arrow-alt-circle-up"></i></a></div>
+    <hr>
+    <div class="row">
+        @if(count($listardir)>0)
+        @foreach($listardir as $listad)
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" title="{{$listad->titulo}}">
+                <img src="img/pelicula.png" class="card-img-top">
+                <!-- <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rqmHSR0bFU8?controls=0" allowfullscreen></iframe>
+                </div> -->
+                <div class="card-body">
+                    <label class="col-12">Titulo: {{$listad->titulo}}</label>
+                    <label class="col-12">Director: {{$listad->nombre_dire}} {{$listad->ap_paterno}} {{$listad->ap_materno}}</label>
+                    <label class="col-12">Genero: {{$listad->des_gen}}</label>
+                    <hr>
+                    <div class="d-flex justify-content-between ">
+                        <form class="form-inline col-5">
+                            <input type="text" name="rentar" value="{{$listad->id_pelicula}}" hidden>
                             <button class="btn btn-outline-secondary btn-round" type="submit">Renta<i class="material-icons"></i></button>
                         </form>
 

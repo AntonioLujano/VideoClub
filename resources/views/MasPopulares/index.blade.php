@@ -27,6 +27,13 @@
         <div class="form-group col-2">
             <a href="#maspeliculas" class="btn mt-4 bg-info text-light" aria-pressed="true" autocomplete="on"><i class="fas fa-film">   Peliculas Prestadas</i></a>
         </div>
+        <div class="col">
+        <a data-toggle="dropdown" href="#" role="button" class="btn mt-4 bg-info text-light" aria-pressed="true" autocomplete="on">Recomendaciones</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#gf">Generos Favoritos</a>
+        <a class="dropdown-item" href="#df">Director Favoritos</a>
+      </div>
+        </div>
         <!-- <div class="form-group col-2">
             <a href="#vistas" class="btn mt-4 bg-info text-light" aria-pressed="true" autocomplete="on"><i class="fas fa-film"> Vistas</i></a>
         </div> -->

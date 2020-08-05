@@ -1,57 +1,89 @@
 @extends('Template/template')
 @section('title', 'Directores')
 @section('content')
-    <div class="container">
-    <span class="float-right mt-2">
-            <a href="{{url('/Directores/create')}}" type="button" rel="tooltip" class="btn btn-info btn-round">
-                <i class="fa fa-user-plus" >    Registrar <br> Director</i>
-            </a>
-        </span>
-        <h2 class="text-center card-title font-weight-normal mt-5">Listado de Directores</h2>
-        <div class="col-4">
-            <label>Buscar Pelicula</label>
-            <form class="form-inline">
-                <input type="search" name="search" placeholder="Buscar Pelicula" class="form-control" arial-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-info btn-round" type="submit">Buscar</button>
-                </div>
-            </form>
-        </div>
-        <div class="table-responsive card card-body mt-5">
-            <table class="table table-light" class="table table-striped table-sm">
-                <thead class="thead-light">
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
+<div class="container">
+    <h2 class="text-center card-title font-weight-normal mt-5">Listado de Directores Seleccione su Favorito </h2>
+    <div class="col-4">
+        <label>Buscar Pelicula</label>
+        <form class="form-inline">
+            <input type="search" name="search" placeholder="Buscar Pelicula" class="form-control" arial-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-info btn-round" type="submit">Buscar</button>
+            </div>
+            <div class="col">
+                <a href="{{url('/DirFav')}}" class="btn btn-info border-0" aria-pressed="false" autocomplete="off"><i class="fas fa-sync"></i></a>
 
-                    <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4 class="text-center card-title font-weight-normal mt-5">Todos los Generos </h4>
+            <div class="table-responsive card card-body mt-5">
+                <div class="row">
                     @foreach($directores as $director)
-                <tr>
-                    <td>{{$director->id_director}}</td>
-                    <td>{{$director->nombre_dire}}</td>
-                    <td>{{$director->ap_paterno}}</td>
-                    <td>{{$director->ap_materno}}</td>
-                    <td>
+                    <div class="col-12">
+                        <div class="card shadow-sm" title="{{$director->nombre_dire}} {{$director->ap_paterno}} {{$director->ap_materno}}">
+                            <!-- <img src="img/pelicula.png" class="card-img-top"> -->
+                            <label class="col-10">Director: {{$director->id_director}} {{$director->nombre_dire}} {{$director->ap_paterno}} {{$director->ap_materno}}</label>
+                            <hr>
+                            <div class="card-body">
+                                @foreach($directores as $dfav)
+                                @php
+                                $id_dir=($director->id_director);
+                                $id_dirf=($dfav->id_director);
+                                @endphp
+                                @if($id_dir==$id_dirf)
+                                <label class="col-12">Titulo:{{$dfav->titulo}}</label>
+                                @endif
+                                @endforeach
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <form class="form-inline col-5">
+                                            <input type="text" name="fav" value="{{$director->id_director}}" hidden>
+                                            <button class="btn btn-outline-danger border-0 btn-round" type="submit"><i class="far fa-heart"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <h4 class="text-center card-title font-weight-normal mt-5">Tus Favoritos</h4>
+            <div class="table-responsive card card-body mt-5">
+                <table class="table table-light" class="table table-striped table-sm">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido Paterno</th>
+                            <th>Apellido Materno</th>
 
-                    <a href="{{url('/Directores/'.$director->id_director.'/edit') }}" type="button" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons">edit</i>Editar</a>
-
-                    <form action="{{ url('/Directores/'.$director->id_director) }}" method="POST" style="display:inline">
-
-                    {{csrf_field() }}
-                    {{ method_field('DELETE')}}
-                    <button type="submit" class="btn btn-dark btn-round" name="eliminar" onclick="return confirm('¿Borrar?');" > <i class="material-icons">restore_from_trash</i>Eliminar</button>
-                    </form>
-                    </td>
-                    </td>
-                </tr>
-                @endforeach
-                </tbody>
-            </table>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($dirf as $director)
+                        <tr>
+                            <td>{{$director->nombre_dire}}</td>
+                            <td>{{$director->ap_paterno}}</td>
+                            <td>{{$director->ap_materno}}</td>
+                            <td>
+                            <form class="form-inline col-5">
+                                    <input type="text" name="nofav" value="{{$director->id_dirfav}}" hidden>
+                                    <button class="btn btn-outline-danger border-0 btn-round" type="submit"><i class="fas fa-heart"></i></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+</div>
 @endsection

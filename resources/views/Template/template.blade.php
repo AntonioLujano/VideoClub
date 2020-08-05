@@ -58,21 +58,12 @@
         </main>
     </div>
 </div>
-@else
+@elseif (auth()->user()->email === 'Empleado@cinema.com')
 <div class="container-fluid">
     <div class="row" >
         <nav id="sidebarMenu" class="col-2 d-md-block bg-info  sidebar collapse">
             <div class="position-fixed" class="sidebar-sticky pt-4">
                 <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a href="{{url('/MasPopulares')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-th"> Inicio</i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{url('/Favoritos')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-users">Favoritos </i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{url('/GenFav')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-photo-video">Generos Favoritos </i></a>
-                    </li>
                     <li class="nav-item">
                         <a href="{{url('/RentadePeliculas')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-shopping-cart"> Rentas</i></a>
                     </li>
@@ -84,6 +75,29 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{url('/ListaEsperas')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-list-alt"> Lista de Espera</i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-10">
+            @yield('content')
+        </main>
+    </div>
+</div>
+@else
+<div class="container-fluid">
+    <div class="row" >
+        <nav id="sidebarMenu" class="col-2 d-md-block bg-info  sidebar collapse">
+            <div class="position-fixed" class="sidebar-sticky pt-4">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="{{url('/MasPopulares')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-th">     Inicio</i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('/DirFav')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-users">    Directores Favoritos </i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('/GenFav')}}" class="list-group-item list-group-item-action bg-info text-white border-0"><i class="fas fa-photo-video">      Generos Favoritos </i></a>
                     </li>
                 </ul>
             </div>
